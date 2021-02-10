@@ -9,7 +9,7 @@ results_2017 = pd.read_csv('data/results_2017.csv').assign(year = 2017)
 
 # Keep only columns with these strings in them
 patterns = ['year', 'id', 'constituency', 'state', 'total_votes', 'valid', 
-            'cdu', 'csu', 'spd', 'linke', 'pds', 'fdp', 'gruene', 'afd']
+            'cdu', 'spd', 'linke', 'pds', 'fdp', 'gruene', 'afd']
 col_pattern = re.compile('^(?:' + '|'.join(patterns) + ')')
 
 #%% Cleanup and reshape
@@ -20,7 +20,13 @@ results = results_2005.append(results_2009, ignore_index = True)\
 
 cols_to_keep = [x for x in list(results.columns) if re.search(col_pattern, x)]
 
+# Smoosh together CDU and CSU votes
+results['cdu_1'] = results['cdu_1'] + results['csu_1']
+results['cdu_1_p'] = results['cdu_1_p'] + results['csu_1_p']
+results['cdu_2'] = results['cdu_2'] + results['csu_2']
+results['cdu_2_p'] = results['cdu_2_p'] + results['csu_2_p']
 results = results[cols_to_keep]
+
 results_long = results\
     .melt(id_vars = ['id', 'year', 'constituency', 'state', 'total_votes', 
                      'total_votes_p', 'valid_1', 'valid_1_p', 'valid_2', 
@@ -72,8 +78,9 @@ natl_cols = ['year', 'party', 'votes', 'pct', 'votes_lag', 'pct_lag']
 natl_results = results_2\
     .loc[results_2['constituency'] == 'Bundesgebiet', natl_cols]
 
-state_cols = ['year', 'state', 'party', 'votes', 'pct', 'votes_lag', 'pct_lag']
+state_cols = ['year', 'constituency', 'party', 'votes', 'pct', 'votes_lag', 'pct_lag']
 state_results = results_2\
-    .loc[results_2['state'].isna() & (results_2['constituency'] != 'Bundesgebiet'), state_cols]
+    .loc[results_2['state'].isna() & (results_2['constituency'] != 'Bundesgebiet'), state_cols]\
+    .rename(columns = {'constituency': 'state'})
 
 const_results = results_1.loc[results_1['id'] < 900, :]
