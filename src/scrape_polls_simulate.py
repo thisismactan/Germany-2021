@@ -90,3 +90,36 @@ eff_n = (weight_array.sum() ** 2) / ((weight_array ** 2).sum())
 # Poll averages and covariance
 poll_average_array = np.dot(polls_array.T, weight_array)
 poll_cov = np.cov(polls_array, rowvar = False, aweights = weight_array)
+
+#%% For calculation of covariance for simulation, add WMSE from 2017 polling
+polls_2017 = pd.read_csv('data/polls_2017.csv')\
+    .assign(weight = lambda x: (x['n'] ** 0.25) / np.exp((x['age'] + 1) ** 0.5))
+
+polls_2017_long = pd.melt(polls_2017, id_vars = ['pollster', 'median_date', 'age', 'n', 'weight'],
+                          var_name = 'party', value_name = 'pct')\
+    .assign(pct = lambda x: x['pct'] / 100)
+    
+polls_2017_error = polls_2017_long\
+    .merge(natl_results.loc[natl_results['year'] == 2017, ['party', 'pct']],
+           how = 'left', on = 'party')\
+    .assign(error = lambda x: x['pct_x'] - x['pct_y'])\
+    .fillna(0)
+
+polls_2017_error_array = polls_2017_error[['pollster', 'median_date', 'party', 'weight', 'error']]\
+    .pivot_table(index = ['pollster', 'median_date', 'weight'], columns = 'party', values = 'error')\
+    .to_numpy()
+
+# Weights
+weight_array_2017 = polls_2017['weight'].to_numpy()
+weight_array_2017 = weight_array_2017 / weight_array_2017.sum()
+
+# Poll error covariance
+poll_error_cov = np.cov(polls_2017_error_array, rowvar = False, 
+                        aweights = weight_array_2017)
+
+#%% Simulation
+# 10,000 simulations; set seed
+n_sims = 10000
+np.random.seed(2021)
+
+# 
