@@ -64,3 +64,40 @@ const_residuals_wide = const_residuals\
 # Calculate covariance ignoring NaNs
 const_residual_cov = const_residuals_wide.cov()
 
+#%% State-level regressions
+# Again, separate models by party
+## CDU
+cdu_results = state_results.loc[(state_results['party'] == 'cdu') & (state_results['pct_lag'] > 0)]
+cdu_X = cdu_results[['pct_lag', 'natl_pct', 'natl_pct_lag']].to_numpy()
+cdu_y = cdu_results['pct'].to_numpy()
+cdu_state_lm = linear_model.LinearRegression().fit(cdu_X, cdu_y)
+
+## SPD
+spd_results = state_results.loc[(state_results['party'] == 'spd') & (state_results['pct_lag'] > 0)]
+spd_X = spd_results[['pct_lag', 'natl_pct', 'natl_pct_lag']].to_numpy()
+spd_y = spd_results['pct'].to_numpy()
+spd_state_lm = linear_model.LinearRegression().fit(spd_X, spd_y)
+
+## AfD: use the data from the FDP, Left, and Greens
+afd_results = state_results.loc[(state_results['party'].isin(['fdp', 'linke', 'gruene'])) & (state_results['pct_lag'] > 0)]
+afd_X = afd_results[['pct_lag', 'natl_pct', 'natl_pct_lag']].to_numpy()
+afd_y = afd_results['pct'].to_numpy()
+afd_state_lm = linear_model.LinearRegression().fit(afd_X, afd_y)
+
+## FDP
+fdp_results = state_results.loc[(state_results['party'] == 'fdp') & (state_results['pct_lag'] > 0)]
+fdp_X = fdp_results[['pct_lag', 'natl_pct', 'natl_pct_lag']].to_numpy()
+fdp_y = fdp_results['pct'].to_numpy()
+fdp_state_lm = linear_model.LinearRegression().fit(fdp_X, fdp_y)
+
+## Linke
+linke_results = state_results.loc[(state_results['party'] == 'linke') & (state_results['pct_lag'] > 0)]
+linke_X = linke_results[['pct_lag', 'natl_pct', 'natl_pct_lag']].to_numpy()
+linke_y = linke_results['pct'].to_numpy()
+linke_state_lm = linear_model.LinearRegression().fit(linke_X, linke_y)
+
+## Gruene
+gruene_results = state_results.loc[(state_results['party'] == 'gruene') & (state_results['pct_lag'] > 0)]
+gruene_X = gruene_results[['pct_lag', 'natl_pct', 'natl_pct_lag']].to_numpy()
+gruene_y = gruene_results['pct'].to_numpy()
+gruene_state_lm = linear_model.LinearRegression().fit(gruene_X, gruene_y)
