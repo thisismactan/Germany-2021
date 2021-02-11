@@ -1,3 +1,4 @@
+import numpy as np
 from sklearn import linear_model
 
 #%% Constituency-level regressions
@@ -37,3 +38,29 @@ gruene_results = const_results.loc[(const_results['party'] == 'gruene') & (const
 gruene_X = gruene_results[['pct_lag', 'state_pct', 'state_pct_lag', 'natl_pct', 'natl_pct_lag']].to_numpy()
 gruene_y = gruene_results['pct'].to_numpy()
 gruene_lm = linear_model.LinearRegression().fit(gruene_X, gruene_y)
+
+#%% Constituency-level residual covariance for simulation
+# Compute residuals
+cdu_results = cdu_results.assign(pred_pct = cdu_lm.predict(cdu_X))
+spd_results = spd_results.assign(pred_pct = spd_lm.predict(spd_X))
+afd_results = afd_results.assign(pred_pct = afd_lm.predict(afd_X))
+fdp_results = fdp_results.assign(pred_pct = fdp_lm.predict(fdp_X))
+linke_results = linke_results.assign(pred_pct = linke_lm.predict(linke_X))
+gruene_results = gruene_results.assign(pred_pct = gruene_lm.predict(gruene_X))
+
+# Stick them all together
+const_residuals = cdu_results\
+    .append(spd_results, ignore_index = True)\
+    .append(afd_results, ignore_index = True)\
+    .append(fdp_results, ignore_index = True)\
+    .append(linke_results, ignore_index = True)\
+    .append(gruene_results, ignore_index = True)\
+    .assign(residual = lambda x: x['pred_pct'] - x['pct'])\
+    .loc[:, ['year', 'constituency', 'party', 'residual']]
+    
+const_residuals_wide = const_residuals\
+    .pivot_table(index = ['year', 'constituency'], columns = 'party', values = 'residual')
+    
+# Calculate covariance ignoring NaNs
+const_residual_cov = const_residuals_wide.cov()
+
