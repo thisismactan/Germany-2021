@@ -16,7 +16,8 @@ col_pattern = re.compile('^(?:' + '|'.join(patterns) + ')')
 # Results from 2005 to 2017
 results = results_2005.append(results_2009, ignore_index = True)\
     .append(results_2013, ignore_index = True)\
-    .append(results_2017, ignore_index = True)
+    .append(results_2017, ignore_index = True)\
+    .fillna(0)
 
 cols_to_keep = [x for x in list(results.columns) if re.search(col_pattern, x)]
 
@@ -80,7 +81,21 @@ natl_results = results_2\
 
 state_cols = ['year', 'constituency', 'party', 'votes', 'pct', 'votes_lag', 'pct_lag']
 state_results = results_2\
-    .loc[results_2['state'].isna() & (results_2['constituency'] != 'Bundesgebiet'), state_cols]\
-    .rename(columns = {'constituency': 'state'})
+    .loc[(results_2['state'] == 0) & (results_2['constituency'] != 'Bundesgebiet'), state_cols]\
+    .rename(columns = {'constituency': 'state'})\
+    .merge(natl_results[['year', 'party', 'pct', 'pct_lag']]\
+               .rename(columns = {'pct': 'natl_pct', 'pct_lag': 'natl_pct_lag'}))
 
-const_results = results_1.loc[results_1['id'] < 900, :]
+states_key = pd.read_csv('data/states.csv')
+
+const_results = results_1\
+    .loc[results_1['id'] < 900, :]\
+    .merge(state_results.merge(states_key[['state_id', 'german_name']], how = 'left', 
+                               left_on = 'state', right_on = 'german_name')\
+               .drop(columns = ['votes', 'votes_lag', 'german_name'])\
+               .rename(columns = {'state': 'state_name', 'pct': 'state_pct',
+                                  'pct_lag': 'state_pct_lag', 'state_id': 'state'}),
+           how = 'inner', on = ['year', 'party', 'state'])
+
+state_results.to_csv('data/state_results.csv', index = False)
+const_results.to_csv('data/constituency_results.csv', index = False)

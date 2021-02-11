@@ -122,4 +122,6 @@ poll_error_cov = np.cov(polls_2017_error_array, rowvar = False,
 n_sims = 10000
 np.random.seed(2021)
 
-# 
+# Simulate national vote shares
+natl_vote_sims = np.random.multivariate_normal(poll_average_array, poll_cov + poll_error_cov,
+                                               size = n_sims)
