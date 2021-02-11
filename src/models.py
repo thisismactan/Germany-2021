@@ -55,7 +55,7 @@ const_residuals = cdu_results\
     .append(fdp_results, ignore_index = True)\
     .append(linke_results, ignore_index = True)\
     .append(gruene_results, ignore_index = True)\
-    .assign(residual = lambda x: x['pred_pct'] - x['pct'])\
+    .assign(residual = lambda x: x['pct'] - x['pred_pct'])\
     .loc[:, ['year', 'constituency', 'party', 'residual']]
     
 const_residuals_wide = const_residuals\
@@ -101,3 +101,41 @@ gruene_results = state_results.loc[(state_results['party'] == 'gruene') & (state
 gruene_X = gruene_results[['pct_lag', 'natl_pct', 'natl_pct_lag']].to_numpy()
 gruene_y = gruene_results['pct'].to_numpy()
 gruene_state_lm = linear_model.LinearRegression().fit(gruene_X, gruene_y)
+
+#%% State-level residual covariance for simulation
+# Compute residuals
+cdu_results = cdu_results.assign(pred_pct = cdu_state_lm.predict(cdu_X))
+spd_results = spd_results.assign(pred_pct = spd_state_lm.predict(spd_X))
+fdp_results = fdp_results.assign(pred_pct = fdp_state_lm.predict(fdp_X))
+linke_results = linke_results.assign(pred_pct = linke_state_lm.predict(linke_X))
+gruene_results = gruene_results.assign(pred_pct = gruene_state_lm.predict(gruene_X))
+afd_results = afd_results\
+    .assign(pred_pct = afd_state_lm.predict(afd_X))\
+    .assign(residual = lambda x: x['pct'] - x['pred_pct'])\
+    .groupby(['year', 'state'], as_index = False)\
+    .mean()
+
+# Stick them all together
+state_residuals = cdu_results\
+    .append(spd_results, ignore_index = True)\
+    .append(fdp_results, ignore_index = True)\
+    .append(linke_results, ignore_index = True)\
+    .append(gruene_results, ignore_index = True)\
+    .assign(residual = lambda x: x['pct'] - x['pred_pct'])\
+    .append(afd_results, ignore_index = True)\
+    .loc[:, ['year', 'state', 'party', 'residual']]\
+    .fillna({'party': 'afd'})
+
+state_residuals_wide = state_residuals\
+    .pivot_table(index = ['year', 'state'], columns = 'party', values = 'residual')
+
+# Calculate covariance ignoring NaNs
+state_residual_cov = state_residuals_wide.cov().to_numpy()
+
+# Adjust AfD elements of covariance matrix:
+## Set covariance with other parties to zero
+state_residual_cov[0, 1:5] = 0
+state_residual_cov[1:5, 0] = 0
+
+## Scale up variance due to "too much data"
+state_residual_cov[0, 0] = state_residual_cov[0, 0] * np.sqrt(3)
