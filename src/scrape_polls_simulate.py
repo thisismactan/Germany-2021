@@ -162,3 +162,14 @@ state_intercept_contrib = np.dstack(
     ), ) * 16
 )
 
+## Simulated state-level error
+state_sim_error = np.zeros(shape = (n_sims, 6, 16))
+
+for state in range(16):
+    state_sim_error[:, :, state] = np.random.multivariate_normal(
+        np.zeros(shape = (6, )), state_residual_cov, size = n_sims
+    )
+
+## Simulated state vote shares are the sum of all these things
+state_vote_sims = state_intercept_contrib + natl_vote_contrib + last_natl_vote_contrib\
+    + last_state_vote_contrib + state_sim_error
