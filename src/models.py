@@ -39,6 +39,16 @@ gruene_X = gruene_results[['pct_lag', 'state_pct', 'state_pct_lag', 'natl_pct', 
 gruene_y = gruene_results['pct'].to_numpy()
 gruene_lm = linear_model.LinearRegression().fit(gruene_X, gruene_y)
 
+# Model list in alphabetical order by party
+const_lm_list = [afd_lm, cdu_lm, fdp_lm, gruene_lm, linke_lm, spd_lm]
+
+# Extract coefficients for later use
+## e.g. coefficients for parties (in alphabetical order) on pct_lag variable
+const_coefs_intercept = [model.intercept_ for model in const_lm_list]
+const_coefs_pct_lag = [model.coef_[0] for model in const_lm_list]
+const_coefs_natl_pct = [model.coef_[1] for model in const_lm_list]
+const_coefs_natl_pct_lag = [model.coef_[2] for model in const_lm_list]
+
 #%% Constituency-level residual covariance for simulation
 # Compute residuals
 cdu_results = cdu_results.assign(pred_pct = cdu_lm.predict(cdu_X))
@@ -101,6 +111,17 @@ gruene_results = state_results.loc[(state_results['party'] == 'gruene') & (state
 gruene_X = gruene_results[['pct_lag', 'natl_pct', 'natl_pct_lag']].to_numpy()
 gruene_y = gruene_results['pct'].to_numpy()
 gruene_state_lm = linear_model.LinearRegression().fit(gruene_X, gruene_y)
+
+# Model list in alphabetical order by party
+state_lm_list = [afd_state_lm, cdu_state_lm, fdp_state_lm, gruene_state_lm, 
+                 linke_state_lm, spd_state_lm]
+
+# Extract coefficients for later use
+## e.g. coefficients for parties (in alphabetical order) on pct_lag variable
+state_coefs_intercept = [model.intercept_ for model in state_lm_list]
+state_coefs_pct_lag = [model.coef_[0] for model in state_lm_list]
+state_coefs_natl_pct = [model.coef_[1] for model in state_lm_list]
+state_coefs_natl_pct_lag = [model.coef_[2] for model in state_lm_list]
 
 #%% State-level residual covariance for simulation
 # Compute residuals

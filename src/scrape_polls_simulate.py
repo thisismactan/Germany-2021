@@ -125,3 +125,40 @@ np.random.seed(2021)
 # Simulate national vote shares
 natl_vote_sims = np.random.multivariate_normal(poll_average_array, poll_cov + poll_error_cov,
                                                size = n_sims)
+natl_vote_sims = np.delete(natl_vote_sims, 5, axis = 1) # get rid of others
+
+# Copy the national simulations, one for each of the 16 states
+natl_vote_contrib = np.dstack(
+    (np.matmul(natl_vote_sims, np.diag(state_coefs_natl_pct)), ) * 16
+)
+
+# From that, simulate state vote shares
+## Creating arrays for the known state-level variables
+### natl_pct_lag
+last_natl_vote = natl_results\
+    .loc[natl_results['year'] == 2017, ['party', 'pct']]\
+    .pivot_table(columns = 'party', values = 'pct')\
+    .to_numpy()
+    
+last_natl_vote_stack = np.concatenate((last_natl_vote, ) * n_sims)
+last_natl_vote_contrib = np.dstack(
+    (np.matmul(last_natl_vote_stack, np.diag(state_coefs_natl_pct_lag)), ) * 16
+)
+
+### pct_lag
+last_state_vote = state_results\
+    .loc[state_results['year'] == 2017, ['state', 'party', 'pct']]\
+    .pivot_table(index = 'state', columns = 'party', values = 'pct')\
+    .to_numpy()
+
+last_state_vote_contrib = np.dstack(
+    (np.matmul(last_state_vote, np.diag(state_coefs_pct_lag)), ) * n_sims
+).T
+
+### Intercept
+state_intercept_contrib = np.dstack(
+    (np.vstack(
+        (np.array(state_coefs_intercept), ) * n_sims
+    ), ) * 16
+)
+
