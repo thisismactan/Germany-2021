@@ -127,13 +127,13 @@ natl_vote_sims = np.random.multivariate_normal(poll_average_array, poll_cov + po
                                                size = n_sims)
 natl_vote_sims = np.delete(natl_vote_sims, 5, axis = 1) # get rid of others
 
-# Copy the national simulations, one for each of the 16 states
+# From that, simulate state vote shares
+## Creating arrays for the known state-level variables
+### natl_pct
 natl_vote_contrib = np.dstack(
     (np.matmul(natl_vote_sims, np.diag(state_coefs_natl_pct)), ) * 16
 )
 
-# From that, simulate state vote shares
-## Creating arrays for the known state-level variables
 ### natl_pct_lag
 last_natl_vote = natl_results\
     .loc[natl_results['year'] == 2017, ['party', 'pct']]\
@@ -173,3 +173,61 @@ for state in range(16):
 ## Simulated state vote shares are the sum of all these things
 state_vote_sims = state_intercept_contrib + natl_vote_contrib + last_natl_vote_contrib\
     + last_state_vote_contrib + state_sim_error
+
+# From that, simulate constituency vote shares
+## Creating arrays for the known constituency-level variables
+### natl_pct
+natl_vote_const_contrib = np.dstack(
+    (np.matmul(natl_vote_sims, np.diag(const_coefs_natl_pct)), ) * 299
+)
+
+### natl_pct_lag
+last_natl_vote_const_contrib = np.dstack(
+    (np.matmul(last_natl_vote_stack, np.diag(const_coefs_natl_pct_lag)), ) * 299
+)
+
+#%%
+### state_pct
+# Initialize a DataFrame
+state_vote_sim_unstack = pd.DataFrame()
+
+for state in range(16):
+    state_vote_sim_unstack = state_vote_sim_unstack\
+        .append(pd.DataFrame(state_vote_sims[:, :, state])\
+                    .rename(columns = {0: 'afd', 1: 'cdu', 2: 'fdp', 3: 'gruene',
+                                       4: 'linke', 5: 'spd'})\
+                .assign(state_name = list(states_key['german_name'].sort_values())[state],
+                        sim_id = range(n_sims)))
+#%%
+### state_pct_lag
+last_state_vote_const = const_results\
+    .loc[const_results['year'] == 2017, ['state', 'id', 'party', 'state_pct']]\
+    .pivot_table(index = ['id', 'state'], columns = 'party', values = 'state_pct')\
+    .to_numpy()
+
+last_state_vote_const_contrib = np.dstack(
+    (np.matmul(last_state_vote_const, np.diag(const_coefs_state_pct_lag)), ) * n_sims
+).T
+
+### pct_lag
+last_const_vote = const_results\
+    .loc[const_results['year'] == 2017, ['state', 'id', 'party', 'pct']]\
+    .pivot_table(index = ['id', 'state'], columns = 'party', values = 'pct')\
+    .to_numpy()
+
+last_const_vote_contrib = np.dstack(
+    (np.matmul(last_const_vote, np.diag(const_coefs_pct_lag)), ) * n_sims
+).T
+
+### Intercept
+const_intercept_contrib = np.dstack(
+    (np.vstack((np.array(const_coefs_intercept), ) * n_sims), ) * 299
+)
+
+## Simulated constituency-level error
+const_sim_error = np.zeros(shape = (n_sims, 6, 299))
+
+for const in range(299):
+    const_sim_error[:, :, const] = np.random.multivariate_normal(
+        np.zeros(shape = (6, )), const_residual_cov, size = n_sims
+    )
