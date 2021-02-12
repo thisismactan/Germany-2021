@@ -41,13 +41,18 @@ gruene_lm = linear_model.LinearRegression().fit(gruene_X, gruene_y)
 
 # Model list in alphabetical order by party
 const_lm_list = [afd_lm, cdu_lm, fdp_lm, gruene_lm, linke_lm, spd_lm]
+const_lm_coef_list = [model.coef_ for model in const_lm_list]
+## add zero coefficients to AfD's model
+const_lm_coef_list[0] = np.concatenate((const_lm_coef_list[0], np.zeros(shape = (2, ))))
 
 # Extract coefficients for later use
 ## e.g. coefficients for parties (in alphabetical order) on pct_lag variable
 const_coefs_intercept = [model.intercept_ for model in const_lm_list]
-const_coefs_pct_lag = [model.coef_[0] for model in const_lm_list]
-const_coefs_natl_pct = [model.coef_[1] for model in const_lm_list]
-const_coefs_natl_pct_lag = [model.coef_[2] for model in const_lm_list]
+const_coefs_pct_lag = [coefs[0] for coefs in const_lm_coef_list]
+const_coefs_state_pct = [coefs[1] for coefs in const_lm_coef_list]
+const_coefs_state_pct_lag = [coefs[2] for coefs in const_lm_coef_list]
+const_coefs_natl_pct = [coefs[3] for coefs in const_lm_coef_list]
+const_coefs_natl_pct_lag = [coefs[4] for coefs in const_lm_coef_list]
 
 #%% Constituency-level residual covariance for simulation
 # Compute residuals
