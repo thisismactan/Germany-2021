@@ -190,15 +190,31 @@ last_natl_vote_const_contrib = np.dstack(
 ### state_pct
 # Initialize a DataFrame
 state_vote_sim_unstack = pd.DataFrame()
-
-for state in range(16):
+for s in range(16):
     state_vote_sim_unstack = state_vote_sim_unstack\
-        .append(pd.DataFrame(state_vote_sims[:, :, state])\
+        .append(pd.DataFrame(state_vote_sims[:, :, s])\
                     .rename(columns = {0: 'afd', 1: 'cdu', 2: 'fdp', 3: 'gruene',
                                        4: 'linke', 5: 'spd'})\
-                .assign(state_name = list(states_key['german_name'].sort_values())[state],
+                .assign(state = list(states_key['german_name'].sort_values())[s],
                         sim_id = range(n_sims)))
-#%%
+
+# Copy as many times as needed per state (one copy for each constituency)            
+state_pct_contrib_unstack = state_vote_sim_unstack.copy()
+for p in range(6):
+    party = state_pct_contrib_unstack.columns[p]
+    state_pct_contrib_unstack[party] = state_pct_contrib_unstack[party] * const_coefs_state_pct[p]
+
+state_vote_const_contrib_df = const_state_key\
+    .drop(columns = 'state_id')\
+    .merge(state_pct_contrib_unstack, how = 'left', on = 'state')
+
+# Drop into array
+state_vote_const_contrib = np.zeros(shape = (n_sims, 6, 299))
+for c in range(299):
+    state_vote_const_contrib[:, :, c] = state_vote_const_contrib_df\
+        .loc[state_vote_const_contrib_df['id'] == c + 1, 
+             ['afd', 'cdu', 'fdp', 'gruene', 'linke', 'spd']]
+        
 ### state_pct_lag
 last_state_vote_const = const_results\
     .loc[const_results['year'] == 2017, ['state', 'id', 'party', 'state_pct']]\
@@ -231,3 +247,11 @@ for const in range(299):
     const_sim_error[:, :, const] = np.random.multivariate_normal(
         np.zeros(shape = (6, )), const_residual_cov, size = n_sims
     )
+
+## Simulated constituency vote share is just the sum of these components
+const_vote_sims = const_intercept_contrib + natl_vote_const_contrib\
+    + last_natl_vote_const_contrib + state_vote_const_contrib\
+    + last_state_vote_const_contrib + last_const_vote_contrib + const_sim_error
+
+# Simulated constituency winners
+const_sim_winners = np.argmax(const_vote_sims, axis = 1)
