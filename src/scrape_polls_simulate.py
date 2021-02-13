@@ -257,6 +257,7 @@ const_vote_sims = const_intercept_contrib + natl_vote_const_contrib\
     + last_natl_vote_const_contrib + state_vote_const_contrib\
     + last_state_vote_const_contrib + last_const_vote_contrib + const_sim_error
 
+#%%
 # Simulated constituency winners
 const_sim_winners = pd.DataFrame(np.argmax(const_vote_sims, axis = 1))\
     .assign(sim_id = range(n_sims))\
@@ -264,7 +265,7 @@ const_sim_winners = pd.DataFrame(np.argmax(const_vote_sims, axis = 1))\
 print('Done!')
 
 # Compute constituency seats
-print('Computing constituency seats....', end = ' ')
+print('Tallying constituency seats....', end = ' ')
 const_sim_winners['id'] = const_sim_winners['id'] + 1.0
 const_sim_winners = const_sim_winners\
     .merge(const_state_key[['id', 'constituency', 'state']], how = 'left', on = 'id')
@@ -291,8 +292,29 @@ for p in range(6):
     if p not in total_seats.columns:
         total_seats[str(p)] = 0
 
+seats_by_state.columns = [str(x) for x in seats_by_state.columns]
+total_seats.columns = [str(x) for x in total_seats.columns]
+
 seats_by_state = pd.melt(seats_by_state, id_vars = ['sim_id', 'state'],
-                         var_name = 'winner', value_name = 'direct_seats')
+                         var_name = 'winner', value_name = 'direct_seats')\
+    .sort_values(['winner', 'sim_id'])
+
 total_seats = pd.melt(total_seats, id_vars = 'sim_id', var_name = 'winner',
-                      value_name = 'direct_seats')
+                      value_name = 'direct_seats')\
+    .sort_values(['winner', 'sim_id'])
 print('Done!')
+
+# Computing party-list seat guarantee based on state vote
+print('Computing state-level seat guarantees....', end = ' ')
+
+## First eligibility condition: party wins at least three constituencies
+natl_seats_3 = (total_seats\
+    .pivot_table(index = 'sim_id', columns = 'winner', values = 'direct_seats',
+                 fill_value = 0)\
+    .to_numpy()) >= 3
+    
+## Second eligibility condition: party wins at least 5% of the nationwide vote
+natl_pct_5 = natl_vote_sims >= 0.05
+
+## Any party that satisfies *either* is eligible for party-list seats
+party_list_eligible = np.logical_or(natl_seats_3, natl_pct_5)
