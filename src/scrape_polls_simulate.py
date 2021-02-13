@@ -123,11 +123,14 @@ n_sims = 10000
 np.random.seed(2021)
 
 # Simulate national vote shares
+print('Simulating national vote shares....', end = ' ')
 natl_vote_sims = np.random.multivariate_normal(poll_average_array, poll_cov + poll_error_cov,
                                                size = n_sims)
 natl_vote_sims = np.delete(natl_vote_sims, 5, axis = 1) # get rid of others
+print('Done!')
 
 # From that, simulate state vote shares
+print('Simulating state vote shares....', end = ' ')
 ## Creating arrays for the known state-level variables
 ### natl_pct
 natl_vote_contrib = np.dstack(
@@ -173,8 +176,10 @@ for state in range(16):
 ## Simulated state vote shares are the sum of all these things
 state_vote_sims = state_intercept_contrib + natl_vote_contrib + last_natl_vote_contrib\
     + last_state_vote_contrib + state_sim_error
+print('Done!')
 
 # From that, simulate constituency vote shares
+print('Simulating constituency vote shares....', end = ' ')
 ## Creating arrays for the known constituency-level variables
 ### natl_pct
 natl_vote_const_contrib = np.dstack(
@@ -186,7 +191,6 @@ last_natl_vote_const_contrib = np.dstack(
     (np.matmul(last_natl_vote_stack, np.diag(const_coefs_natl_pct_lag)), ) * 299
 )
 
-#%%
 ### state_pct
 # Initialize a DataFrame
 state_vote_sim_unstack = pd.DataFrame()
@@ -254,4 +258,41 @@ const_vote_sims = const_intercept_contrib + natl_vote_const_contrib\
     + last_state_vote_const_contrib + last_const_vote_contrib + const_sim_error
 
 # Simulated constituency winners
-const_sim_winners = np.argmax(const_vote_sims, axis = 1)
+const_sim_winners = pd.DataFrame(np.argmax(const_vote_sims, axis = 1))\
+    .assign(sim_id = range(n_sims))\
+    .melt(id_vars = 'sim_id', var_name = 'id', value_name = 'winner')
+print('Done!')
+
+# Compute constituency seats
+print('Computing constituency seats....', end = ' ')
+const_sim_winners['id'] = const_sim_winners['id'] + 1.0
+const_sim_winners = const_sim_winners\
+    .merge(const_state_key[['id', 'constituency', 'state']], how = 'left', on = 'id')
+
+seats_by_state = const_sim_winners\
+    .groupby(['sim_id', 'state', 'winner'], as_index = False)\
+    .count()\
+    .drop(columns = 'id')\
+    .pivot_table(index = ['sim_id', 'state'], columns = 'winner', values = 'constituency',
+                 fill_value = 0)\
+    .reset_index()
+
+total_seats = const_sim_winners\
+    .groupby(['sim_id', 'winner'], as_index = False)\
+    .count()\
+    .drop(columns = ['id', 'state'])\
+    .pivot_table(index = 'sim_id', columns = 'winner', values = 'constituency')\
+    .reset_index()
+
+# Make sure all parties have a column
+for p in range(6):
+    if p not in seats_by_state.columns:
+        seats_by_state[str(p)] = 0
+    if p not in total_seats.columns:
+        total_seats[str(p)] = 0
+
+seats_by_state = pd.melt(seats_by_state, id_vars = ['sim_id', 'state'],
+                         var_name = 'winner', value_name = 'direct_seats')
+total_seats = pd.melt(total_seats, id_vars = 'sim_id', var_name = 'winner',
+                      value_name = 'direct_seats')
+print('Done!')
