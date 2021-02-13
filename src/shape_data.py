@@ -87,6 +87,11 @@ state_results = results_2\
                .rename(columns = {'pct': 'natl_pct', 'pct_lag': 'natl_pct_lag'}))
 
 states_key = pd.read_csv('data/states.csv')
+const_state_key = results_2017\
+    .loc[:, ['id', 'constituency', 'state']]\
+    .rename(columns = {'state': 'state_id'})\
+    .merge(states_key.loc[:, ['state_id', 'german_name']].rename(columns = {'german_name': 'state'}),
+           how = 'inner', on = 'state_id')
 
 const_results = results_1\
     .loc[results_1['id'] < 900, :]\
@@ -99,3 +104,4 @@ const_results = results_1\
 
 state_results.to_csv('data/state_results.csv', index = False)
 const_results.to_csv('data/constituency_results.csv', index = False)
+
