@@ -132,11 +132,6 @@ print('Done!')
 # From that, simulate state vote shares
 print('Simulating state vote shares....', end = ' ')
 ## Creating arrays for the known state-level variables
-### natl_pct
-natl_vote_contrib = np.dstack(
-    (np.matmul(natl_vote_sims, np.diag(state_coefs_natl_pct)), ) * 16
-)
-
 ### natl_pct_lag
 last_natl_vote = natl_results\
     .loc[natl_results['year'] == 2017, ['party', 'pct']]\
@@ -144,53 +139,43 @@ last_natl_vote = natl_results\
     .to_numpy()
     
 last_natl_vote_stack = np.concatenate((last_natl_vote, ) * n_sims)
-last_natl_vote_contrib = np.dstack(
-    (np.matmul(last_natl_vote_stack, np.diag(state_coefs_natl_pct_lag)), ) * 16
-)
+natl_pct_change = natl_vote_sims - last_natl_vote_stack
+
+natl_pct_change_contrib = np.dstack((natl_pct_change * all_party_state_lm.coef_[1], ) * 16)
 
 ### pct_lag
 last_state_vote = state_results\
     .loc[state_results['year'] == 2017, ['state', 'party', 'pct']]\
     .pivot_table(index = 'state', columns = 'party', values = 'pct')\
     .to_numpy()
+    
+# n_sims x 6 x 16 version
+last_state_vote_stack = np.dstack((last_state_vote, ) * n_sims).T
 
-last_state_vote_contrib = np.dstack(
-    (np.matmul(last_state_vote, np.diag(state_coefs_pct_lag)), ) * n_sims
-).T
+last_state_vote_contrib = np.dstack((last_state_vote * all_party_state_lm.coef_[0], ) * n_sims).T
 
 ### Intercept
-state_intercept_contrib = np.dstack(
-    (np.vstack(
-        (np.array(state_coefs_intercept), ) * n_sims
-    ), ) * 16
-)
+state_intercept_contrib = np.full(shape = (n_sims, 6, 16), 
+                                  fill_value = all_party_state_lm.intercept_)
 
 ## Simulated state-level error
 state_sim_error = np.zeros(shape = (n_sims, 6, 16))
 
 for state in range(16):
     state_sim_error[:, :, state] = np.random.multivariate_normal(
-        np.zeros(shape = (6, )), state_residual_cov, size = n_sims
+        np.zeros(shape = (6, )), all_party_state_residual_cov, size = n_sims
     )
 
 ## Simulated state vote shares are the sum of all these things
-state_vote_sims = state_intercept_contrib + natl_vote_contrib + last_natl_vote_contrib\
-    + last_state_vote_contrib + state_sim_error
+state_vote_sims = last_state_vote_stack + state_intercept_contrib\
+    + natl_pct_change_contrib + state_sim_error
+
+state_vote_sims[state_vote_sims < 0] = 0
 print('Done!')
 
 # From that, simulate constituency vote shares
 print('Simulating constituency vote shares....', end = ' ')
 ## Creating arrays for the known constituency-level variables
-### natl_pct
-natl_vote_const_contrib = np.dstack(
-    (np.matmul(natl_vote_sims, np.diag(const_coefs_natl_pct)), ) * 299
-)
-
-### natl_pct_lag
-last_natl_vote_const_contrib = np.dstack(
-    (np.matmul(last_natl_vote_stack, np.diag(const_coefs_natl_pct_lag)), ) * 299
-)
-
 ### state_pct
 # Initialize a DataFrame
 state_vote_sim_unstack = pd.DataFrame()
@@ -203,31 +188,29 @@ for s in range(16):
                         sim_id = range(n_sims)))
 
 # Copy as many times as needed per state (one copy for each constituency)            
-state_pct_contrib_unstack = state_vote_sim_unstack.copy()
-for p in range(6):
-    party = state_pct_contrib_unstack.columns[p]
-    state_pct_contrib_unstack[party] = state_pct_contrib_unstack[party] * const_coefs_state_pct[p]
+state_pct_unstack = state_vote_sim_unstack.copy()
 
-state_vote_const_contrib_df = const_state_key\
+state_pct_const_unstack_df = const_state_key\
     .drop(columns = 'state_id')\
-    .merge(state_pct_contrib_unstack, how = 'left', on = 'state')
+    .merge(state_pct_unstack, how = 'left', on = 'state')
 
 # Drop into array
-state_vote_const_contrib = np.zeros(shape = (n_sims, 6, 299))
+state_vote_const_unstack = np.zeros(shape = (n_sims, 6, 299))
 for c in range(299):
-    state_vote_const_contrib[:, :, c] = state_vote_const_contrib_df\
-        .loc[state_vote_const_contrib_df['id'] == c + 1, 
+    state_vote_const_unstack[:, :, c] = state_pct_const_unstack_df\
+        .loc[state_pct_const_unstack_df['id'] == c + 1, 
              ['afd', 'cdu', 'fdp', 'gruene', 'linke', 'spd']]
-        
+
 ### state_pct_lag
 last_state_vote_const = const_results\
     .loc[const_results['year'] == 2017, ['state', 'id', 'party', 'state_pct']]\
     .pivot_table(index = ['id', 'state'], columns = 'party', values = 'state_pct')\
     .to_numpy()
 
-last_state_vote_const_contrib = np.dstack(
-    (np.matmul(last_state_vote_const, np.diag(const_coefs_state_pct_lag)), ) * n_sims
-).T
+last_state_vote_const_unstack = np.dstack((last_state_vote_const, ) * n_sims).T
+
+state_pct_change_contrib = all_party_lm.coef_[1]\
+    * (state_vote_const_unstack - last_state_vote_const_unstack)
 
 ### pct_lag
 last_const_vote = const_results\
@@ -235,29 +218,29 @@ last_const_vote = const_results\
     .pivot_table(index = ['id', 'state'], columns = 'party', values = 'pct')\
     .to_numpy()
 
-last_const_vote_contrib = np.dstack(
-    (np.matmul(last_const_vote, np.diag(const_coefs_pct_lag)), ) * n_sims
-).T
+# n_sims x 6 x 299 version
+last_const_vote_stack = np.dstack((last_const_vote, ) * n_sims).T
+
+last_const_vote_contrib = np.dstack((last_const_vote * all_party_lm.coef_[0], ) * n_sims).T
 
 ### Intercept
-const_intercept_contrib = np.dstack(
-    (np.vstack((np.array(const_coefs_intercept), ) * n_sims), ) * 299
-)
+const_intercept_contrib = np.full(shape = (n_sims, 6, 299), 
+                                  fill_value = all_party_lm.intercept_)
 
 ## Simulated constituency-level error
 const_sim_error = np.zeros(shape = (n_sims, 6, 299))
 
 for const in range(299):
     const_sim_error[:, :, const] = np.random.multivariate_normal(
-        np.zeros(shape = (6, )), const_residual_cov, size = n_sims
+        np.zeros(shape = (6, )), all_party_const_residual_cov, size = n_sims
     )
 
 ## Simulated constituency vote share is just the sum of these components
-const_vote_sims = const_intercept_contrib + natl_vote_const_contrib\
-    + last_natl_vote_const_contrib + state_vote_const_contrib\
-    + last_state_vote_const_contrib + last_const_vote_contrib + const_sim_error
+const_vote_sims = last_const_vote_stack + const_intercept_contrib\
+    + last_const_vote_contrib + state_pct_change_contrib + const_sim_error
 
-#%%
+const_vote_sims[const_vote_sims < 0] = 0
+
 # Simulated constituency winners
 const_sim_winners = pd.DataFrame(np.argmax(const_vote_sims, axis = 1))\
     .assign(sim_id = range(n_sims))\
