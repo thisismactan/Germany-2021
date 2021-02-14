@@ -98,7 +98,12 @@ all_party_residuals = all_party_results\
 all_party_residuals_wide = all_party_residuals\
     .pivot_table(index = ['year', 'constituency'], columns = 'party', values = 'residual')
 
-all_party_const_residual_cov = all_party_residuals_wide.cov()
+all_party_const_residual_cov = all_party_residuals_wide.cov().to_numpy()
+counter = 0
+# Force this thing to be positive definite whether it likes it or not
+while np.any(np.linalg.eig(all_party_const_residual_cov)[0] < 0):
+    all_party_const_residual_cov[0, 0] += 1e-4
+    counter += 1
 
 #%% State-level regressions
 # Again, one model for all parties
@@ -205,4 +210,9 @@ all_party_state_residuals = all_party_state_results\
 all_party_state_residuals_wide = all_party_state_residuals\
     .pivot_table(index = ['year', 'state'], columns = 'party', values = 'residual')
 
-all_party_state_residual_cov = all_party_state_residuals_wide.cov()
+all_party_state_residual_cov = all_party_state_residuals_wide.cov().to_numpy()
+counter = 0
+# Force this thing to be positive definite whether it likes it or not
+while np.any(np.linalg.eig(all_party_state_residual_cov)[0] < 0):
+    all_party_state_residual_cov[0, 0] += 1e-4
+    counter += 1
