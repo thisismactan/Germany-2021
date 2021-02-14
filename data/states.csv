@@ -1,17 +1,17 @@
-﻿state_id,german_name,english_name
-901,Schleswig-Holstein,Schleswig-Holstein
-902,Hamburg,Hamburg
-903,Niedersachsen,Lower Saxony
-904,Bremen,Bremen
-905,Nordrhein-Westfalen,North Rhine-Westphalia
-906,Hessen,Hesse
-907,Rheinland-Pfalz,Rhineland-Palatinate
-908,Baden-Württemberg,Baden-Württemberg
-909,Bayern,Bavaria
-910,Saarland,Saarland
-911,Berlin,Berlin
-912,Brandenburg,Brandenburg
-913,Mecklenburg-Vorpommern,Mecklenburg-West Pomerania
-914,Sachsen,Saxony
-915,Sachsen-Anhalt,Saxony-Anhalt
-916,Thüringen,Thuringia
+﻿state_id,german_name,english_name,constituencies
+901,Schleswig-Holstein,Schleswig-Holstein,11
+902,Hamburg,Hamburg,6
+903,Niedersachsen,Lower Saxony,30
+904,Bremen,Bremen,2
+905,Nordrhein-Westfalen,North Rhine-Westphalia,64
+906,Hessen,Hesse,22
+907,Rheinland-Pfalz,Rhineland-Palatinate,15
+908,Baden-Württemberg,Baden-Württemberg,38
+909,Bayern,Bavaria,46
+910,Saarland,Saarland,4
+911,Berlin,Berlin,12
+912,Brandenburg,Brandenburg,10
+913,Mecklenburg-Vorpommern,Mecklenburg-West Pomerania,6
+914,Sachsen,Saxony,16
+915,Sachsen-Anhalt,Saxony-Anhalt,9
+916,Thüringen,Thuringia,8
