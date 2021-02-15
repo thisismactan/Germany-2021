@@ -1,6 +1,7 @@
 import datetime as dt
 import numpy as np
 import pandas as pd
+from os import listdir
 from string import punctuation
 
 #%% Scrape and clean polls
@@ -513,3 +514,39 @@ for c in range(299):
 const_sims.to_csv('output/const_sims.csv', index = False)
 
 print('Done!')
+
+#%% Summary statistics
+seat_summary_stats = state_sims\
+    .loc[:, ['sim_id', 'state', 'party', 'total_seats']]\
+    .pivot_table(index = ['sim_id', 'state'], columns = 'party', values = 'total_seats')\
+    .assign(total = lambda x: x['afd'] + x['cdu'] + x['fdp'] + x['gruene'] + x['linke'] + x['spd'],
+            cdu_fdp = lambda x: x['cdu'] + x['fdp'],
+            cdu_spd = lambda x: x['cdu'] + x['spd'],
+            spd_gruene = lambda x: x['spd'] + x['gruene'],
+            cdu_fdp_gruene = lambda x: x['cdu'] + x['fdp'] + x['gruene'],
+            spd_fdp_gruene = lambda x: x['spd'] + x['fdp'] + x['gruene'])\
+    .reset_index()\
+    .groupby('sim_id', as_index = False)\
+    .sum()\
+    .melt(id_vars = ['sim_id', 'total'], var_name = 'coalition', value_name = 'seats')\
+    .assign(seat_frac = lambda x: x['seats'] / x['total'])\
+    .groupby('coalition')\
+    .agg(prob_majority = pd.NamedAgg(column = 'seat_frac', aggfunc = lambda x: (x > 0.5).mean()),
+         pct_05 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.quantile(x, q = 0.05)),
+         pct_50 = pd.NamedAgg(column = 'seats', aggfunc = 'quantile'),
+         pct_95 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.quantile(x, q = 0.95)))\
+    .reset_index()\
+    .assign(date = dt.datetime.today().strftime('%Y-%m-%d'))\
+    .loc[:, ['date', 'coalition', 'prob_majority', 'pct_05', 'pct_50', 'pct_95']]
+
+print(seat_summary_stats)
+
+# If summary statistics over time isn't in output folder, write it
+if 'summary_stats_timeline.csv' not in listdir('output'):
+    seat_summary_stats.to_csv('output/summary_stats_timeline.csv', index = False)
+
+summary_stats_timeline = pd.read_csv('output/summary_stats_timeline.csv')\
+    .append(seat_summary_stats)\
+    .drop_duplicates(subset = ['date', 'coalition'], keep = 'last', ignore_index = True)
+
+summary_stats_timeline.to_csv('output/summary_stats_timeline.csv', index = False)
