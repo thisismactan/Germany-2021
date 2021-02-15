@@ -105,3 +105,14 @@ const_results = results_1\
 state_results.to_csv('data/state_results.csv', index = False)
 const_results.to_csv('data/constituency_results.csv', index = False)
 
+#%% Estimated state votes calculation
+proj_state_votes = results_2017\
+    .loc[~results_2017['state'].isna(), ['state', 'total_votes']]\
+    .rename(columns = {'state': 'state_id'})\
+    .groupby('state_id', as_index = False)\
+    .sum()\
+    .merge(states_key.loc[:, ['state_id', 'german_name']].rename(columns = {'german_name': 'state'}),
+           on = 'state_id', how = 'left')\
+    .assign(pct_of_electorate = lambda x: x['total_votes'] / x['total_votes'].sum())\
+    .sort_values('state')\
+    .reset_index()
