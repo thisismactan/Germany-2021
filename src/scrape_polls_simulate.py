@@ -127,6 +127,9 @@ print('Simulating national vote shares....', end = ' ')
 natl_vote_sims = np.random.multivariate_normal(poll_average_array, poll_cov + poll_error_cov,
                                                size = n_sims)
 natl_vote_sims = np.delete(natl_vote_sims, 5, axis = 1) # get rid of others
+natl_vote_sims_eligible = natl_vote_sims.copy()
+natl_vote_sims_eligible[natl_vote_sims_eligible < 0.05] = 0
+
 print('Done!')
 
 # From that, simulate state vote shares
@@ -342,7 +345,24 @@ for s in range(16):
 
 # Calculate party-list seats awarded (cannot be negative)
 party_list_seats = np.maximum(state_seat_guarantee - direct_seats_by_state_array, 0)
+print('Done!')
+
+print('Calculating leveling seats....', end = ' ')
+# Total seats before leveling
+## By state
+total_state_seats_pre_level = party_list_seats + direct_seats_by_state_array
+
+## Nationally
+total_natl_seats_pre_level = total_state_seats_pre_level.sum(axis = 2)
+
+total_votes_prev = 46976341
+# Calculate national divisors (if eligible, it's total second votes / (seats - 0.5))
+natl_divisors = total_votes_prev * natl_vote_sims_eligible / (total_natl_seats_pre_level - 0.5)
+
+# Set negative or zero divisors to infinity so we can ignore them when taking minima
+natl_divisors[natl_divisors <= 0] = np.inf
+min_natl_divisors = np.vstack((natl_divisors.min(axis = 1), ) * 6).T
 
 #%%
-# Total seats before leveling
-total_seats_pre_level = party_list_seats + direct_seats_by_state_array
+total_natl_seats = np.round(total_votes_prev * natl_vote_sims_eligible / min_natl_divisors)
+leveling_seats = total_natl_seats - total_natl_seats_pre_level
