@@ -123,12 +123,16 @@ n_sims = 10000
 np.random.seed(2021)
 
 # Simulate national polling variation
-print('Simulating national vote shares....', end = ' ')
+print('Simulating national polling variation....', end = ' ')
 natl_poll_sims = np.random.multivariate_normal(poll_average_array, poll_cov + poll_error_cov,
                                                size = n_sims)
 natl_poll_sims = np.delete(natl_poll_sims, 5, axis = 1) # get rid of others
 natl_poll_sims_eligible = natl_poll_sims.copy()
 natl_poll_sims_eligible[natl_poll_sims_eligible < 0.05] = 0
+
+# Simulate state share of total electorate
+state_electorate_share = np.random.dirichlet(alpha = 10000 * proj_state_votes['pct_of_electorate'],
+                                             size = n_sims)
 
 print('Done!')
 
@@ -177,8 +181,11 @@ state_vote_sims[state_vote_sims < 0] = 0
 print('Done!')
 
 # National vote share implied by state vote
-natl_vote_sims = np.dot(state_vote_sims, proj_state_votes['pct_of_electorate'])
+natl_vote_sims = np.zeros(shape = (n_sims, 6))
+for p in range(6):
+    natl_vote_sims[:, p] = (state_vote_sims[:, p, :] * state_electorate_share).sum(axis = 1)
 
+#%%
 # From that, simulate constituency vote shares
 print('Simulating constituency vote shares....', end = ' ')
 states_alpha = list(states_key['german_name'].sort_values())
@@ -325,7 +332,7 @@ constituency_counts = states_key.sort_values('german_name').reset_index()['const
 
 ## Loop through states
 for s in range(16):
-    # Minimum number of constituencies to be allocated
+    # Minimum number of seats to be allocated
     total_state_seats = 2 * constituency_counts[s]
     
     # Loop through seats in the state
@@ -389,10 +396,14 @@ for p in range(6):
         positive_leveling_seats = (leveling_seats_to_allocate > 0)
         negative_leveling_seats = (leveling_seats_to_allocate < 0)
         
+        # # Calculate quotients by state
+        # state_leveling_quotients = np.matmul(state_vote_sims[:, p, :], 
+        #                                      np.diag(proj_state_votes['total_votes']))\
+        #     / (2 * total_state_seats_post_level[:, p, :] + 1)
+        
         # Calculate quotients by state
-        state_leveling_quotients = np.matmul(state_vote_sims[:, p, :], 
-                                             np.diag(proj_state_votes['total_votes']))\
-            / (2 * total_state_seats_post_level[:, p, :] + 1)
+        state_leveling_quotients = state_vote_sims[:, p, :] * total_votes_prev\
+            * state_electorate_share / (2 * total_state_seats_post_level[:, p, :] + 1)
         
         # For simulations where party gets positive leveling seats: add to state with highest quotient
         largest_quotient_inds = np.argmax(state_leveling_quotients, axis = 1)
