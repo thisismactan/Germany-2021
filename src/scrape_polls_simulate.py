@@ -411,5 +411,89 @@ for p in range(6):
 
 print('Done!')
 
-# Concatenate results into a handy-dandy data frame
+# Concatenate results into handy-dandy data frames
 print('Writing results....', end = ' ')
+
+#%%
+party_rename_dict = {0: 'afd', 1: 'cdu', 2: 'fdp', 3: 'gruene', 4: 'linke', 5: 'spd'}
+
+## State-level DataFrames to create: total seats, direct seats, party-list seats,
+## leveling seats, vote share
+total_state_seats_df = pd.DataFrame()
+direct_state_seats_df = pd.DataFrame()
+party_list_seats_df = pd.DataFrame()
+leveling_seats_df = pd.DataFrame()
+state_vote_share_df = pd.DataFrame()
+
+for s in range(16):
+    # Total seats
+    total_state_seats_df = total_state_seats_df\
+        .append(pd.DataFrame(total_state_seats_post_level[:, :, s])\
+                    .rename(columns = party_rename_dict)\
+                    .assign(state = states_alpha[s],
+                            sim_id = range(n_sims))\
+                    .melt(id_vars = ['sim_id', 'state'], var_name = 'party',
+                          value_name = 'total_seats'))
+    
+    # Direct seats
+    direct_state_seats_df = direct_state_seats_df\
+        .append(pd.DataFrame(direct_seats_by_state_array[:, :, s])\
+                    .rename(columns = party_rename_dict)\
+                    .assign(state = states_alpha[s],
+                            sim_id = range(n_sims))\
+                    .melt(id_vars = ['sim_id', 'state'], var_name = 'party',
+                          value_name = 'direct_seats'))
+            
+    # Party-list seats
+    party_list_seats_df = party_list_seats_df\
+        .append(pd.DataFrame(party_list_seats[:, :, s])\
+                    .rename(columns = party_rename_dict)\
+                    .assign(state = states_alpha[s],
+                            sim_id = range(n_sims))\
+                    .melt(id_vars = ['sim_id', 'state'], var_name = 'party',
+                          value_name = 'party_list_seats'))
+    
+    # Leveling seats
+    leveling_seats_df = leveling_seats_df\
+        .append(pd.DataFrame(leveling_seats_by_state[:, :, s])\
+                    .rename(columns = party_rename_dict)\
+                    .assign(state = states_alpha[s],
+                            sim_id = range(n_sims))\
+                    .melt(id_vars = ['sim_id', 'state'], var_name = 'party',
+                          value_name = 'leveling_seats'))
+    
+    # Vote share
+    state_vote_share_df = state_vote_share_df\
+        .append(pd.DataFrame(state_vote_sims[:, :, s])\
+                    .rename(columns = party_rename_dict)\
+                    .assign(state = states_alpha[s],
+                            sim_id = range(n_sims))\
+                    .melt(id_vars = ['sim_id', 'state'], var_name = 'party',
+                          value_name = 'pct'))
+
+## Join them all together
+state_sims = state_vote_share_df\
+    .merge(total_state_seats_df, how = 'left', on = ['sim_id', 'state', 'party'])\
+    .merge(direct_state_seats_df, how = 'left', on = ['sim_id', 'state', 'party'])\
+    .merge(party_list_seats_df, how = 'left', on = ['sim_id', 'state', 'party'])\
+    .merge(leveling_seats_df, how = 'left', on = ['sim_id', 'state', 'party'])
+
+## Write it to a CSV
+state_sims.to_csv('output/state_sims.csv', index = False)
+
+#%%
+# Constituency DataFrame: all you need is votes
+const_sims = pd.DataFrame()
+
+for c in range(299):
+    const_sims = const_sims\
+        .append(pd.DataFrame(const_vote_sims[:, :, c])\
+                    .rename(columns = party_rename_dict)\
+                    .assign(constituency = const_state_key['constituency'][c],
+                            sim_id = range(n_sims))\
+                    .melt(id_vars = ['sim_id', 'constituency'], var_name = 'party',
+                          value_name = 'pct'))
+
+const_sims.to_csv('output/const_sims.csv', index = False)
+
+print('Done!')
