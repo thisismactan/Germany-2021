@@ -416,7 +416,7 @@ print('Writing results....', end = ' ')
 party_rename_dict = {0: 'afd', 1: 'cdu', 2: 'fdp', 3: 'gruene', 4: 'linke', 5: 'spd'}
 
 ## National-level vote simulations
-natl_vote_sims_df = pd.DataFrame(natl_vote_sims)\
+natl_vote_sims_df = pd.DataFrame(np.round(natl_vote_sims, decimals = 4))\
     .rename(columns = party_rename_dict)\
     .assign(sim_id = range(n_sims))\
     .melt(id_vars = 'sim_id', var_name = 'party', value_name = 'pct')
