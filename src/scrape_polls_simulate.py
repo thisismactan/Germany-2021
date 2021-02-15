@@ -532,9 +532,9 @@ seat_summary_stats = state_sims\
     .assign(seat_frac = lambda x: x['seats'] / x['total'])\
     .groupby('coalition')\
     .agg(prob_majority = pd.NamedAgg(column = 'seat_frac', aggfunc = lambda x: (x > 0.5).mean()),
-         pct_05 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.quantile(x, q = 0.05)),
-         pct_50 = pd.NamedAgg(column = 'seats', aggfunc = 'quantile'),
-         pct_95 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.quantile(x, q = 0.95)))\
+         pct_05 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.round(np.quantile(x, q = 0.05))),
+         pct_50 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.round(np.quantile(x, q = 0.5))),
+         pct_95 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.round(np.quantile(x, q = 0.95))))\
     .reset_index()\
     .assign(date = dt.datetime.today().strftime('%Y-%m-%d'))\
     .loc[:, ['date', 'coalition', 'prob_majority', 'pct_05', 'pct_50', 'pct_95']]
