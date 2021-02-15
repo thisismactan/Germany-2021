@@ -65,7 +65,7 @@ polls_2021_long['age'] = (dt.datetime.today() - polls_2021_long['median_date']).
 
 #%% Polling average
 # Create weights
-polls_2021_long = polls_2021_long.loc[polls_2021_long['age'] <= 60]
+polls_2021_long = polls_2021_long.loc[polls_2021_long['age'] <= 45]
 polls_2021_long['weight'] = (polls_2021_long['n'] ** 0.25) * np.exp(-(polls_2021_long['age'] + 1) ** 0.5)
 
 poll_average = polls_2021_long\
@@ -186,7 +186,6 @@ natl_vote_sims = np.zeros(shape = (n_sims, 6))
 for p in range(6):
     natl_vote_sims[:, p] = (state_vote_sims[:, p, :] * state_electorate_share).sum(axis = 1)
 
-#%%
 # From that, simulate constituency vote shares
 print('Simulating constituency vote shares....', end = ' ')
 states_alpha = list(states_key['german_name'].sort_values())
@@ -397,11 +396,6 @@ for p in range(6):
         positive_leveling_seats = (leveling_seats_to_allocate > 0)
         negative_leveling_seats = (leveling_seats_to_allocate < 0)
         
-        # # Calculate quotients by state
-        # state_leveling_quotients = np.matmul(state_vote_sims[:, p, :], 
-        #                                      np.diag(proj_state_votes['total_votes']))\
-        #     / (2 * total_state_seats_post_level[:, p, :] + 1)
-        
         # Calculate quotients by state
         state_leveling_quotients = state_vote_sims[:, p, :] * total_votes_prev\
             * state_electorate_share / (2 * total_state_seats_post_level[:, p, :] + 1)
@@ -572,5 +566,3 @@ summary_stats_timeline = pd.read_csv('output/summary_stats_timeline.csv')\
 
 # Write it back out
 summary_stats_timeline.to_csv('output/summary_stats_timeline.csv', index = False)
-
-#### To add: timeline by state as well
