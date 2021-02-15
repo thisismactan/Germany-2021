@@ -8,7 +8,7 @@ party_colors = c("afd" = "#00A0E2", "cdu" = "black", "fdp" = "#FEB900", "gruene"
                  "linke" = "#BE3075", "other" = "gray", "spd" = "red")
 
 party_names = c("afd" = "Alternative for Germany (AfD)",
-                "cdu" = "Christian Democratic Union (CDU/CSU)",
+                "cdu" = "Union parties (CDU/CSU)",
                 "fdp" = "Free Democratic Party (FDP)",
                 "gruene" = "Alliance 90/The Greens (Grüne)",
                 "linke" = "The Left (Linke)",
@@ -51,7 +51,7 @@ poll_average_graph <- poll_average %>%
 
 poll_average_graph
 
-ggsave("output/poll_average_graph.png", plot = poll_average_graph,
+ggsave("output/viz/poll_average_graph.png", plot = poll_average_graph,
        width = 700/100, height = 600/100, dpi = 100)
 
 # Polling average over time
@@ -61,7 +61,7 @@ date_sequence <- seq(start_date, end_date, by = 1)
 
 poll_average_df_list <- vector("list", length(date_sequence))
 
-# Loop over dates
+## Loop over dates
 for(i in 1:length(poll_average_df_list)) {
   suppressMessages(poll_average_df_list[[i]] <- polls_2021 %>%
     filter(end_date <= date_sequence[i]) %>%
@@ -106,5 +106,7 @@ poll_averages_over_time_graph <- poll_averages_over_time %>%
 
 poll_averages_over_time_graph
 
-ggsave("output/poll_averages_over_time.png", plot = poll_averages_over_time_graph,
+ggsave("output/viz/poll_averages_over_time.png", plot = poll_averages_over_time_graph,
        width = 1600/100, height = 800/100, dpi = 100)
+
+# Forecasted seats by party
