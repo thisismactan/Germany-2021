@@ -413,9 +413,15 @@ print('Done!')
 
 # Concatenate results into handy-dandy data frames
 print('Writing results....', end = ' ')
-
-#%%
 party_rename_dict = {0: 'afd', 1: 'cdu', 2: 'fdp', 3: 'gruene', 4: 'linke', 5: 'spd'}
+
+## National-level vote simulations
+natl_vote_sims_df = pd.DataFrame(natl_vote_sims)\
+    .rename(columns = party_rename_dict)\
+    .assign(sim_id = range(n_sims))\
+    .melt(id_vars = 'sim_id', var_name = 'party', value_name = 'pct')
+    
+natl_vote_sims_df.to_csv('output/natl_sims.csv', index = False)
 
 ## State-level DataFrames to create: total seats, direct seats, party-list seats,
 ## leveling seats, vote share
@@ -464,7 +470,7 @@ for s in range(16):
     
     # Vote share
     state_vote_share_df = state_vote_share_df\
-        .append(pd.DataFrame(state_vote_sims[:, :, s])\
+        .append(pd.DataFrame(np.round(state_vote_sims[:, :, s], decimals = 4))\
                     .rename(columns = party_rename_dict)\
                     .assign(state = states_alpha[s],
                             sim_id = range(n_sims))\
@@ -481,7 +487,6 @@ state_sims = state_vote_share_df\
 ## Write it to a CSV
 state_sims.to_csv('output/state_sims.csv', index = False)
 
-#%%
 # Constituency DataFrame: all you need is votes
 const_sims = pd.DataFrame()
 
