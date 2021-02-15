@@ -175,6 +175,8 @@ print('Done!')
 
 # From that, simulate constituency vote shares
 print('Simulating constituency vote shares....', end = ' ')
+states_alpha = list(states_key['german_name'].sort_values())
+
 ## Creating arrays for the known constituency-level variables
 ### state_pct
 # Initialize a DataFrame
@@ -184,7 +186,7 @@ for s in range(16):
         .append(pd.DataFrame(state_vote_sims[:, :, s])\
                     .rename(columns = {0: 'afd', 1: 'cdu', 2: 'fdp', 3: 'gruene',
                                        4: 'linke', 5: 'spd'})\
-                .assign(state = list(states_key['german_name'].sort_values())[s],
+                .assign(state = states_alpha[s],
                         sim_id = range(n_sims)))
 
 # Copy as many times as needed per state (one copy for each constituency)            
@@ -253,7 +255,7 @@ const_sim_winners['id'] = const_sim_winners['id'] + 1.0
 const_sim_winners = const_sim_winners\
     .merge(const_state_key[['id', 'constituency', 'state']], how = 'left', on = 'id')
 
-seats_by_state = const_sim_winners\
+direct_seats_by_state = const_sim_winners\
     .groupby(['sim_id', 'state', 'winner'], as_index = False)\
     .count()\
     .drop(columns = 'id')\
@@ -261,7 +263,7 @@ seats_by_state = const_sim_winners\
                  fill_value = 0)\
     .reset_index()
 
-total_seats = const_sim_winners\
+total_direct_seats = const_sim_winners\
     .groupby(['sim_id', 'winner'], as_index = False)\
     .count()\
     .drop(columns = ['id', 'state'])\
@@ -270,20 +272,20 @@ total_seats = const_sim_winners\
 
 # Make sure all parties have a column
 for p in range(6):
-    if p not in seats_by_state.columns:
-        seats_by_state[str(p)] = 0
-    if p not in total_seats.columns:
-        total_seats[str(p)] = 0
+    if p not in direct_seats_by_state.columns:
+        direct_seats_by_state[str(p)] = 0
+    if p not in total_direct_seats.columns:
+        total_direct_seats[str(p)] = 0
 
-seats_by_state.columns = [str(x) for x in seats_by_state.columns]
-total_seats.columns = [str(x) for x in total_seats.columns]
+direct_seats_by_state.columns = [str(x) for x in direct_seats_by_state.columns]
+total_direct_seats.columns = [str(x) for x in total_direct_seats.columns]
 
-seats_by_state = pd.melt(seats_by_state, id_vars = ['sim_id', 'state'],
-                         var_name = 'winner', value_name = 'direct_seats')\
+direct_seats_by_state = pd.melt(direct_seats_by_state, id_vars = ['sim_id', 'state'],
+                                var_name = 'winner', value_name = 'direct_seats')\
     .sort_values(['winner', 'sim_id'])
 
-total_seats = pd.melt(total_seats, id_vars = 'sim_id', var_name = 'winner',
-                      value_name = 'direct_seats')\
+total_direct_seats = pd.melt(total_direct_seats, id_vars = 'sim_id', 
+                             var_name = 'winner', value_name = 'direct_seats')\
     .sort_values(['winner', 'sim_id'])
 print('Done!')
 
@@ -291,7 +293,7 @@ print('Done!')
 print('Computing state-level seat guarantees....', end = ' ')
 
 ## First eligibility condition: party wins at least three constituencies
-natl_seats_3 = (total_seats\
+natl_seats_3 = (total_direct_seats\
     .pivot_table(index = 'sim_id', columns = 'winner', values = 'direct_seats',
                  fill_value = 0)\
     .to_numpy()) >= 3
@@ -300,4 +302,47 @@ natl_seats_3 = (total_seats\
 natl_pct_5 = natl_vote_sims >= 0.05
 
 ## Any party that satisfies *either* is eligible for party-list seats
-party_list_eligible = np.logical_or(natl_seats_3, natl_pct_5)
+party_list_eligible = np.dstack((np.logical_or(natl_seats_3, natl_pct_5), ) * 16)
+
+## State percentages taking eligibility into account
+state_pct_eligible = state_vote_sims * party_list_eligible
+
+# Webster/Sainte-Lague seat allocation
+## Initialize seat allocation array
+state_seat_guarantee = np.zeros(shape = (n_sims, 6, 16))
+
+constituency_counts = states_key.sort_values('german_name').reset_index()['constituencies']
+
+## Loop through states
+for s in range(16):
+    # Minimum number of constituencies to be allocated
+    total_state_seats = 2 * constituency_counts[s]
+    
+    # Loop through seats in the state
+    for t in range(total_state_seats):
+        state_seat_allocation = state_seat_guarantee[:, :, s]
+        quotients = state_pct_eligible[:, :, s] / (2 * state_seat_allocation + 1)
+        
+        # Add one to state_seat_allocation where quotients is equal to its row max
+        max_quotient_inds = np.argmax(quotients, axis = 1)
+        state_seat_allocation[range(n_sims), max_quotient_inds] += 1
+    
+    # Put result in corresponding sub-array of seats_allocated
+    state_seat_guarantee[:, :, s] = state_seat_allocation
+
+# Calculate party-list seats
+direct_seats_by_state_array = np.zeros(shape = (n_sims, 6, 16))
+
+for s in range(16):
+    direct_seats_by_state_array[:, :, s] = direct_seats_by_state\
+        .loc[direct_seats_by_state['state'] == states_alpha[s], :]\
+        .pivot_table(index = ['state', 'sim_id'], columns = 'winner', 
+                     values = 'direct_seats')\
+        .to_numpy()
+
+# Calculate party-list seats awarded (cannot be negative)
+party_list_seats = np.maximum(state_seat_guarantee - direct_seats_by_state_array, 0)
+
+#%%
+# Total seats before leveling
+total_seats_pre_level = party_list_seats + direct_seats_by_state_array
