@@ -536,17 +536,41 @@ seat_summary_stats = state_sims\
          pct_50 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.round(np.quantile(x, q = 0.5))),
          pct_95 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.round(np.quantile(x, q = 0.95))))\
     .reset_index()\
-    .assign(date = dt.datetime.today().strftime('%Y-%m-%d'))\
-    .loc[:, ['date', 'coalition', 'prob_majority', 'pct_05', 'pct_50', 'pct_95']]
+    .assign(date = dt.datetime.today().strftime('%Y-%m-%d'),
+            state = 'National')\
+    .loc[:, ['date', 'state', 'coalition', 'prob_majority', 'pct_05', 'pct_50', 'pct_95']]
 
 print(seat_summary_stats)
+
+# Add state timeline
+state_seat_summary_stats = state_sims\
+    .loc[:, ['sim_id', 'state', 'party', 'total_seats']]\
+    .pivot_table(index = ['sim_id', 'state'], columns = 'party', values = 'total_seats')\
+    .reset_index()\
+    .groupby(['sim_id', 'state'], as_index = False)\
+    .sum()\
+    .melt(id_vars = ['sim_id', 'state'], var_name = 'coalition', value_name = 'seats')\
+    .groupby(['state', 'coalition'])\
+    .agg(pct_05 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.round(np.quantile(x, q = 0.05))),
+         pct_50 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.round(np.quantile(x, q = 0.5))),
+         pct_95 = pd.NamedAgg(column = 'seats', aggfunc = lambda x: np.round(np.quantile(x, q = 0.95))))\
+    .reset_index()\
+    .assign(date = dt.datetime.today().strftime('%Y-%m-%d'))\
+    .loc[:, ['date', 'state', 'coalition', 'pct_05', 'pct_50', 'pct_95']]
+
+seat_summary_stats = seat_summary_stats\
+    .append(state_seat_summary_stats)
 
 # If summary statistics over time isn't in output folder, write it
 if 'summary_stats_timeline.csv' not in listdir('output'):
     seat_summary_stats.to_csv('output/summary_stats_timeline.csv', index = False)
 
+# Read in timeline and append the summary stats to it, keeping the more recent of duplicate rows
 summary_stats_timeline = pd.read_csv('output/summary_stats_timeline.csv')\
     .append(seat_summary_stats)\
-    .drop_duplicates(subset = ['date', 'coalition'], keep = 'last', ignore_index = True)
+    .drop_duplicates(subset = ['date', 'coalition', 'state'], keep = 'last', ignore_index = True)
 
+# Write it back out
 summary_stats_timeline.to_csv('output/summary_stats_timeline.csv', index = False)
+
+#### To add: timeline by state as well
