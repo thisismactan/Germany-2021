@@ -516,6 +516,7 @@ seat_summary_stats = state_sims\
     .assign(total = lambda x: x['afd'] + x['cdu'] + x['fdp'] + x['gruene'] + x['linke'] + x['spd'],
             cdu_fdp = lambda x: x['cdu'] + x['fdp'],
             cdu_spd = lambda x: x['cdu'] + x['spd'],
+            cdu_gruene = lambda x: x['cdu'] + x['gruene'],
             spd_gruene = lambda x: x['spd'] + x['gruene'],
             cdu_fdp_gruene = lambda x: x['cdu'] + x['fdp'] + x['gruene'],
             spd_fdp_gruene = lambda x: x['spd'] + x['fdp'] + x['gruene'])\
