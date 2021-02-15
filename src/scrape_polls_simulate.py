@@ -122,13 +122,13 @@ poll_error_cov = np.cov(polls_2017_error_array, rowvar = False,
 n_sims = 10000
 np.random.seed(2021)
 
-# Simulate national vote shares
+# Simulate national polling variation
 print('Simulating national vote shares....', end = ' ')
-natl_vote_sims = np.random.multivariate_normal(poll_average_array, poll_cov + poll_error_cov,
+natl_poll_sims = np.random.multivariate_normal(poll_average_array, poll_cov + poll_error_cov,
                                                size = n_sims)
-natl_vote_sims = np.delete(natl_vote_sims, 5, axis = 1) # get rid of others
-natl_vote_sims_eligible = natl_vote_sims.copy()
-natl_vote_sims_eligible[natl_vote_sims_eligible < 0.05] = 0
+natl_poll_sims = np.delete(natl_poll_sims, 5, axis = 1) # get rid of others
+natl_poll_sims_eligible = natl_poll_sims.copy()
+natl_poll_sims_eligible[natl_poll_sims_eligible < 0.05] = 0
 
 print('Done!')
 
@@ -142,7 +142,7 @@ last_natl_vote = natl_results\
     .to_numpy()
     
 last_natl_vote_stack = np.concatenate((last_natl_vote, ) * n_sims)
-natl_pct_change = natl_vote_sims - last_natl_vote_stack
+natl_pct_change = natl_poll_sims - last_natl_vote_stack
 
 natl_pct_change_contrib = np.dstack((natl_pct_change * all_party_state_lm.coef_[1], ) * 16)
 
@@ -175,6 +175,9 @@ state_vote_sims = last_state_vote_stack + state_intercept_contrib\
 
 state_vote_sims[state_vote_sims < 0] = 0
 print('Done!')
+
+# National vote share implied by state vote
+natl_vote_sims = np.dot(state_vote_sims, proj_state_votes['pct_of_electorate'])
 
 # From that, simulate constituency vote shares
 print('Simulating constituency vote shares....', end = ' ')
@@ -307,6 +310,10 @@ natl_pct_5 = natl_vote_sims >= 0.05
 ## Any party that satisfies *either* is eligible for party-list seats
 party_list_eligible = np.dstack((np.logical_or(natl_seats_3, natl_pct_5), ) * 16)
 
+## National vote taking into account either eligibility threshold
+natl_vote_sims_eligible = natl_vote_sims.copy()
+natl_vote_sims_eligible[~np.logical_or(natl_seats_3, natl_pct_5)] = 0
+
 ## State percentages taking eligibility into account
 state_pct_eligible = state_vote_sims * party_list_eligible
 
@@ -355,7 +362,8 @@ total_state_seats_pre_level = party_list_seats + direct_seats_by_state_array
 ## Nationally
 total_natl_seats_pre_level = total_state_seats_pre_level.sum(axis = 2)
 
-total_votes_prev = 46976341
+total_votes_prev = proj_state_votes['total_votes'].sum()
+
 # Calculate national divisors (if eligible, it's total second votes / (seats - 0.5))
 natl_divisors = total_votes_prev * natl_vote_sims_eligible / (total_natl_seats_pre_level - 0.5)
 
@@ -363,6 +371,45 @@ natl_divisors = total_votes_prev * natl_vote_sims_eligible / (total_natl_seats_p
 natl_divisors[natl_divisors <= 0] = np.inf
 min_natl_divisors = np.vstack((natl_divisors.min(axis = 1), ) * 6).T
 
-#%%
+# Calculate total and leveling seats
 total_natl_seats = np.round(total_votes_prev * natl_vote_sims_eligible / min_natl_divisors)
 leveling_seats = total_natl_seats - total_natl_seats_pre_level
+print('Done!')
+
+# Allocate leveling seats by state, again using Webster/Sainte-Lague
+print('Distributing leveling seats across states....', end = ' ')
+leveling_seats_by_state = np.zeros(shape = (n_sims, 6, 16))
+total_state_seats_post_level = total_state_seats_pre_level.copy()
+
+## This time start by looping through parties and distribute by state
+for p in range(6):
+    leveling_seats_to_allocate = leveling_seats[:, p] - leveling_seats_by_state.sum(axis = 2)[:, p]
+    while np.any(leveling_seats_to_allocate != 0):
+        # Distinguish between positive and negative leveling seats
+        positive_leveling_seats = (leveling_seats_to_allocate > 0)
+        negative_leveling_seats = (leveling_seats_to_allocate < 0)
+        
+        # Calculate quotients by state
+        state_leveling_quotients = np.matmul(state_vote_sims[:, p, :], 
+                                             np.diag(proj_state_votes['total_votes']))\
+            / (2 * total_state_seats_post_level[:, p, :] + 1)
+        
+        # For simulations where party gets positive leveling seats: add to state with highest quotient
+        largest_quotient_inds = np.argmax(state_leveling_quotients, axis = 1)
+        positive_leveling_inds = largest_quotient_inds[positive_leveling_seats]
+        total_state_seats_post_level[positive_leveling_seats, p, positive_leveling_inds] += 1
+        leveling_seats_by_state[positive_leveling_seats, p, positive_leveling_inds] += 1
+        
+        # For simulations where party gets negative leveling seats: subtract from state with lowest quotient
+        smallest_quotient_inds = np.argmin(state_leveling_quotients, axis = 1)
+        negative_leveling_inds = smallest_quotient_inds[negative_leveling_seats]
+        total_state_seats_post_level[negative_leveling_seats, p, negative_leveling_inds] += -1
+        leveling_seats_by_state[negative_leveling_seats, p, negative_leveling_inds] += -1
+        
+        # Recalculate leveling seats to allocate
+        leveling_seats_to_allocate = leveling_seats[:, p] - leveling_seats_by_state.sum(axis = 2)[:, p]
+
+print('Done!')
+
+# Concatenate results into a handy-dandy data frame
+print('Writing results....', end = ' ')
