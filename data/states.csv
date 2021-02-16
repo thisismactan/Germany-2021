@@ -1,17 +1,17 @@
-﻿state_id,german_name,english_name,constituencies
-901,Schleswig-Holstein,Schleswig-Holstein,11
-902,Hamburg,Hamburg,6
-903,Niedersachsen,Lower Saxony,30
-904,Bremen,Bremen,2
-905,Nordrhein-Westfalen,North Rhine-Westphalia,64
-906,Hessen,Hesse,22
-907,Rheinland-Pfalz,Rhineland-Palatinate,15
-908,Baden-Württemberg,Baden-Württemberg,38
-909,Bayern,Bavaria,46
-910,Saarland,Saarland,4
-911,Berlin,Berlin,12
-912,Brandenburg,Brandenburg,10
-913,Mecklenburg-Vorpommern,Mecklenburg-West Pomerania,6
-914,Sachsen,Saxony,16
-915,Sachsen-Anhalt,Saxony-Anhalt,9
-916,Thüringen,Thuringia,8
+﻿state_id,german_name,english_name,region,constituencies
+901,Schleswig-Holstein,Schleswig-Holstein,Northwest,11
+902,Hamburg,Hamburg,Northwest,6
+903,Niedersachsen,Lower Saxony,Northwest,30
+904,Bremen,Bremen,Northwest,2
+905,Nordrhein-Westfalen,North Rhine-Westphalia,Rhineland,64
+906,Hessen,Hesse,South,22
+907,Rheinland-Pfalz,Rhineland-Palatinate,Rhineland,15
+908,Baden-Württemberg,Baden-Württemberg,South,38
+909,Bayern,Bavaria,South,46
+910,Saarland,Saarland,Rhineland,4
+911,Berlin,Berlin,Northeast,12
+912,Brandenburg,Brandenburg,Northeast,10
+913,Mecklenburg-Vorpommern,Mecklenburg-West Pomerania,Northeast,6
+914,Sachsen,Saxony,Northeast,16
+915,Sachsen-Anhalt,Saxony-Anhalt,Northeast,9
+916,Thüringen,Thuringia,Northeast,8
