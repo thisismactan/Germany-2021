@@ -142,6 +142,23 @@ natl_sims <- read_csv("output/natl_sims.csv") %>%
 
 forecast_timeline <- read_csv("output/summary_stats_timeline.csv") 
 
+# Size of Bundestag
+bundestag_size_graph <- natl_sims %>%
+  filter(party == "afd") %>%
+  ggplot(aes(x = total_seats)) +
+  geom_vline(xintercept = 709, size = 1) +
+  geom_text(data = tibble(x = 736, y = 0.018, label = "Current Bundestag: 709 seats"),
+            aes(x = x, y = y, label = label), size = 3) +
+  geom_histogram(aes(y = ..density..), binwidth = 5, col = "black") +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
+  labs(title = "Projected Bundestag size", x = "Seats", y = "Probability",
+       subtitle = paste0(month(today(), label = TRUE, abbr = FALSE), " ", day(today()), ", ", year(today())))
+
+bundestag_size_graph
+
+ggsave("output/viz/bundestag_size.png", bundestag_size_graph,
+       width = 700/100, height = 600/100, dpi = 100)
+
 # Forecasted vote
 forecasted_natl_vote_graph <- natl_sims %>%
   ggplot(aes(x = pct, y = ..count.. / 10000, fill = party)) +
@@ -247,7 +264,7 @@ ant_farm <- forecast_timeline %>%
               mutate(party = ordered(coalition, levels = party_order),
                      radius = 0.5 * (pct_50 - pct_05) + 0.5 * (pct_95 - pct_50),
                      seats_label = paste0(pct_50, "±", round(radius), " seats")),
-            aes(x = today() + 18, y = pct_50, label = seats_label, col = party), size = 3, show.legend = FALSE) +
+            aes(x = today() + 19, y = pct_50, label = seats_label, col = party), size = 3, show.legend = FALSE) +
   scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_fill_manual(name = "Party", labels = party_names, values = party_colors) +
   scale_colour_manual(name = "Party", labels = party_names, values = party_colors) +
