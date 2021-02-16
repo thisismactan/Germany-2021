@@ -20,6 +20,20 @@ party_abbr = c("afd" = "AfD", "cdu" = "Union", "fdp" = "FDP", "gruene" = "Grüne
 
 party_order = c("linke", "gruene", "spd", "fdp", "cdu", "afd")
 
+# Coalition colors/labels
+coalition_colors = c("cdu_fdp" = "black", "cdu_fdp_gruene" = "orange1", "cdu_gruene" = "brown", 
+                     "cdu_spd" = "purple1", "spd_fdp_gruene" = "green4", "spd_gruene" = "red")
+
+coalition_names = c("cdu_fdp" = "Center-right (CDU/CSU/FDP)",
+                    "cdu_fdp_gruene" = "Jamaika (CDU/CSU/FDP/Grüne)",
+                    "cdu_gruene" = "Halfghanistan (CDU/CSU/Grüne)",
+                    "cdu_spd" = "Grand coalition (CDU/CSU/SPD)",
+                    "spd_fdp_gruene" = "Traffic light (SPD/FDP/Grüne)",
+                    "spd_gruene" = "Christmas (SPD/Grüne)")
+
+coalition_abbr = c("cdu_fdp" = "Center-right", "cdu_fdp_gruene" = "Jamaika", "cdu_gruene" = "Halfghanistan", 
+                   "cdu_spd" = "Grand coalition", "spd_fdp_gruene" = "Traffic light", "spd_gruene" = "Christmas")
+
 # Polling average
 polls_2021 <- read_csv("data/polls_2021.csv") %>%
   mutate(age = as.numeric(today() - median_date),
@@ -109,4 +123,161 @@ poll_averages_over_time_graph
 ggsave("output/viz/poll_averages_over_time.png", plot = poll_averages_over_time_graph,
        width = 1600/100, height = 800/100, dpi = 100)
 
-# Forecasted seats by party
+# Forecast stuff
+state_sims <- read_csv("output/state_sims.csv") %>%
+  mutate(party = ordered(party, levels = party_order))
+
+natl_sims <- read_csv("output/natl_sims.csv") %>%
+  left_join(
+    state_sims %>%
+      group_by(party, sim_id) %>%
+      summarise(seats = sum(total_seats)) %>%
+      group_by(sim_id) %>%
+      mutate(total_seats = sum(seats)) %>%
+      ungroup(),
+    by = c("sim_id", "party")
+  ) %>%
+  mutate(party = ordered(party, levels = party_order),
+         seat_share = seats / total_seats)
+
+forecast_timeline <- read_csv("output/summary_stats_timeline.csv") 
+
+# Forecasted vote
+forecasted_natl_vote_graph <- natl_sims %>%
+  ggplot(aes(x = pct, y = ..count.. / 10000, fill = party)) +
+  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 2) +
+  geom_vline(xintercept = 0.05) +
+  geom_histogram(binwidth = 0.01, alpha = 0.5, show.legend = FALSE) +
+  geom_vline(data = natl_sims %>% 
+               group_by(party) %>%
+               summarise(avg_pct = mean(pct)),
+             aes(xintercept = avg_pct, col = party), size = 1, show.legend = FALSE) +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_colour_manual(name = "Party", values = party_colors) +
+  scale_fill_manual(name = "Party", values = party_colors) +
+  labs(title = "2021 German federal election forecasted vote share", x = "Share of second vote", y = "Probability",
+       subtitle = paste0(month(today(), label = TRUE, abbr = FALSE), " ", day(today()), ", ", year(today())))
+
+forecasted_natl_vote_graph
+
+ggsave("output/viz/forecasted_natl_vote_graph.png", plot = forecasted_natl_vote_graph,
+       width = 800/100, height = 600/100, dpi = 100)
+
+# Forecasted national seats
+forecasted_natl_seats_graph <- natl_sims %>%
+  ggplot(aes(x = seats, y = ..count.. / 10000, fill = party)) +
+  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 2) +
+  geom_histogram(binwidth = 2, alpha = 0.5, show.legend = FALSE) +
+  geom_vline(data = natl_sims %>% 
+               group_by(party) %>%
+               summarise(avg_seats = median(seats)),
+             aes(xintercept = avg_seats, col = party), size = 1, show.legend = FALSE) +
+  scale_x_continuous(breaks = 50 * (0:7)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
+  scale_colour_manual(name = "Party", values = party_colors) +
+  scale_fill_manual(name = "Party", values = party_colors) +
+  labs(title = "2021 German federal election forecasted seats", x = "Seats", y = "Probability",
+       subtitle = paste0(month(today(), label = TRUE, abbr = FALSE), " ", day(today()), ", ", year(today())))
+
+forecasted_natl_seats_graph
+
+ggsave("output/viz/forecasted_natl_seats_graph.png", plot = forecasted_natl_seats_graph,
+       width = 900/100, height = 600/100, dpi = 100)
+
+# Forecasted national seat share
+forecasted_natl_seat_share_graph <- natl_sims %>%
+  ggplot(aes(x = seat_share, y = ..count.. / 10000, fill = party)) +
+  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 2) +
+  geom_histogram(binwidth = 0.01, alpha = 0.5, show.legend = FALSE) +
+  geom_vline(data = natl_sims %>% 
+               group_by(party) %>%
+               summarise(avg_seat_share = median(seat_share)),
+             aes(xintercept = avg_seat_share, col = party), size = 1, show.legend = FALSE) +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_colour_manual(name = "Party", values = party_colors) +
+  scale_fill_manual(name = "Party", values = party_colors) +
+  labs(title = "2021 German federal election forecasted seat share", x = "Share of seats in Bundestag", y = "Probability",
+       subtitle = paste0(month(today(), label = TRUE, abbr = FALSE), " ", day(today()), ", ", year(today())))
+
+forecasted_natl_seat_share_graph
+
+ggsave("output/viz/forecasted_natl_seat_share_graph.png", plot = forecasted_natl_seats_graph,
+       width = 900/100, height = 600/100, dpi = 100)
+
+# National seat forecast timeline
+national_seat_forecast_timeline_graph <- forecast_timeline %>%
+  filter(coalition %in% c("afd", "cdu", "fdp", "gruene", "linke", "spd"), state == "National") %>%
+  mutate(party = ordered(coalition, levels = party_order),
+         radius = 0.5 * (pct_50 - pct_05) + 0.5 * (pct_95 - pct_50)) %>%
+  ggplot(aes(x = date, fill = party)) +
+  geom_ribbon(aes(ymin = pct_05, ymax = pct_95), alpha = 0.5) +
+  geom_line(aes(y = pct_50, col = party), size = 1) +
+  geom_text(data = forecast_timeline %>%
+              filter(coalition %in% c("afd", "cdu", "fdp", "gruene", "linke", "spd"), state == "National", date == max(date)) %>%
+              mutate(party = ordered(coalition, levels = party_order),
+                     radius = 0.5 * (pct_50 - pct_05) + 0.5 * (pct_95 - pct_50),
+                     seats_label = paste0(pct_50, "±", round(radius), " seats")),
+            aes(x = today() + 6.5, y = pct_50, label = seats_label, col = party), size = 3, show.legend = FALSE) +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_fill_manual(name = "Party", labels = party_names, values = party_colors) +
+  scale_colour_manual(name = "Party", labels = party_names, values = party_colors) +
+  theme(legend.position = "bottom", axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  labs(title = "2021 German federal election forecasted seats over time", x = "Date", y = "Seats",
+       subtitle = paste0(month(today(), label = TRUE, abbr = FALSE), " ", day(today()), ", ", year(today())),
+       caption = "Lines indicate forecast median seats\nError bands indicate 90% confidence intervals")
+
+national_seat_forecast_timeline_graph
+
+ggsave("output/viz/national_seat_forecast_timeline.png", plot = national_seat_forecast_timeline_graph,
+       width = 1600/100, height = 800/100, dpi = 100)
+
+# Ant farm
+ant_farm <- forecast_timeline %>%
+  filter(coalition %in% c("afd", "cdu", "fdp", "gruene", "linke", "spd"), state != "National") %>%
+  mutate(party = ordered(coalition, levels = party_order),
+         radius = 0.5 * (pct_50 - pct_05) + 0.5 * (pct_95 - pct_50)) %>%
+  ggplot(aes(x = date, fill = party)) +
+  facet_wrap(~state, nrow = 4, scales = "free_y") +
+  geom_ribbon(aes(ymin = pct_05, ymax = pct_95), alpha = 0.5) +
+  geom_line(aes(y = pct_50), size = 1) +
+  geom_text(data = forecast_timeline %>%
+              filter(coalition %in% c("afd", "cdu", "fdp", "gruene", "linke", "spd"), state != "National", date == max(date)) %>%
+              mutate(party = ordered(coalition, levels = party_order),
+                     radius = 0.5 * (pct_50 - pct_05) + 0.5 * (pct_95 - pct_50),
+                     seats_label = paste0(pct_50, "±", round(radius), " seats")),
+            aes(x = today() + 18, y = pct_50, label = seats_label, col = party), size = 3, show.legend = FALSE) +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_fill_manual(name = "Party", labels = party_names, values = party_colors) +
+  scale_colour_manual(name = "Party", labels = party_names, values = party_colors) +
+  theme(legend.position = "bottom", axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  labs(title = "2021 German federal election forecasted seats over time", x = "Date", y = "Seats",
+       subtitle = paste0(month(today(), label = TRUE, abbr = FALSE), " ", day(today()), ", ", year(today())),
+       caption = "Lines indicate forecast median seats\nError bands indicate 90% confidence intervals")
+
+ant_farm
+
+ggsave("output/viz/ant_farm.png", plot = ant_farm, width = 1920/100, height = 1000/100, dpi = 100)
+
+# Coalition probability timeline
+coalition_prob_timeline <- forecast_timeline %>%
+  filter(state == "National", coalition %in% c("cdu_fdp", "cdu_fdp_gruene", "cdu_gruene", "cdu_spd", "spd_fdp_gruene", "spd_gruene")) %>%
+  ggplot(aes(x = date, y = prob_majority, col = coalition)) +
+  geom_line(size = 1) +
+  geom_text(data = forecast_timeline %>%
+              filter(state == "National", date == max(date), 
+                     coalition %in% c("cdu_fdp", "cdu_fdp_gruene", "cdu_gruene", "cdu_spd", "spd_fdp_gruene", "spd_gruene")),
+            aes(x = date + 3, label = scales::percent(prob_majority, accuracy = 1)), size = 3, show.legend = FALSE) +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), breaks = (0:5) / 5) + 
+  scale_colour_manual(name = "Hypothetical coalition", labels = coalition_names, values = coalition_colors) +
+  theme(legend.position = "bottom", axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  labs(title = "2021 German federal election coalition probabilities over time", x = "Date", y = "Probability of majority",
+       subtitle = paste0(month(today(), label = TRUE, abbr = FALSE), " ", day(today()), ", ", year(today())),
+       caption = "Probabilities need not sum to 100%")
+
+coalition_prob_timeline
+
+ggsave("output/viz/coalition_prob_timeline.png", coalition_prob_timeline,
+       width = 1600/100, height = 800/100, dpi = 100)

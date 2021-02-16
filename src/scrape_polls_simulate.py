@@ -327,7 +327,6 @@ state_pct_eligible = state_vote_sims * party_list_eligible
 # Webster/Sainte-Lague seat allocation
 ## Initialize seat allocation array
 state_seat_guarantee = np.zeros(shape = (n_sims, 6, 16))
-
 constituency_counts = states_key.sort_values('german_name').reset_index()['constituencies']
 
 ## Loop through states
