@@ -560,9 +560,49 @@ if 'seat_summary_stats_timeline.csv' not in listdir('output'):
     seat_summary_stats.to_csv('output/seat_summary_stats_timeline.csv', index = False)
 
 # Read in timeline and append the summary stats to it, keeping the more recent of duplicate rows
-summary_stats_timeline = pd.read_csv('output/seat_summary_stats_timeline.csv')\
+seat_summary_stats_timeline = pd.read_csv('output/seat_summary_stats_timeline.csv')\
     .append(seat_summary_stats)\
     .drop_duplicates(subset = ['date', 'coalition', 'state'], keep = 'last', ignore_index = True)
 
 # Write it back out
-summary_stats_timeline.to_csv('output/seat_summary_stats_timeline.csv', index = False)
+seat_summary_stats_timeline.to_csv('output/seat_summary_stats_timeline.csv', index = False)
+
+#%% Summary statistics for second vote percentage (it's all similar)
+vote_summary_stats = natl_vote_sims_df\
+    .groupby('party')\
+    .agg(pct_05 = pd.NamedAgg(column = 'pct', aggfunc = lambda x: np.round(np.quantile(x, q = 0.05), decimals = 4)),
+         mean = pd.NamedAgg(column = 'pct', aggfunc = lambda x: np.round(x.mean(), decimals = 4)),
+         pct_95 = pd.NamedAgg(column = 'pct', aggfunc = lambda x: np.round(np.quantile(x, q = 0.95), decimals = 4)))\
+    .reset_index()\
+    .assign(date = dt.datetime.today().strftime('%Y-%m-%d'),
+            state = 'National')\
+    .loc[:, ['date', 'state', 'party', 'pct_05', 'mean', 'pct_95']]
+    
+print(vote_summary_stats)
+
+state_vote_summary_stats = state_sims\
+    .loc[:, ['sim_id', 'state', 'party', 'pct']]\
+    .pivot_table(index = ['sim_id', 'state'], columns = 'party', values = 'pct')\
+    .reset_index()\
+    .groupby(['sim_id', 'state'], as_index = False)\
+    .sum()\
+    .melt(id_vars = ['sim_id', 'state'], var_name = 'party', value_name = 'pct')\
+    .groupby(['state', 'party'])\
+    .agg(pct_05 = pd.NamedAgg(column = 'pct', aggfunc = lambda x: np.round(np.quantile(x, q = 0.05), decimals = 4)),
+         mean = pd.NamedAgg(column = 'pct', aggfunc = lambda x: np.round(x.mean(), decimals = 4)),
+         pct_95 = pd.NamedAgg(column = 'pct', aggfunc = lambda x: np.round(np.quantile(x, q = 0.95), decimals = 4)))\
+    .reset_index()\
+    .assign(date = dt.datetime.today().strftime('%Y-%m-%d'))\
+    .loc[:, ['date', 'state', 'party', 'pct_05', 'mean', 'pct_95']]
+
+vote_summary_stats = vote_summary_stats\
+    .append(state_vote_summary_stats)
+
+if 'vote_summary_stats_timeline.csv' not in listdir('output'):
+    vote_summary_stats.to_csv('output/vote_summary_stats_timeline.csv', index = False)
+
+vote_summary_stats_timeline = pd.read_csv('output/vote_summary_stats_timeline.csv')\
+    .append(vote_summary_stats)\
+    .drop_duplicates(subset = ['date', 'party', 'state'], keep = 'last', ignore_index = True)
+    
+vote_summary_stats_timeline.to_csv('output/vote_summary_stats_timeline.csv', index = False)
