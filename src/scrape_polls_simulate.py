@@ -508,7 +508,7 @@ const_sims.to_csv('output/const_sims.csv', index = False)
 
 print('Done!')
 
-#%% Summary statistics
+#%% Summary statistics for seats
 seat_summary_stats = state_sims\
     .loc[:, ['sim_id', 'state', 'party', 'total_seats']]\
     .pivot_table(index = ['sim_id', 'state'], columns = 'party', values = 'total_seats')\
@@ -556,13 +556,13 @@ seat_summary_stats = seat_summary_stats\
     .append(state_seat_summary_stats)
 
 # If summary statistics over time isn't in output folder, write it
-if 'summary_stats_timeline.csv' not in listdir('output'):
-    seat_summary_stats.to_csv('output/summary_stats_timeline.csv', index = False)
+if 'seat_summary_stats_timeline.csv' not in listdir('output'):
+    seat_summary_stats.to_csv('output/seat_summary_stats_timeline.csv', index = False)
 
 # Read in timeline and append the summary stats to it, keeping the more recent of duplicate rows
-summary_stats_timeline = pd.read_csv('output/summary_stats_timeline.csv')\
+summary_stats_timeline = pd.read_csv('output/seat_summary_stats_timeline.csv')\
     .append(seat_summary_stats)\
     .drop_duplicates(subset = ['date', 'coalition', 'state'], keep = 'last', ignore_index = True)
 
 # Write it back out
-summary_stats_timeline.to_csv('output/summary_stats_timeline.csv', index = False)
+summary_stats_timeline.to_csv('output/seat_summary_stats_timeline.csv', index = False)
