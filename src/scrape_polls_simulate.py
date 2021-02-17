@@ -567,7 +567,7 @@ seat_summary_stats_timeline = pd.read_csv('output/seat_summary_stats_timeline.cs
 # Write it back out
 seat_summary_stats_timeline.to_csv('output/seat_summary_stats_timeline.csv', index = False)
 
-#%% Summary statistics for second vote percentage (it's all similar)
+# Summary statistics for second vote percentage (it's all similar)
 vote_summary_stats = natl_vote_sims_df\
     .groupby('party')\
     .agg(pct_05 = pd.NamedAgg(column = 'pct', aggfunc = lambda x: np.round(np.quantile(x, q = 0.05), decimals = 4)),

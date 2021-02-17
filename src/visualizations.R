@@ -104,7 +104,7 @@ poll_averages_over_time <- bind_rows(poll_average_df_list) %>%
 poll_averages_over_time_graph <- poll_averages_over_time %>%
   ggplot(aes(x = date)) +
   geom_vline(xintercept = as.Date("2021-09-26")) +
-  geom_point(data = polls_2021, aes(x = median_date, y = pct, col = party), alpha = 0.5) +
+  geom_point(data = polls_2021, aes(x = median_date, y = pct, col = party), alpha = 0.5, size = 1) +
   geom_ribbon(aes(x = date, ymin = lower, ymax = upper, fill = party), alpha = 0.2) +
   geom_line(aes(x = date, y = avg, col = party), size = 1) +
   geom_text(data = poll_average, aes(x = today() + 3.5, y = avg, label = scales::percent(avg, accuracy = 0.1), col = party), 
@@ -345,7 +345,7 @@ seat_ant_farm <- seat_forecast_timeline %>%
   facet_wrap(~state, nrow = 4, scales = "free_y") +
   geom_vline(xintercept = as.Date("2021-09-26")) +
   geom_ribbon(aes(ymin = pct_05, ymax = pct_95), alpha = 0.5) +
-  geom_line(aes(y = pct_50), size = 1) +
+  geom_line(aes(y = pct_50, col = party), size = 1) +
   geom_text(data = seat_forecast_timeline %>%
               filter(coalition %in% c("afd", "cdu", "fdp", "gruene", "linke", "spd"), state != "National", date == max(date)) %>%
               mutate(party = ordered(coalition, levels = party_order),
