@@ -74,7 +74,6 @@ poll_average = polls_2021_long\
     
 print(poll_average)
 
-#%% Create arrays for polling average and covariance\
 # Convert the poll DataFrame to an array
 polls_2021_wide = polls_2021_long\
     .pivot_table(index = ['median_date', 'pollster', 'weight'],
@@ -508,7 +507,8 @@ const_sims.to_csv('output/const_sims.csv', index = False)
 
 print('Done!')
 
-#%% Summary statistics for seats
+#%% Summary statistics
+# For seats
 seat_summary_stats = state_sims\
     .loc[:, ['sim_id', 'state', 'party', 'total_seats']]\
     .pivot_table(index = ['sim_id', 'state'], columns = 'party', values = 'total_seats')\

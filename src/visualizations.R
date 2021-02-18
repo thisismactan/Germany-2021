@@ -261,7 +261,7 @@ national_vote_forecast_timeline <- vote_forecast_timeline %>%
               filter(state == "National", date == max(date)) %>%
               mutate(party = ordered(party, levels = party_order),
                      radius = 0.5 * (mean - pct_05) + 0.5 * (pct_95 - mean),
-                     pct_label = paste0(scales::percent(mean, accuracy = 0.1), "±", round(100 * radius, 1), " pp")),
+                     pct_label = paste0(scales::percent(mean, accuracy = 0.1), "±", scales::number(round(100 * radius, 1), accuracy = 0.1), " pp")),
             aes(x = today() + 15, y = mean, label = pct_label, col = party), size = 3, show.legend = FALSE) +
   scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
@@ -291,7 +291,7 @@ vote_ant_farm <- vote_forecast_timeline %>%
               filter(state != "National", date == max(date)) %>%
               mutate(party = ordered(party, levels = party_order),
                      radius = 0.5 * (mean - pct_05) + 0.5 * (pct_95 - mean),
-                     pct_label = paste0(scales::percent(mean, accuracy = 0.1), "±", round(100 * radius, 1), " pp")),
+                     pct_label = paste0(scales::percent(mean, accuracy = 0.1), "±", scales::number(round(100 * radius, 1), accuracy = 0.1), " pp")),
             aes(x = today() + 15, y = mean, label = pct_label, col = party), size = 3, show.legend = FALSE) +
   scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
