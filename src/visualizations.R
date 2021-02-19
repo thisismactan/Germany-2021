@@ -167,14 +167,14 @@ ggsave("output/viz/bundestag_size.png", bundestag_size_graph,
 # Forecasted vote
 forecasted_natl_vote_graph <- natl_sims %>%
   ggplot(aes(x = pct, y = ..count.. / 10000, fill = party)) +
-  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 2) +
+  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 2, scales = "free_x") +
   geom_vline(xintercept = 0.05) +
   geom_histogram(binwidth = 0.01, alpha = 0.5, show.legend = FALSE) +
   geom_vline(data = natl_sims %>% 
                group_by(party) %>%
                summarise(avg_pct = mean(pct)),
              aes(xintercept = avg_pct, col = party), size = 1, show.legend = FALSE) +
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0, 0.5)) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   scale_colour_manual(name = "Party", values = party_colors) +
   scale_fill_manual(name = "Party", values = party_colors) +
@@ -208,13 +208,13 @@ forecasted_natl_seats_graph
 # Forecasted national seats
 forecasted_natl_seats_graph <- natl_sims %>%
   ggplot(aes(x = seats, y = ..count.. / 10000, fill = party)) +
-  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 2) +
+  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 2, scales = "free_x") +
   geom_histogram(binwidth = 2, alpha = 0.5, show.legend = FALSE) +
   geom_vline(data = natl_sims %>% 
                group_by(party) %>%
                summarise(avg_seats = median(seats)),
              aes(xintercept = avg_seats, col = party), size = 1, show.legend = FALSE) +
-  scale_x_continuous(breaks = 50 * (0:7)) +
+  scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 300)) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
   scale_colour_manual(name = "Party", values = party_colors) +
   scale_fill_manual(name = "Party", values = party_colors) +
@@ -229,13 +229,14 @@ ggsave("output/viz/forecasted_natl_seats_graph.png", plot = forecasted_natl_seat
 # Forecasted national seat share
 forecasted_natl_seat_share_graph <- natl_sims %>%
   ggplot(aes(x = seat_share, y = ..count.. / 10000, fill = party)) +
-  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 2) +
+  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 2, scales = "free_x") +
   geom_histogram(binwidth = 0.01, alpha = 0.5, show.legend = FALSE) +
   geom_vline(data = natl_sims %>% 
                group_by(party) %>%
                summarise(avg_seat_share = median(seat_share)),
              aes(xintercept = avg_seat_share, col = party), size = 1, show.legend = FALSE) +
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1), breaks = (0:10) / 10,
+                     limits = c(-0.02, 0.5)) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   scale_colour_manual(name = "Party", values = party_colors) +
   scale_fill_manual(name = "Party", values = party_colors) +
