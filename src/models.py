@@ -1,6 +1,9 @@
 import numpy as np
 from sklearn import linear_model
 
+#%% Run src/models.py
+exec(open('src/shape_data.py').read())
+
 #%% Constituency-level regressions
 # One model for all parties
 all_party_results = const_results.loc[const_results['pct_lag'] > 0].copy()

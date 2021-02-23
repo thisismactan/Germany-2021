@@ -4,6 +4,9 @@ import pandas as pd
 from os import listdir
 from string import punctuation
 
+#%% Run src/models.py
+exec(open('src/models.py').read())
+
 #%% Scrape and clean polls
 polls_url = 'https://en.wikipedia.org/wiki/Opinion_polling_for_the_2021_German_federal_election'
 poll_tables = pd.read_html(polls_url)
