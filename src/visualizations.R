@@ -376,7 +376,7 @@ regional_seat_ant_farm <- seat_forecast_timeline %>%
   mutate(party = ordered(coalition, levels = party_order),
          radius = 0.5 * (pct_50 - pct_05) + 0.5 * (pct_95 - pct_50)) %>%
   ggplot(aes(x = date, fill = party)) +
-  facet_wrap(~region, nrow = 2, scales = "free_y") +
+  facet_wrap(~region, nrow = 2) +
   geom_vline(xintercept = as.Date("2021-09-26")) +
   geom_ribbon(aes(ymin = pct_05, ymax = pct_95), alpha = 0.5) +
   geom_line(aes(y = pct_50, col = party), size = 1) +
