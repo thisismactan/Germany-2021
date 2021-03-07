@@ -264,7 +264,7 @@ national_vote_forecast_timeline <- vote_forecast_timeline %>%
                      radius = 0.5 * (mean - pct_05) + 0.5 * (pct_95 - mean),
                      pct_label = paste0(scales::percent(mean, accuracy = 0.1), "±", scales::number(round(100 * radius, 1), accuracy = 0.1), " pp")),
             aes(x = today() + 15, y = mean, label = pct_label, col = party), size = 3, show.legend = FALSE) +
-  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-03-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
   scale_fill_manual(name = "Party", labels = party_names, values = party_colors) +
   scale_colour_manual(name = "Party", labels = party_names, values = party_colors) +
@@ -294,7 +294,7 @@ vote_ant_farm <- vote_forecast_timeline %>%
                      radius = 0.5 * (mean - pct_05) + 0.5 * (pct_95 - mean),
                      pct_label = paste0(scales::percent(mean, accuracy = 0.1), "±", scales::number(round(100 * radius, 1), accuracy = 0.1), " pp")),
             aes(x = today() + 21, y = mean, label = pct_label, col = party), size = 3, show.legend = FALSE) +
-  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-03-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
   scale_fill_manual(name = "Party", labels = party_names, values = party_colors) +
   scale_colour_manual(name = "Party", labels = party_names, values = party_colors) +
@@ -323,7 +323,7 @@ national_seat_forecast_timeline_graph <- seat_forecast_timeline %>%
                      radius = 0.5 * (pct_50 - pct_05) + 0.5 * (pct_95 - pct_50),
                      seats_label = paste0(pct_50, "±", round(radius), " seats")),
             aes(x = today() + 15, y = pct_50, label = seats_label, col = party), size = 3, show.legend = FALSE) +
-  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-03-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_fill_manual(name = "Party", labels = party_names, values = party_colors) +
   scale_colour_manual(name = "Party", labels = party_names, values = party_colors) +
   theme(legend.position = "bottom", axis.text.x = element_text(angle = 90, vjust = 0.5)) +
@@ -353,7 +353,7 @@ seat_ant_farm <- seat_forecast_timeline %>%
                      radius = 0.5 * (pct_50 - pct_05) + 0.5 * (pct_95 - pct_50),
                      seats_label = paste0(pct_50, "±", round(radius), " seats")),
             aes(x = today() + 19, y = pct_50, label = seats_label, col = party), size = 3, show.legend = FALSE) +
-  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-03-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_fill_manual(name = "Party", labels = party_names, values = party_colors) +
   scale_colour_manual(name = "Party", labels = party_names, values = party_colors) +
   theme(legend.position = "bottom", axis.text.x = element_text(angle = 90, vjust = 0.5)) +
@@ -391,7 +391,7 @@ regional_seat_ant_farm <- seat_forecast_timeline %>%
                      radius = 0.5 * (pct_50 - pct_05) + 0.5 * (pct_95 - pct_50),
                      seats_label = paste0(pct_50, "±", round(radius), " seats")),
             aes(x = today() + 9, y = pct_50, label = seats_label, col = party), size = 3, show.legend = FALSE) +
-  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-03-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_fill_manual(name = "Party", labels = party_names, values = party_colors) +
   scale_colour_manual(name = "Party", labels = party_names, values = party_colors) +
   theme(legend.position = "bottom", axis.text.x = element_text(angle = 90, vjust = 0.5)) +
@@ -413,7 +413,7 @@ coalition_prob_timeline <- seat_forecast_timeline %>%
               filter(state == "National", date == max(date), 
                      coalition %in% c("cdu_fdp", "cdu_fdp_gruene", "cdu_gruene", "cdu_spd", "spd_fdp_gruene", "spd_gruene")),
             aes(x = date + 3, label = scales::percent(prob_majority, accuracy = 1)), size = 3, show.legend = FALSE) +
-  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-02-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-03-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1), breaks = (0:5) / 5) + 
   scale_colour_manual(name = "Hypothetical coalition", labels = coalition_names, values = coalition_colors) +
   theme(legend.position = "bottom", axis.text.x = element_text(angle = 90, vjust = 0.5)) +

@@ -285,7 +285,7 @@ total_direct_seats = const_sim_winners\
     .pivot_table(index = 'sim_id', columns = 'winner', values = 'constituency')\
     .reset_index()
 
-# Make sure all parties have a column
+# Make sure all parties have a column (FDP probably doesn't)
 for p in range(6):
     if p not in direct_seats_by_state.columns:
         direct_seats_by_state[str(p)] = 0
