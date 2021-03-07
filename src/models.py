@@ -113,7 +113,8 @@ all_party_state_results['pct_change'] = all_party_state_results['pct'] - all_par
 all_party_state_results['natl_pct_change'] = all_party_state_results['natl_pct'] - all_party_state_results['natl_pct_lag']
 all_party_state_X = all_party_state_results[['pct_lag', 'natl_pct_change']].to_numpy()
 all_party_state_y = all_party_state_results['pct_change'].to_numpy()
-all_party_state_lm = linear_model.LinearRegression().fit(all_party_X, all_party_y)
+all_party_state_weights = (all_party_state_results['votes'] / all_party_state_results['pct']).to_numpy()
+all_party_state_lm = linear_model.LinearRegression().fit(all_party_state_X, all_party_state_y, all_party_state_weights)
 
 # Again, separate models by party
 ## CDU
