@@ -107,7 +107,7 @@ poll_averages_over_time_graph <- poll_averages_over_time %>%
   geom_point(data = polls_2021, aes(x = median_date, y = pct, col = party), alpha = 0.5, size = 1) +
   geom_ribbon(aes(x = date, ymin = lower, ymax = upper, fill = party), alpha = 0.2) +
   geom_line(aes(x = date, y = avg, col = party), size = 1) +
-  geom_text(data = poll_average, aes(x = today() + 3.5, y = avg, label = scales::percent(avg, accuracy = 0.1), col = party), 
+  geom_text(data = poll_averages_over_time %>% filter(date == max(date)), aes(x = today() + 3.5, y = avg, label = scales::percent(avg, accuracy = 0.1), col = party), 
             size = 3, show.legend = FALSE) +
   scale_x_date(date_breaks = "months", limits = as.Date(c("2021-01-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
