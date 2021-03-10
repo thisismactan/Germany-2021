@@ -152,7 +152,7 @@ bundestag_size_graph <- natl_sims %>%
   filter(party == "afd") %>%
   ggplot(aes(x = total_seats)) +
   geom_vline(xintercept = 709, size = 1) +
-  geom_text(data = tibble(x = 736, y = 0.018, label = "Current Bundestag: 709 seats"),
+  geom_text(data = tibble(x = 742, y = 0.018, label = "Current Bundestag: 709 seats"),
             aes(x = x, y = y, label = label), size = 3) +
   geom_histogram(aes(y = ..density..), binwidth = 5, col = "black") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 0.1)) +
