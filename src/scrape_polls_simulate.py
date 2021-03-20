@@ -26,7 +26,7 @@ polls_2021['n'].fillna(polls_2021['n'].min(), inplace = True)
 
 # Start and end dates
 ## End dates first (easier)
-end_date_list = [i[1] for i in polls_2021['dates'].str.split('–')]
+end_date_list = [i[-1] for i in polls_2021['dates'].str.split('–')]
 
 ## End month-years and just years
 end_monthyear = [j[1] + ' ' + j[2] for j in [i.split(' ') for i in end_date_list]]
