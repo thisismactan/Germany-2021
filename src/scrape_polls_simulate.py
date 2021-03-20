@@ -69,7 +69,8 @@ polls_2021_long['age'] = (dt.datetime.today() - polls_2021_long['median_date']).
 #%% Polling average
 # Create weights
 polls_2021_long = polls_2021_long.loc[polls_2021_long['age'] <= 45]
-polls_2021_long['weight'] = (polls_2021_long['n'] ** 0.25) * np.exp(-(polls_2021_long['age'] + 1) ** 0.5)
+polls_2021_long['weight'] = (polls_2021_long['n'] ** 0.25) * np.exp(-(polls_2021_long['age'] + 1) ** 0.5) *\
+    (4 ** (polls_2021_long['spread'] > 1))
 
 poll_average = polls_2021_long\
     .groupby('party')\
