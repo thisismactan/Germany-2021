@@ -18,6 +18,9 @@ polls_2021 = poll_tables[0]
 polls_2021.columns = ['pollster', 'dates', 'n', 'abs', 'cdu', 'spd', 'afd',
                       'fdp', 'linke', 'gruene', 'other', 'lead']
 
+# Drop final row (it's not a poll)
+polls_2021 = polls_2021.loc[polls_2021['n'] != '–', :].copy()
+
 # Convert n to numeric
 polls_2021['n'] = pd.to_numeric(polls_2021['n'].str.replace('[' + punctuation + ']', ''))
 
