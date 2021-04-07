@@ -154,7 +154,7 @@ const_summary_stats <- const_sims %>%
 
 const_summary_stats_1 <- const_summary_stats %>%
   group_by(constituency) %>%
-  arrange(id, desc(prob)) %>%
+  arrange(id, desc(prob), desc(vote_pct50)) %>%
   dplyr::slice(1) %>%
   mutate(color = case_when(party == "afd" ~ "#00A0E2",
                            party == "cdu" ~ "black",
@@ -169,11 +169,11 @@ const_summary_stats_1 <- const_summary_stats %>%
                                 party == "gruene" ~ "Greens",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
-  rename_with(function(name) paste0(name, "_1"), .cols = -c("constituency", "id"))
+  rename_with(function(name) paste0(name, "_1"), .cols = -c("constituency", "id", "state_name"))
 
 const_summary_stats_2 <- const_summary_stats %>%
   group_by(constituency) %>%
-  arrange(id, desc(prob)) %>%
+  arrange(id, desc(prob), desc(vote_pct50)) %>%
   dplyr::slice(2) %>%
   mutate(color = case_when(party == "afd" ~ "#00A0E2",
                            party == "cdu" ~ "black",
@@ -188,11 +188,12 @@ const_summary_stats_2 <- const_summary_stats %>%
                                 party == "gruene" ~ "Greens",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
+  dplyr::select(-state_name) %>%
   rename_with(function(name) paste0(name, "_2"), .cols = -c("constituency", "id"))
 
 const_summary_stats_3 <- const_summary_stats %>%
   group_by(constituency) %>%
-  arrange(id, desc(prob)) %>%
+  arrange(id, desc(prob), desc(vote_pct50)) %>%
   dplyr::slice(3) %>%
   mutate(color = case_when(party == "afd" ~ "#00A0E2",
                            party == "cdu" ~ "black",
@@ -207,11 +208,12 @@ const_summary_stats_3 <- const_summary_stats %>%
                                 party == "gruene" ~ "Greens",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
+  dplyr::select(-state_name) %>%
   rename_with(function(name) paste0(name, "_3"), .cols = -c("constituency", "id"))
 
 const_summary_stats_4 <- const_summary_stats %>%
   group_by(constituency) %>%
-  arrange(id, desc(prob)) %>%
+  arrange(id, desc(prob), desc(vote_pct50)) %>%
   dplyr::slice(4) %>%
   mutate(color = case_when(party == "afd" ~ "#00A0E2",
                            party == "cdu" ~ "black",
@@ -226,11 +228,12 @@ const_summary_stats_4 <- const_summary_stats %>%
                                 party == "gruene" ~ "Greens",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
+  dplyr::select(-state_name) %>%
   rename_with(function(name) paste0(name, "_4"), .cols = -c("constituency", "id"))
 
 const_summary_stats_5 <- const_summary_stats %>%
   group_by(constituency) %>%
-  arrange(id, desc(prob)) %>%
+  arrange(id, desc(prob), desc(vote_pct50)) %>%
   dplyr::slice(5) %>%
   mutate(color = case_when(party == "afd" ~ "#00A0E2",
                            party == "cdu" ~ "black",
@@ -245,11 +248,12 @@ const_summary_stats_5 <- const_summary_stats %>%
                                 party == "gruene" ~ "Greens",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
+  dplyr::select(-state_name) %>%
   rename_with(function(name) paste0(name, "_5"), .cols = -c("constituency", "id"))
 
 const_summary_stats_6 <- const_summary_stats %>%
   group_by(constituency) %>%
-  arrange(id, desc(prob)) %>%
+  arrange(id, desc(prob), desc(vote_pct50)) %>%
   dplyr::slice(6) %>%
   mutate(color = case_when(party == "afd" ~ "#00A0E2",
                            party == "cdu" ~ "black",
@@ -264,4 +268,5 @@ const_summary_stats_6 <- const_summary_stats %>%
                                 party == "gruene" ~ "Greens",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
+  dplyr::select(-state_name) %>%
   rename_with(function(name) paste0(name, "_6"), .cols = -c("constituency", "id"))
