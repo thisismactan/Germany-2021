@@ -8,6 +8,7 @@ library(sf)
 library(sp)
 library(tidyverse)
 library(scales)
+library(extrafont)
 library(ggiraph)
 library(Hmisc)
 
@@ -109,7 +110,7 @@ ui <- fluidPage(
       "Forecast",
       sidebarLayout(
         ## Main panel: display graphs
-        mainPanel = mainPanel(ggiraphOutput("forecast_graph", width = "100%", height = "900px")),
+        mainPanel = mainPanel(ggiraphOutput("forecast_graph", width = "1200px", height = "800px")),
         
         ## Sidebar panel: choose between projected vote and projected seats, current and over time, possibly filter by state
         sidebarPanel = sidebarPanel(tags$h3("Graph settings"),
@@ -121,6 +122,7 @@ ui <- fluidPage(
                                                   selectAllText = "Nationwide",
                                                   deselectAllText = "Deselect all",
                                                   selectedTextFormat = "count > 3")),
+                                    actionButton("apply_state_filter", "Apply filters"),
                                     conditionalPanel(condition = "input.graph_type == 'Current'"),
                                     conditionalPanel(condition = "input.graph_type == 'Over time'",
                                                      sliderInput("date_range_polls", "Date range", min = as.Date("2021-01-01"), 
@@ -198,29 +200,79 @@ server <- function(input, output) {
   )
   
   # THE FORECAST
+  state_sim_subset <- eventReactive(
+    input$apply_state_filter,
+    valueExpr = {
+      state_sims %>%
+        filter(state %in% input$state_filter) %>%
+        group_by(sim_id, party) %>%
+        summarise(total_seats = sum(total_seats)) %>%
+        ungroup()
+    },
+    ignoreNULL = FALSE
+  )
+  
+  state_subset <- eventReactive(
+    input$apply_state_filter,
+    valueExpr = {
+      input$state_filter
+    },
+    ignoreNULL = FALSE
+  )
+  
   output$forecast_graph <- renderggiraph({
-    girafe(ggobj = state_sims %>%
-      filter(state %in% input$state_filter) %>%
-      group_by(sim_id, party) %>%
-      summarise(total_seats = sum(total_seats)) %>%
-      ungroup() %>%
-      ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
-      geom_vline(data = state_sims %>%
-                   filter(state %in% input$state_filter) %>%
-                   group_by(sim_id, party) %>%
-                   summarise(total_seats = sum(total_seats)) %>%
-                   group_by(party) %>%
-                   summarise(avg_seats = median(total_seats)),
-                   aes(xintercept = avg_seats, col = party), size = 1, show.legend = FALSE) +
-      facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-      geom_bar(show.legend = FALSE) +
-      scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 350)) +
-      scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
-      scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
-      scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
-      labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
-           subtitle = paste(input$state_filter, collapse = ", "))
-    )
+    # First case: if all states are selected
+    if(length(state_subset()) == 16) {
+      girafe(ggobj = state_sim_subset() %>%
+               ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
+               geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
+                          aes(xintercept = avg_seats, col = party), size = 1, show.legend = FALSE) +
+               facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
+               geom_bar(show.legend = FALSE) +
+               scale_x_continuous(breaks = 50 * (0:7), 
+                                  limits = c(-1, 50 * ceiling((state_sim_subset() %>% pull(total_seats) %>% max()) / 50))) +
+               scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+               scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+               scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+               theme(text = element_text(family = "Lato")) +
+               labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
+                    subtitle = "Nationwide")
+      )
+      # Second case: if more than 3 states are selected
+    } else if(length(state_subset()) > 3) {
+      girafe(ggobj = state_sim_subset() %>%
+               ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
+               geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
+                          aes(xintercept = avg_seats, col = party), size = 1, show.legend = FALSE) +
+               facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
+               geom_bar(show.legend = FALSE) +
+               scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 50 * ceiling((state_sim_subset() %>% pull(total_seats) %>% max()) / 50))) +
+               scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+               scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+               scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+               theme(text = element_text(family = "Lato")) +
+               labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
+                    subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
+      )
+      # Third case: if between 0 and 3 states are selected, list all of them
+    } else if(length(state_subset()) > 0) {
+      girafe(ggobj = state_sim_subset() %>%
+               ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
+               geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
+                          aes(xintercept = avg_seats, col = party), size = 1, show.legend = FALSE) +
+               facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
+               geom_bar(show.legend = FALSE) +
+               scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 50 * ceiling((state_sim_subset() %>% pull(total_seats) %>% max()) / 50))) +
+               scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+               scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+               scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+               theme(text = element_text(family = "Lato")) +
+               labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
+                    subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
+                                      tail(state_subset(), 1))
+               )
+      )
+    }
   })
 }
 
