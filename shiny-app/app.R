@@ -1,16 +1,41 @@
 library(shiny)
 library(shinythemes)
+library(shinyWidgets)
 library(leaflet)
 library(leafem)
 library(readr)
 library(sf)
 library(sp)
 library(tidyverse)
+library(scales)
+library(ggiraph)
+library(Hmisc)
+
+# Party colors/labels
+party_colors = c("afd" = "#00A0E2", "cdu" = "black", "fdp" = "#FEB900", "gruene" = "#19A229", 
+                 "linke" = "#BE3075", "other" = "gray", "spd" = "red")
+
+party_names = c("afd" = "Alternative for Germany (AfD)",
+                "cdu" = "Union parties (CDU/CSU)",
+                "fdp" = "Free Democratic Party (FDP)",
+                "gruene" = "Alliance 90/The Greens (Grüne)",
+                "linke" = "The Left (Linke)",
+                "other" = "Other",
+                "spd" = "Social Democratic Party (SPD)")
+
+party_abbr = c("afd" = "AfD", "cdu" = "Union", "fdp" = "FDP", "gruene" = "Grüne", "linke" = "Linke",
+               "other" = "Other", "spd" = "SPD")
+
+party_order = c("linke", "gruene", "spd", "fdp", "cdu", "afd")
 
 # Shapefiles
 state_shp <- read_rds("data/state_shp.rds")
 const_shp <- read_rds("data/const_shp.rds")
 shp_list <- list("State" = state_shp, "Constituency" = const_shp)
+
+# Simulation results and timelines
+state_sims <- read_csv("data/state_sims.csv") %>%
+  mutate(party = ordered(party, levels = party_order))
 
 # Vectors/lists that might need to be called later
 state_names <- state_shp$name_1
@@ -26,6 +51,7 @@ const_key <- const_shp %>%
 state_coords <- read_csv("data/state_coords.csv")
 const_coords <- read_csv("data/constituency_coords.csv")
 
+# The app
 ui <- fluidPage(
   theme = shinytheme("flatly"),
   tags$head(
@@ -76,11 +102,41 @@ ui <- fluidPage(
         position = "right"
         
       )
-    )
+    ),
+    
+    # Seat/vote projections
+    tabPanel(
+      "Forecast",
+      sidebarLayout(
+        ## Main panel: display graphs
+        mainPanel = mainPanel(ggiraphOutput("forecast_graph", width = "100%", height = "900px")),
+        
+        ## Sidebar panel: choose between projected vote and projected seats, current and over time, possibly filter by state
+        sidebarPanel = sidebarPanel(tags$h3("Graph settings"),
+                                    radioButtons("graph_type", label = "Graph", choices = c("Current", "Over time")),
+                                    pickerInput("state_filter", label = "Select states", choices = state_names, selected = state_names, 
+                                                multiple = TRUE,
+                                                options = pickerOptions(
+                                                  actionsBox = TRUE, 
+                                                  selectAllText = "Nationwide",
+                                                  deselectAllText = "Deselect all",
+                                                  selectedTextFormat = "count > 3")),
+                                    conditionalPanel(condition = "input.graph_type == 'Current'"),
+                                    conditionalPanel(condition = "input.graph_type == 'Over time'",
+                                                     sliderInput("date_range_polls", "Date range", min = as.Date("2021-01-01"), 
+                                                                 max = as.Date("2021-09-26"), value = as.Date(c("2021-01-01", "2021-09-26"))
+                                                     )
+                                    )
+        ),
+        position = "right")
+    ),
+    
+    # National polling
+    tabPanel("National polling")
   )
-  
-  
 )
+  
+
 
 
 server <- function(input, output) {
@@ -95,6 +151,7 @@ server <- function(input, output) {
     leaflet(state_shp) %>%
       addTiles() %>%
       addMouseCoordinates() %>%
+      addPolylines(opacity = 1, color = "white", weight = 4) %>%
       setView(lng = 9, lat = 51.1, zoom = 6)
   })
   
@@ -139,6 +196,32 @@ server <- function(input, output) {
     }
     
   )
+  
+  # THE FORECAST
+  output$forecast_graph <- renderggiraph({
+    girafe(ggobj = state_sims %>%
+      filter(state %in% input$state_filter) %>%
+      group_by(sim_id, party) %>%
+      summarise(total_seats = sum(total_seats)) %>%
+      ungroup() %>%
+      ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
+      geom_vline(data = state_sims %>%
+                   filter(state %in% input$state_filter) %>%
+                   group_by(sim_id, party) %>%
+                   summarise(total_seats = sum(total_seats)) %>%
+                   group_by(party) %>%
+                   summarise(avg_seats = median(total_seats)),
+                   aes(xintercept = avg_seats, col = party), size = 1, show.legend = FALSE) +
+      facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
+      geom_bar(show.legend = FALSE) +
+      scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 350)) +
+      scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+      scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+      scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+      labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
+           subtitle = paste(input$state_filter, collapse = ", "))
+    )
+  })
 }
 
 shinyApp(ui = ui, server = server)
