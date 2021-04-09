@@ -140,6 +140,10 @@ natl_poll_sims_eligible[natl_poll_sims_eligible < 0.05] = 0
 # Simulate state share of total electorate
 state_electorate_share = np.random.dirichlet(alpha = 10000 * proj_state_votes['pct_of_electorate'],
                                              size = n_sims)
+state_electorate_share_df = pd.DataFrame(state_electorate_share, 
+                                         columns = np.sort(const_state_key['state'].unique()))\
+    .assign(sim_id = range(n_sims))\
+    .melt(id_vars = 'sim_id', var_name = 'state', value_name = 'pct_of_electorate')
 
 print('Done!')
 
@@ -497,6 +501,12 @@ state_sims = state_vote_share_df\
 
 ## Write it to a CSV
 state_sims.to_csv('output/state_sims.csv', index = False)
+
+## Write a smaller copy to the Shiny directory
+state_sims\
+    .loc[:, ['sim_id', 'state', 'party', 'pct', 'total_seats']]\
+    .merge(state_electorate_share_df, on = ['sim_id', 'state'], how = 'left')\
+    .to_csv('shiny-app/data/state_sims.csv', index = False)
 
 # Constituency DataFrame: all you need is votes
 const_sims = pd.DataFrame()
