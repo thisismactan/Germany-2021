@@ -1,0 +1,300 @@
+﻿id,constituency,lng,lat,zoom
+1,Flensburg – Schleswig,9.517,54.618,9
+2,Nordfriesland – Dithmarschen Nord,8.924,54.553,9
+3,Steinburg – Dithmarschen Süd,9.352,53.961,9
+4,Rendsburg-Eckernförde,9.786,54.296,9
+5,Kiel,10.129,54.332,10
+6,Plön – Neumünster,10.316,54.206,9
+7,Pinneberg,9.745,53.711,9
+8,Segeberg – Stormarn-Mitte,10.215,53.861,9
+9,Ostholstein – Stormarn-Nord,10.841,54.137,9
+10,Herzogtum Lauenburg – Stormarn-Süd,10.563,53.563,9
+11,Lübeck,10.651,53.82,10
+12,Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I,11.184,53.501,8
+13,Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I,11.706,53.684,8
+14,Rostock – Landkreis Rostock II,12.258,54.076,9
+15,Vorpommern-Rügen – Vorpommern-Greifswald I,13.052,54.301,8
+16,Mecklenburgische Seenplatte I – Vorpommern-Greifswald II,13.738,53.752,8
+17,Mecklenburgische Seenplatte II – Landkreis Rostock III,12.689,53.638,8
+18,Hamburg-Mitte,9.972,53.54,11
+19,Hamburg-Altona,9.846,53.572,11
+20,Hamburg-Eimsbüttel,9.941,53.606,11
+21,Hamburg-Nord,10.069,53.656,11
+22,Hamburg-Wandsbek,10.131,53.611,11
+23,Hamburg-Bergedorf – Harburg,10.025,53.473,10
+24,Aurich – Emden,7.375,53.493,9
+25,Unterems,7.438,53.048,8
+26,Friesland – Wilhelmshaven – Wittmund,7.858,53.545,9
+27,Oldenburg – Ammerland,8.05,53.203,9
+28,Delmenhorst – Wesermarsch – Oldenburg-Land,8.41,53.186,8
+29,Cuxhaven – Stade II,8.943,53.622,8
+30,Stade I – Rotenburg II,9.333,53.393,9
+31,Mittelems,7.251,52.519,9
+32,Cloppenburg – Vechta,8.053,52.811,9
+33,Diepholz – Nienburg I,8.781,52.698,9
+34,Osterholz – Verden,9.028,53.134,9
+35,Rotenburg I – Heidekreis,9.673,52.965,8
+36,Harburg,9.967,53.313,9
+37,Lüchow-Dannenberg – Lüneburg,10.822,53.152,9
+38,Osnabrück-Land,8.069,52.402,9
+39,Stadt Osnabrück,8.054,52.261,10
+40,Nienburg II – Schaumburg,9.196,52.451,9
+41,Stadt Hannover I,9.769,52.404,11
+42,Stadt Hannover II,9.761,52.353,11
+43,Hannover-Land I,9.662,52.521,10
+44,Celle – Uelzen,10.313,52.838,9
+45,Gifhorn – Peine,10.5,52.503,9
+46,Hameln-Pyrmont – Holzminden,9.489,51.946,9
+47,Hannover-Land II,9.886,52.3,10
+48,Hildesheim,9.943,52.086,9
+49,Salzgitter – Wolfenbüttel,10.481,52.085,9
+50,Braunschweig,10.524,52.274,10
+51,Helmstedt – Wolfsburg,10.852,52.342,9
+52,Goslar – Northeim – Osterode,10.209,51.761,9
+53,Göttingen,10.055,51.509,9
+54,Bremen I,8.871,53.07,11
+55,Bremen II – Bremerhaven,8.69,53.142,11
+56,Prignitz – Ostprignitz-Ruppin – Havelland I,12.261,52.962,8
+57,Uckermark – Barnim I,13.3859,53.101,8
+58,Oberhavel – Havelland II,13.173,52.846,9
+59,Märkisch-Oderland – Barnim II,14.071,52.63,9
+60,Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I,12.632,52.25,9
+61,Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II,13.082,52.368,10
+62,Dahme-Spreewald – Teltow-Fläming III – Oberspreewald-Lausitz I,13.67,52.063,9
+63,Frankfurt (Oder) – Oder-Spree,14.244,52.253,9
+64,Cottbus – Spree-Neiße,14.431,51.764,9
+65,Elbe-Elster – Oberspreewald-Lausitz II,13.667,51.587,9
+66,Altmark,11.569,52.696,9
+67,Börde – Jerichower Land,11.656,52.311,9
+68,Harz,11.05,51.814,9
+69,Magdeburg,11.732,52.031,10
+70,Dessau – Wittenberg,12.637,51.824,9
+71,Anhalt,11.986,51.8,9
+72,Halle,12.038,51.508,10
+73,Burgenland – Saalekreis,11.876,51.181,9
+74,Mansfeld,11.467,51.498,9
+75,Berlin-Mitte,13.365,52.533,12
+76,Berlin-Pankow,13.442,52.6,11
+77,Berlin-Reinickendorf,13.295,52.595,11
+78,Berlin-Spandau – Charlottenburg Nord,13.186,52.546,11
+79,Berlin-Steglitz-Zehlendorf,13.234,52.441,11
+80,Berlin-Charlottenburg-Wilmersdorf,13.266,52.498,12
+81,Berlin-Tempelhof-Schöneberg,13.382,52.443,12
+82,Berlin-Neukölln,13.449,52.447,12
+83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,13.445,52.512,12
+84,Berlin-Treptow-Köpenick,13.616,52.426,11
+85,Berlin-Marzahn-Hellersdorf,13.581,52.519,12
+86,Berlin-Lichtenberg,13.496,52.532,12
+87,Aachen I,6.097,50.76,11
+88,Aachen II,6.258,50.728,10
+89,Heinsberg,6.167,51.053,10
+90,Düren,6.4352,50.821,10
+91,Rhein-Erft-Kreis I,6.685,50.938,10
+92,Euskirchen – Rhein-Erft-Kreis II,6.692,50.579,10
+93,Köln I,7.085,50.907,12
+94,Köln II,6.925,50.909,12
+95,Köln III,6.902,51.007,11
+96,Bonn,7.114,50.703,11
+97,Rhein-Sieg-Kreis I,7.351,50.827,10
+98,Rhein-Sieg-Kreis II,6.962,50.684,11
+99,Oberbergischer Kreis,7.504,51.017,10
+100,Rheinisch-Bergischer Kreis,7.191,51.022,11
+101,Leverkusen – Köln IV,7.021,51.021,11
+102,Wuppertal I,7.176,51.266,11
+103,Solingen – Remscheid – Wuppertal II,7.14,51.18,11
+104,Mettmann I,6.96,51.196,11
+105,Mettmann II,6.987,51.32,11
+106,Düsseldorf I,6.761,51.278,11
+107,Düsseldorf II,6.834,51.182,11
+108,Neuss I,6.702,51.117,11
+109,Mönchengladbach,6.408,51.168,11
+110,Krefeld I – Neuss II,6.64,51.301,10
+111,Viersen,6.232,51.269,10
+112,Kleve,6.218,51.753,9
+113,Wesel I,6.619,51.656,10
+114,Krefeld II – Wesel II,6.582,51.42,11
+115,Duisburg I,6.735,51.392,11
+116,Duisburg II,6.737,51.49,11
+117,Oberhausen – Wesel III,6.823,51.547,11
+118,Mülheim – Essen I,6.898,51.428,11
+119,Essen II,7.021,51.477,11
+120,Essen III,7.018,51.4,11
+121,Recklinghausen I,7.29,51.592,11
+122,Recklinghausen II,7.188,51.712,10
+123,Gelsenkirchen,7.069,51.554,11
+124,Steinfurt I – Borken I,7.21,52.155,10
+125,Bottrop – Recklinghausen III,6.969,51.651,11
+126,Borken II,6.932,51.896,10
+127,Coesfeld – Steinfurt II,7.35,51.916,10
+128,Steinfurt III,7.732,52.24,10
+129,Münster,7.629,51.954,11
+130,Warendorf,7.954,51.885,10
+131,Gütersloh I,8.311,51.937,10
+132,Bielefeld – Gütersloh II,8.565,52.005,11
+133,Herford – Minden-Lübbecke II,8.648,52.162,10
+134,Minden-Lübbecke I,8.6,52.391,10
+135,Lippe I,8.95,52.048,10
+136,Höxter – Lippe II,9.158,51.758,10
+137,Paderborn – Gütersloh III,8.729,51.682,10
+138,Hagen – Ennepe-Ruhr-Kreis I,7.447,51.31,11
+139,Ennepe-Ruhr-Kreis II,7.283,51.386,11
+140,Bochum I,7.195,51.46,11
+141,Herne – Bochum II,7.254,51.534,11
+142,Dortmund I,7.403,51.515,11
+143,Dortmund II,7.535,51.548,11
+144,Unna I,7.688,51.527,10
+145,Hamm – Unna II,7.706,51.679,10
+146,Soest,8.207,51.564,10
+147,Hochsauerlandkreis,8.407,51.286,9
+148,Siegen-Wittgenstein,8.203,50.934,10
+149,Olpe – Märkischer Kreis I,7.876,51.095,10
+150,Märkischer Kreis II,7.774,51.323,10
+151,Nordsachsen,12.818,51.55,9
+152,Leipzig I,12.401,51.381,11
+153,Leipzig II,12.361,51.309,11
+154,Leipzig-Land,12.601,51.161,10
+155,Meißen,13.49,51.243,10
+156,Bautzen I,14.266,51.296,9
+157,Görlitz,14.878,51.248,9
+158,Sächsische Schweiz-Osterzgebirge,13.911,50.889,9
+159,Dresden I,13.786,51.018,11
+160,Dresden II – Bautzen II,13.872,51.104,10
+161,Mittelsachsen,13.222,50.932,9
+162,Chemnitz,12.917,50.828,11
+163,Chemnitzer Umland – Erzgebirgskreis II,12.711,50.852,10
+164,Erzgebirgskreis I,12.989,50.585,9
+165,Zwickau,12.486,50.725,10
+166,Vogtlandkreis,12.247,50.458,9
+167,Waldeck,9.127,51.324,9
+168,Kassel,9.536,51.298,10
+169,Werra-Meißner – Hersfeld-Rotenburg,9.945,51.124,9
+170,Schwalm-Eder,9.146,51.015,9
+171,Marburg,8.745,50.834,9
+172,Lahn-Dill,8.394,50.656,9
+173,Gießen,8.97,50.629,9
+174,Fulda,9.632,50.583,9
+175,Main-Kinzig – Wetterau II – Schotten,9.316,50.296,9
+176,Hochtaunus,8.395,50.383,10
+177,Wetterau I,8.811,50.354,10
+178,Rheingau-Taunus – Limburg,8.15,50.268,10
+179,Wiesbaden,8.268,50.078,11
+180,Hanau,8.943,50.168,10
+181,Main-Taunus,8.438,50.119,10
+182,Frankfurt am Main I,8.611,50.122,11
+183,Frankfurt am Main II,8.721,50.137,11
+184,Groß-Gerau,8.453,49.915,10
+185,Offenbach,8.748,50.038,11
+186,Darmstadt,8.682,49.847,10
+187,Odenwald,8.959,49.786,10
+188,Bergstraße,8.725,49.653,10
+189,Eichsfeld – Nordhausen – Kyffhäuserkreis,10.698,51.415,9
+190,Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis,10.341,51.009,9
+191,Jena – Sömmerda – Weimarer Land I,11.283,51.131,9
+192,Gotha – Ilm-Kreis,10.808,50.832,9
+193,Erfurt – Weimar – Weimarer Land II,11.121,50.979,10
+194,Gera – Greiz – Altenburger Land,12.167,50.844,9
+195,Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis,11.563,50.686,9
+196,Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg,10.632,50.529,9
+197,Neuwied,7.601,50.676,10
+198,Ahrweiler,7.111,50.434,10
+199,Koblenz,7.592,50.333,10
+200,Mosel/Rhein-Hunsrück,7.331,50.052,9
+201,Kreuznach,7.509,49.772,10
+202,Bitburg,6.584,50.098,9
+203,Trier,6.703,49.71,9
+204,Montabaur,7.876,50.456,10
+205,Mainz,8.163,49.961,10
+206,Worms,8.193,49.779,10
+207,Ludwigshafen/Frankenthal,8.344,49.479,10
+208,Neustadt – Speyer,8.126,49.44,10
+209,Kaiserslautern,7.74,49.543,9
+210,Pirmasens,7.623,49.249,10
+211,Südpfalz,8.122,49.163,10
+212,Altötting,12.513,48.245,10
+213,Erding – Ebersberg,11.974,48.207,10
+214,Freising,11.592,48.542,10
+215,Fürstenfeldbruck,11.295,48.28,10
+216,Ingolstadt,11.354,48.836,9
+217,München-Nord,11.56,48.194,12
+218,München-Ost,11.651,48.129,12
+219,München-Süd,11.531,48.102,12
+220,München-West/Mitte,11.458,48.166,12
+221,München-Land,11.625,48.017,10
+222,Rosenheim,12.159,47.872,10
+223,Bad Tölz-Wolfratshausen – Miesbach,11.641,47.741,10
+224,Starnberg – Landsberg am Lech,11.106,48.019,10
+225,Traunstein,12.722,47.839,9
+226,Weilheim,11.082,47.671,10
+227,Deggendorf,13.288,48.794,10
+228,Landshut,12.025,48.689,9
+229,Passau,13.403,48.557,9
+230,Rottal-Inn,12.736,48.517,9
+231,Straubing,12.791,48.959,9
+232,Amberg,11.714,49.356,9
+233,Regensburg,12.11,49.023,9
+234,Schwandorf,12.502,49.304,9
+235,Weiden,12.134,49.779,9
+236,Bamberg,10.9,49.805,10
+237,Bayreuth,11.522,49.859,9
+238,Coburg,11.21,50.237,10
+239,Hof,11.906,50.214,9
+240,Kulmbach,11.242,50.059,9
+241,Ansbach,10.624,49.167,9
+242,Erlangen,10.934,49.626,10
+243,Fürth,10.55,49.568,9
+244,Nürnberg-Nord,11.081,49.474,11
+245,Nürnberg-Süd,11.068,49.382,11
+246,Roth,11.213,49.349,10
+247,Aschaffenburg,9.222,50.019,10
+248,Bad Kissingen,10.302,50.275,9
+249,Main-Spessart,9.542,49.902,9
+250,Schweinfurt,10.267,49.907,9
+251,Würzburg,9.932,49.735,10
+252,Augsburg-Stadt,10.888,48.333,11
+253,Augsburg-Land,10.684,48.355,10
+254,Donau-Ries,10.701,48.725,9
+255,Neu-Ulm,10.313,48.272,9
+256,Oberallgäu,10.204,47.586,9
+257,Ostallgäu,10.53,47.87,9
+258,Stuttgart I,9.164,48.745,11
+259,Stuttgart II,9.187,48.828,11
+260,Böblingen,8.948,48.682,10
+261,Esslingen,9.369,48.719,11
+262,Nürtingen,9.351,48.61,10
+263,Göppingen,9.717,48.664,10
+264,Waiblingen,9.509,48.839,10
+265,Ludwigsburg,8.995,48.901,10
+266,Neckar-Zaber,9.161,49.022,10
+267,Heilbronn,9.193,49.209,10
+268,Schwäbisch Hall – Hohenlohe,9.805,49.191,9
+269,Backnang – Schwäbisch Gmünd,9.867,48.841,10
+270,Aalen – Heidenheim,10.201,48.816,9
+271,Karlsruhe-Stadt,8.407,49.009,11
+272,Karlsruhe-Land,8.591,49.026,10
+273,Rastatt,8.24,48.773,10
+274,Heidelberg,8.678,49.474,10
+275,Mannheim,8.506,49.497,11
+276,Odenwald – Tauber,9.522,49.538,9
+277,Rhein-Neckar,8.833,49.311,10
+278,Bruchsal – Schwetzingen,8.547,49.222,10
+279,Pforzheim,8.737,48.913,10
+280,Calw,8.542,48.58,9
+281,Freiburg,7.745,48.001,10
+282,Lörrach – Müllheim,7.759,47.747,9
+283,Emmendingen – Lahr,7.891,48.214,9
+284,Offenburg,8.02,48.518,9
+285,Rottweil – Tuttlingen,8.639,48.133,10
+286,Schwarzwald-Baar,8.366,48.074,10
+287,Konstanz,8.895,47.805,10
+288,Waldshut,8.174,47.749,9
+289,Reutlingen,9.38,48.403,10
+290,Tübingen,8.985,48.428,10
+291,Ulm,9.836,48.404,9
+292,Biberach,9.822,48.06,9
+293,Bodensee,9.349,47.744,10
+294,Ravensburg,9.646,47.837,10
+295,Zollernalb – Sigmaringen,9.117,48.14,10
+296,Saarbrücken,6.947,49.242,10
+297,Saarlouis,6.674,49.419,10
+298,St. Wendel,7.071,49.477,10
+299,Homburg,7.221,49.258,10

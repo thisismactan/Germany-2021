@@ -1,6 +1,7 @@
 source("src/summary_stats_for_maps.R")
 
 library(tidyverse)
+library(readr)
 library(scales)
 library(rgdal)
 library(rmapshaper)
@@ -37,7 +38,7 @@ state_shp <- readOGR("data/shapes/germany_states.shp") %>%
                                   !is.na(varname_1) ~ varname_1),
          mouseover_label = case_when(english_name != name_1 ~ paste0(name_1, " (", english_name, ")"),
                                      english_name == name_1 ~ name_1),
-         popup_label = paste0("<H3><b><u>", name_1, "</u></b></H3>
+         popup_label = paste0("<H4><b><u>", name_1, "</u></b></H4>
                               <b><i>Projected vote (90% CI)</i></b><br>
                               <font color = ", color_1, "><b>", party_abbr_1, "</b></font>: <b><font color =", color_1, ">", 
                                 percent(vote_pct50_1, accuracy = 0.1), "</font></b> (", percent(vote_pct05_1, accuracy = 0.1), " – ", 
@@ -97,7 +98,8 @@ const_shp <- readOGR("data/shapes/germany_constituencies.shp") %>%
                            party_1 == "linke" ~ "#BE3075",
                            party_1 == "spd" ~ "red"),
          alpha = sqrt(pmax((prob_1 - 0.4) / (1 - 0.4), 0))) %>%
-  mutate(popup_label = paste0("<H3><b><u>", constituency, "</u><br><i>", state_name, "</i></b></H3>
+  mutate(mouseover_label = constituency,
+         popup_label = paste0("<H4><b><u>", constituency, "</u><br><i>", state_name, "</i></b></H4>
                               <b><i>Projected vote (90% CI)</i></b><br>
                               <font color = ", color_1, "><b>", party_abbr_1, "</b></font>: <b><font color =", color_1, ">", 
                                 percent(vote_pct50_1, accuracy = 0.1), "</font></b> (", percent(vote_pct05_1, accuracy = 0.1), " – ", 
@@ -135,5 +137,9 @@ const_shp <- readOGR("data/shapes/germany_constituencies.shp") %>%
 
 leaflet(const_shp) %>%
   addTiles() %>%
-  addPolygons(color = "white", weight = 1, opacity = 0, fill = TRUE, fillColor = ~color, fillOpacity = ~alpha, label = ~constituency,
+  addPolygons(color = "white", weight = 1, opacity = 0, fill = TRUE, fillColor = ~color, fillOpacity = ~alpha, label = ~mouseover_label,
               popup = ~popup_label, highlightOptions = highlightOptions(color = "white", weight = 4, bringToFront = TRUE, opacity = 1))
+
+# Write the two shapefiles (with data) as RDS objects to the Shiny app data folder
+write_rds(state_shp, "shiny-app/data/state_shp.rds")
+write_rds(const_shp, "shiny-app/data/const_shp.rds")
