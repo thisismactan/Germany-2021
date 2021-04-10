@@ -69,7 +69,7 @@ ggsave("output/viz/poll_average_graph.png", plot = poll_average_graph,
        width = 700/100, height = 600/100, dpi = 100)
 
 # Polling average over time
-start_date <- as.Date("2021-01-07") - 4
+start_date <- as.Date("2017-11-01") - 4
 end_date <- today()
 date_sequence <- seq(start_date, end_date, by = 1)
 
@@ -100,6 +100,8 @@ poll_averages_over_time <- bind_rows(poll_average_df_list) %>%
   spread(variable, pct) %>%
   na.omit()
 
+write_csv(poll_averages_over_time, "shiny-app/data/poll_averages_over_time.csv")
+
 ## The graph
 poll_averages_over_time_graph <- poll_averages_over_time %>%
   ggplot(aes(x = date)) +
@@ -109,7 +111,7 @@ poll_averages_over_time_graph <- poll_averages_over_time %>%
   geom_line(aes(x = date, y = avg, col = party), size = 1) +
   geom_text(data = poll_averages_over_time %>% filter(date == max(date)), aes(x = today() + 3.5, y = avg, label = scales::percent(avg, accuracy = 0.1), col = party), 
             size = 3, show.legend = FALSE) +
-  scale_x_date(date_breaks = "months", limits = as.Date(c("2021-01-01", "2021-10-01")), date_labels = "%b %Y") +
+  scale_x_date(date_breaks = "months", limits = as.Date(c("2017-11-01", "2021-10-01")), date_labels = "%b %Y") +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   scale_colour_manual(name = "Party", labels = party_names, values = party_colors) +
   scale_fill_manual(name = "Party", labels = party_names, values = party_colors) +
