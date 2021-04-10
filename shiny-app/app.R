@@ -292,8 +292,8 @@ server <- function(input, output) {
                  labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
                       subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
         )
-        # Third case: if between 0 and 3 states are selected, list all of them
-      } else if(length(state_subset()) > 0) {
+        # Third case: if between 1 and 3 states are selected, list all of them
+      } else if(length(state_subset()) > 1) {
         girafe(ggobj = state_sim_subset() %>%
                  ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
                  geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
@@ -308,6 +308,23 @@ server <- function(input, output) {
                  labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
                       subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
                                         tail(state_subset(), 1))
+                 )
+        )
+        # Fourth case: if just the one state is selected, list it
+      } else if(length(state_subset()) == 1) {
+        girafe(ggobj = state_sim_subset() %>%
+                 ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
+                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
+                            aes(xintercept = avg_seats, col = party), size = 0, show.legend = FALSE) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
+                 geom_bar(alpha = 2/3, show.legend = FALSE) +
+                 scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 50 * ceiling((state_sim_subset() %>% pull(total_seats) %>% max()) / 50))) +
+                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
+                 labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
+                      subtitle = state_subset()
                  )
         )
       }
@@ -349,7 +366,7 @@ server <- function(input, output) {
                       subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
         )
         # Third case: if between 0 and 3 states are selected, list all of them
-      } else if(length(state_subset()) > 0) {
+      } else if(length(state_subset()) > 1) {
         girafe(ggobj = state_sim_subset() %>%
                  ggplot(aes(x = pct, y = ..count.. / 10000, fill = party)) +
                  geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_vote = mean(pct)),
@@ -367,6 +384,24 @@ server <- function(input, output) {
                                         tail(state_subset(), 1))
                  )
         )
+        # Fourth subcase: if just the one state is selected
+      } else if(length(state_subset()) == 1) {
+        girafe(ggobj = state_sim_subset() %>%
+                 ggplot(aes(x = pct, y = ..count.. / 10000, fill = party)) +
+                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_vote = mean(pct)),
+                            aes(xintercept = avg_vote, col = party), size = 0, show.legend = FALSE) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
+                 geom_histogram(binwidth = 0.01, alpha = 2/3, show.legend = FALSE) +
+                 scale_x_continuous(breaks = seq(from = 0, to = 0.6, by = 0.05), labels = percent_format(accuracy = 1), 
+                                    limits = c(-0.01, max(state_sim_subset()$pct))) +
+                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
+                 labs(title = "Current projected vote share", x = "Share of second vote", y = "Probability",
+                      subtitle = state_subset()
+                 )
+        )
       }
     }
     # Third: input$graph_type == "Over time" and input$forecast_outcome == "Seats"
@@ -374,10 +409,11 @@ server <- function(input, output) {
       # First subcase: if all states are selected
       if(length(state_subset()) == 16) {
         girafe(ggobj = state_seat_timeline_subset() %>%
-                 ggplot(aes(x = date, y = pct_50, col = party)) +
+                 ggplot(aes(x = date, y = pct_50)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_line(show.legend = FALSE) +
+                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
+                 geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
                                                       diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
@@ -386,6 +422,7 @@ server <- function(input, output) {
                  scale_y_continuous(breaks = 50 * (0:8), 
                                     limits = c(0, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
@@ -394,10 +431,11 @@ server <- function(input, output) {
         # Second case: if more than 3 states are selected
       } else if(length(state_subset()) > 3) {
         girafe(ggobj = state_seat_timeline_subset() %>%
-                 ggplot(aes(x = date, y = pct_50, col = party)) +
+                 ggplot(aes(x = date, y = pct_50)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_line(show.legend = FALSE) +
+                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
+                 geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
                                                       diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
@@ -411,18 +449,20 @@ server <- function(input, output) {
                                                        max(state_seat_timeline_subset()$pct_95) >= 200 ~ 50 * (0:10)), 
                                     limits = c(0, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
                       subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
         )
         # Third case: if between 0 and 3 states are selected, list all of them
-      } else if(length(state_subset()) > 0) {
+      } else if(length(state_subset()) > 1) {
         girafe(ggobj = state_seat_timeline_subset() %>%
-                 ggplot(aes(x = date, y = pct_50, col = party)) +
+                 ggplot(aes(x = date, y = pct_50)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_line(show.legend = FALSE) +
+                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
+                 geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
                                                       diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
@@ -436,11 +476,39 @@ server <- function(input, output) {
                                                        max(state_seat_timeline_subset()$pct_95) >= 200 ~ 50 * (0:10)), 
                                     limits = c(0, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
                       subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
                                         tail(state_subset(), 1))
+                 )
+        )
+      } else if(length(state_subset()) == 1) {
+        girafe(ggobj = state_seat_timeline_subset() %>%
+                 ggplot(aes(x = date, y = pct_50)) +
+                 geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
+                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
+                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
+                 geom_line(aes(col = party), show.legend = FALSE) +
+                 scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
+                                                      diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
+                                                      diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
+                                                      diff(input$date_range_forecast) > 60 ~ "months"), 
+                              limits = input$date_range_forecast, date_labels = "%e %b %Y") +
+                 scale_y_continuous(breaks = case_when(max(state_seat_timeline_subset()$pct_95) < 10 ~ as.numeric(0:10),
+                                                       max(state_seat_timeline_subset()$pct_95) %in% 10:19 ~ 2 * (0:10),
+                                                       max(state_seat_timeline_subset()$pct_95) %in% 20:49 ~ 5 * (0:10),
+                                                       max(state_seat_timeline_subset()$pct_95) %in% 50:99 ~ 10 * (0:10),
+                                                       max(state_seat_timeline_subset()$pct_95) %in% 100:199 ~ 20 * (0:10),
+                                                       max(state_seat_timeline_subset()$pct_95) >= 200 ~ 50 * (0:10)), 
+                                    limits = c(0, NA)) +
+                 scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+                 theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
+                       axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+                 labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
+                      subtitle = state_subset()
                  )
         )
       }
@@ -450,10 +518,11 @@ server <- function(input, output) {
       # First subcase: if all states are selected
       if(length(state_subset()) == 16) {
         girafe(ggobj = state_vote_timeline_subset() %>%
-                 ggplot(aes(x = date, y = mean, col = party)) +
+                 ggplot(aes(x = date, y = mean)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_line(show.legend = FALSE) +
+                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
+                 geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
                                                       diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
@@ -461,6 +530,7 @@ server <- function(input, output) {
                               limits = input$date_range_forecast, date_labels = "%e %b %Y") +
                  scale_y_continuous(breaks = (0:10) / 10, labels = percent_format(accuracy = 1), limits = c(0, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
@@ -469,10 +539,11 @@ server <- function(input, output) {
         # Second case: if more than 3 states are selected
       } else if(length(state_subset()) > 3) {
         girafe(ggobj = state_vote_timeline_subset() %>%
-                 ggplot(aes(x = date, y = mean, col = party)) +
+                 ggplot(aes(x = date, y = mean)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_line(show.legend = FALSE) +
+                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
+                 geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
                                                       diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
@@ -480,18 +551,20 @@ server <- function(input, output) {
                               limits = input$date_range_forecast, date_labels = "%e %b %Y") +
                  scale_y_continuous(breaks = (0:10) / 10, labels = percent_format(accuracy = 1), limits = c(0, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
                       subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
         )
         # Third case: if between 0 and 3 states are selected, list all of them
-      } else if(length(state_subset()) > 0) {
+      } else if(length(state_subset()) > 1) {
         girafe(ggobj = state_vote_timeline_subset() %>%
-                 ggplot(aes(x = date, y = mean, col = party)) +
+                 ggplot(aes(x = date, y = mean)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_line(show.legend = FALSE) +
+                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
+                 geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
                                                       diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
@@ -499,11 +572,33 @@ server <- function(input, output) {
                               limits = input$date_range_forecast, date_labels = "%e %b %Y") +
                  scale_y_continuous(breaks = (0:10) / 10, labels = percent_format(accuracy = 1), limits = c(0, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
                       subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
                                         tail(state_subset(), 1))
+                 )
+        )
+      } else if(length(state_subset()) == 1) {
+        girafe(ggobj = state_vote_timeline_subset() %>%
+                 ggplot(aes(x = date, y = mean)) +
+                 geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
+                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
+                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
+                 geom_line(aes(col = party), show.legend = FALSE) +
+                 scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
+                                                      diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
+                                                      diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
+                                                      diff(input$date_range_forecast) > 60 ~ "months"), 
+                              limits = input$date_range_forecast, date_labels = "%e %b %Y") +
+                 scale_y_continuous(breaks = (0:10) / 10, labels = percent_format(accuracy = 1), limits = c(0, NA)) +
+                 scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+                 scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+                 theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
+                       axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+                 labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
+                      subtitle = state_subset()
                  )
         )
       }
