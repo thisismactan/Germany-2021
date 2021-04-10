@@ -70,6 +70,7 @@ polls_2021_long = polls_2021[['start_date', 'median_date', 'end_date', 'spread',
 # Convert to percentage scale
 polls_2021_long['pct'] = polls_2021_long['pct'] / 100
 polls_2021_long.to_csv('data/polls_2021.csv', index = False)
+polls_2021_long.to_csv('shiny-app/data/polls.csv', index = False)
 
 # Add some more variables after writing to CSV
 polls_2021_long['age'] = (dt.datetime.today() - polls_2021_long['median_date']).dt.days
@@ -589,7 +590,9 @@ seat_summary_stats_timeline = pd.read_csv('output/seat_summary_stats_timeline.cs
 # Write it back out
 seat_summary_stats_timeline.to_csv('output/seat_summary_stats_timeline.csv', index = False)
 seat_summary_stats_timeline\
-    .
+    .loc[seat_summary_stats_timeline['coalition'].isin(['afd', 'cdu', 'fdp', 'gruene', 'linke', 'spd'])]\
+    .drop(columns = 'prob_majority')\
+    .to_csv('shiny-app/data/seat_timeline.csv', index = False)
 
 # Summary statistics for second vote percentage (it's all similar)
 vote_summary_stats = natl_vote_sims_df\
@@ -630,3 +633,4 @@ vote_summary_stats_timeline = pd.read_csv('output/vote_summary_stats_timeline.cs
     .drop_duplicates(subset = ['date', 'party', 'state'], keep = 'last', ignore_index = True)
     
 vote_summary_stats_timeline.to_csv('output/vote_summary_stats_timeline.csv', index = False)
+vote_summary_stats_timeline.to_csv('shiny-app/data/vote_timeline.csv', index = False)
