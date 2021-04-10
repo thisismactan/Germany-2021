@@ -9,16 +9,19 @@ exec(open('src/models.py').read())
 
 #%% Scrape and clean polls
 polls_url = 'https://en.wikipedia.org/wiki/Opinion_polling_for_the_2021_German_federal_election'
-poll_tables = pd.read_html(polls_url)
+poll_tables = pd.read_html(polls_url)[0:5]
 
 # Bit of cleanup
-polls_2021 = poll_tables[0]
+polls_2021 = pd.DataFrame()
+
+for i in range(5):
+    polls_2021 = polls_2021.append(poll_tables[i])
 
 # Rename columns
 polls_2021.columns = ['pollster', 'dates', 'n', 'abs', 'cdu', 'spd', 'afd',
                       'fdp', 'linke', 'gruene', 'other', 'lead']
 
-# Drop final row (it's not a poll)
+# Drop row that refers to 2017 election results
 polls_2021 = polls_2021.loc[polls_2021['n'] != '–', :].copy()
 
 # Convert n to numeric
@@ -26,6 +29,8 @@ polls_2021['n'] = pd.to_numeric(polls_2021['n'].str.replace('[' + punctuation + 
 
 # Fill NA's with minimum sample size in the data
 polls_2021['n'].fillna(polls_2021['n'].min(), inplace = True)
+
+polls_2021 = polls_2021.reset_index().drop(columns = 'index')
 
 # Start and end dates
 ## End dates first (easier)
@@ -583,6 +588,8 @@ seat_summary_stats_timeline = pd.read_csv('output/seat_summary_stats_timeline.cs
 
 # Write it back out
 seat_summary_stats_timeline.to_csv('output/seat_summary_stats_timeline.csv', index = False)
+seat_summary_stats_timeline\
+    .
 
 # Summary statistics for second vote percentage (it's all similar)
 vote_summary_stats = natl_vote_sims_df\
