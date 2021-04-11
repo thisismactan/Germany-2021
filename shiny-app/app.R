@@ -39,7 +39,7 @@ state_sims <- read_csv("data/state_sims.csv") %>%
   mutate(party = ordered(party, levels = party_order))
 
 seat_timeline <- read_csv("data/seat_timeline.csv") %>%
-  mutate(coalition = ordered(coalition, levels = party_order))
+  mutate(party = ordered(coalition, levels = party_order))
 vote_timeline <- read_csv("data/vote_timeline.csv") %>%
   left_join(state_sims %>% group_by(state) %>% summarise(pct_of_electorate = mean(pct_of_electorate)), by = c("state")) %>%
   mutate(party = ordered(party, levels = party_order))
@@ -219,13 +219,47 @@ server <- function(input, output) {
     ignoreNULL = FALSE
   )
   
+  ## Seat part
+  state_seat_sim_subset <- eventReactive(
+    input$apply_state_filter,
+    valueExpr = {
+      state_sims %>%
+        filter(state %in% input$state_filter) %>%
+        group_by(sim_id, party) %>%
+        summarise(total_seats = sum(total_seats)) %>%
+        ungroup() %>%
+        mutate(round_seats = 5 * floor(total_seats / 5)) %>%
+        group_by(party, round_seats) %>%
+        summarise(prob = n() / 10000) %>%
+        mutate(description = paste0(round_seats, "-", round_seats + 4, " seats\nProbability: ", percent(prob, accuracy = 0.1)))
+    },
+    ignoreNULL = FALSE
+  )
+  
+  ## Vote part
+  state_vote_sim_subset <- eventReactive(
+    input$apply_state_filter,
+    valueExpr = {
+      state_sims %>%
+        filter(state %in% input$state_filter) %>%
+        group_by(sim_id, party) %>%
+        summarise(pct = wtd.mean(pct, pct_of_electorate)) %>%
+        ungroup() %>%
+        mutate(round_pct = floor(100 * pct) / 100) %>%
+        group_by(party, round_pct) %>%
+        summarise(prob = n() / 10000) %>%
+        mutate(description = paste0(100 * round_pct, "-", 100 * round_pct + 1, "% of second vote\nProbability: ", percent(prob, accuracy = 0.1)))
+    },
+    ignoreNULL = FALSE
+  )
+  
   ## Same for seat timeline
   state_seat_timeline_subset <- eventReactive(
     input$apply_state_filter,
     valueExpr = {
       seat_timeline %>%
         filter(state %in% input$state_filter) %>%
-        group_by(date, party = coalition) %>%
+        group_by(date, party) %>%
         summarise(pct_05 = sum(pct_05),
                   pct_50 = sum(pct_50),
                   pct_95 = sum(pct_95)) %>%
@@ -262,14 +296,14 @@ server <- function(input, output) {
     if(input$graph_type == "Current" & input$forecast_outcome == "Seats") {
       # First subcase: if all states are selected
       if(length(state_subset()) == 16) {
-        girafe(ggobj = state_sim_subset() %>%
-                 ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
+        girafe(ggobj = state_seat_sim_subset() %>%
+                 ggplot(aes(x = round_seats, y = prob, fill = party)) +
                  geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
                             aes(xintercept = avg_seats, col = party), size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_bar(alpha = 2/3, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 50 * ceiling((state_sim_subset() %>% pull(total_seats) %>% max()) / 50))) +
-                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
+                 scale_x_continuous(breaks = 50 * (0:10)) +
+                 scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
@@ -278,14 +312,19 @@ server <- function(input, output) {
         )
         # Second case: if more than 3 states are selected
       } else if(length(state_subset()) > 3) {
-        girafe(ggobj = state_sim_subset() %>%
-                 ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
+        girafe(ggobj = state_seat_sim_subset() %>%
+                 ggplot(aes(x = round_seats, y = prob, fill = party)) +
                  geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
                             aes(xintercept = avg_seats, col = party), size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_bar(alpha = 2/3, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 50 * ceiling((state_sim_subset() %>% pull(total_seats) %>% max()) / 50))) +
-                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
+                 scale_x_continuous(breaks = case_when(max(state_seat_sim_subset()$round_seats) < 10 ~ as.numeric(0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 10:19 ~ 2 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 20:49 ~ 5 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 50:99 ~ 10 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 100:199 ~ 20 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) >= 200 ~ 50 * (0:10))) +
+                 scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
@@ -294,14 +333,19 @@ server <- function(input, output) {
         )
         # Third case: if between 1 and 3 states are selected, list all of them
       } else if(length(state_subset()) > 1) {
-        girafe(ggobj = state_sim_subset() %>%
-                 ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
+        girafe(ggobj = state_seat_sim_subset() %>%
+                 ggplot(aes(x = round_seats, y = prob, fill = party)) +
                  geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
                             aes(xintercept = avg_seats, col = party), size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_bar(alpha = 2/3, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 50 * ceiling((state_sim_subset() %>% pull(total_seats) %>% max()) / 50))) +
-                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
+                 scale_x_continuous(breaks = case_when(max(state_seat_sim_subset()$round_seats) < 10 ~ as.numeric(0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 10:19 ~ 2 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 20:49 ~ 5 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 50:99 ~ 10 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 100:199 ~ 20 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) >= 200 ~ 50 * (0:10))) +
+                 scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
@@ -312,14 +356,19 @@ server <- function(input, output) {
         )
         # Fourth case: if just the one state is selected, list it
       } else if(length(state_subset()) == 1) {
-        girafe(ggobj = state_sim_subset() %>%
-                 ggplot(aes(x = total_seats, y = ..count.. / 10000, fill = party)) +
+        girafe(ggobj = state_seat_sim_subset() %>%
+                 ggplot(aes(x = round_seats, y = prob, fill = party)) +
                  geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
                             aes(xintercept = avg_seats, col = party), size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_bar(alpha = 2/3, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 50 * (0:7), limits = c(-1, 50 * ceiling((state_sim_subset() %>% pull(total_seats) %>% max()) / 50))) +
-                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
+                 scale_x_continuous(breaks = case_when(max(state_seat_sim_subset()$round_seats) < 10 ~ as.numeric(0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 10:19 ~ 2 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 20:49 ~ 5 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 50:99 ~ 10 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) %in% 100:199 ~ 20 * (0:10),
+                                                       max(state_seat_sim_subset()$round_seats) >= 200 ~ 50 * (0:10))) +
+                 scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
@@ -333,15 +382,14 @@ server <- function(input, output) {
     else if(input$graph_type == "Current" & input$forecast_outcome == "Vote share") {
       # First subcase: if all states are selected
       if(length(state_subset()) == 16) {
-        girafe(ggobj = state_sim_subset() %>%
-                 ggplot(aes(x = pct, y = ..count.. / 10000, fill = party)) +
-                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_vote = mean(pct)),
-                            aes(xintercept = avg_vote, col = party), size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_histogram(binwidth = 0.01, alpha = 2/3, show.legend = FALSE) +
-                 scale_x_continuous(breaks = seq(from = 0, to = 0.6, by = 0.05), labels = percent_format(accuracy = 1), 
-                                    limits = c(-0.01, max(state_sim_subset()$pct))) +
-                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+        girafe(ggobj = state_vote_sim_subset() %>%
+                 ggplot(aes(x = round_pct, y = prob, fill = party)) +
+                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)),
+                            aes(xintercept = avg_pct, col = party), size = 0, show.legend = FALSE) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
+                 scale_x_continuous(breaks = 0.05 * (0:20), labels = percent_format(accuracy = 1)) +
+                 scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
@@ -350,32 +398,30 @@ server <- function(input, output) {
         )
         # Second case: if more than 3 states are selected
       } else if(length(state_subset()) > 3) {
-        girafe(ggobj = state_sim_subset() %>%
-                 ggplot(aes(x = pct, y = ..count.. / 10000, fill = party)) +
-                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_vote = mean(pct)),
-                            aes(xintercept = avg_vote, col = party), size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_histogram(binwidth = 0.01, alpha = 2/3, show.legend = FALSE) +
-                 scale_x_continuous(breaks = seq(from = 0, to = 0.6, by = 0.05), labels = percent_format(accuracy = 1), 
-                                    limits = c(-0.01, max(state_sim_subset()$pct))) +
-                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+        girafe(ggobj = state_vote_sim_subset() %>%
+                 ggplot(aes(x = round_pct, y = prob, fill = party)) +
+                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)),
+                            aes(xintercept = avg_pct, col = party), size = 0, show.legend = FALSE) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
+                 scale_x_continuous(breaks = 0.05 * (0:20), labels = percent_format(accuracy = 1)) +
+                 scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
                  labs(title = "Current projected vote share", x = "Share of second vote", y = "Probability",
                       subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
         )
-        # Third case: if between 0 and 3 states are selected, list all of them
+        # Third case: if between 1 and 3 states are selected, list all of them
       } else if(length(state_subset()) > 1) {
-        girafe(ggobj = state_sim_subset() %>%
-                 ggplot(aes(x = pct, y = ..count.. / 10000, fill = party)) +
-                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_vote = mean(pct)),
-                            aes(xintercept = avg_vote, col = party), size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_histogram(binwidth = 0.01, alpha = 2/3, show.legend = FALSE) +
-                 scale_x_continuous(breaks = seq(from = 0, to = 0.6, by = 0.05), labels = percent_format(accuracy = 1), 
-                                    limits = c(-0.01, max(state_sim_subset()$pct))) +
-                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+        girafe(ggobj = state_vote_sim_subset() %>%
+                 ggplot(aes(x = round_pct, y = prob, fill = party)) +
+                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)),
+                            aes(xintercept = avg_pct, col = party), size = 0, show.legend = FALSE) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
+                 scale_x_continuous(breaks = 0.05 * (0:20), labels = percent_format(accuracy = 1)) +
+                 scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
@@ -384,17 +430,16 @@ server <- function(input, output) {
                                         tail(state_subset(), 1))
                  )
         )
-        # Fourth subcase: if just the one state is selected
+        # Fourth case: if just the one state is selected, list it
       } else if(length(state_subset()) == 1) {
-        girafe(ggobj = state_sim_subset() %>%
-                 ggplot(aes(x = pct, y = ..count.. / 10000, fill = party)) +
-                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_vote = mean(pct)),
-                            aes(xintercept = avg_vote, col = party), size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_histogram(binwidth = 0.01, alpha = 2/3, show.legend = FALSE) +
-                 scale_x_continuous(breaks = seq(from = 0, to = 0.6, by = 0.05), labels = percent_format(accuracy = 1), 
-                                    limits = c(-0.01, max(state_sim_subset()$pct))) +
-                 scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
+        girafe(ggobj = state_vote_sim_subset() %>%
+                 ggplot(aes(x = round_pct, y = prob, fill = party)) +
+                 geom_vline(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)),
+                            aes(xintercept = avg_pct, col = party), size = 0, show.legend = FALSE) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
+                 scale_x_continuous(breaks = 0.05 * (0:20), labels = percent_format(accuracy = 1)) +
+                 scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
@@ -408,7 +453,7 @@ server <- function(input, output) {
     else if(input$graph_type == "Over time" & input$forecast_outcome == "Seats") {
       # First subcase: if all states are selected
       if(length(state_subset()) == 16) {
-        girafe(ggobj = state_seat_timeline_subset() %>%
+        girafe(ggobj = seat_timeline %>% filter(state == "National") %>%
                  ggplot(aes(x = date, y = pct_50)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
@@ -434,7 +479,6 @@ server <- function(input, output) {
                  ggplot(aes(x = date, y = pct_50)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
                  geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
@@ -461,7 +505,6 @@ server <- function(input, output) {
                  ggplot(aes(x = date, y = pct_50)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
                  geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
@@ -517,7 +560,7 @@ server <- function(input, output) {
     else if(input$graph_type == "Over time" & input$forecast_outcome == "Vote share") {
       # First subcase: if all states are selected
       if(length(state_subset()) == 16) {
-        girafe(ggobj = state_vote_timeline_subset() %>%
+        girafe(ggobj = vote_timeline %>% filter(state == "National") %>%
                  ggplot(aes(x = date, y = mean)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
@@ -542,7 +585,6 @@ server <- function(input, output) {
                  ggplot(aes(x = date, y = mean)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
                  geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
@@ -563,7 +605,6 @@ server <- function(input, output) {
                  ggplot(aes(x = date, y = mean)) +
                  geom_vline(xintercept = as.Date("2021-09-26"), size = 0, col = "black") +
                  facet_wrap(~party, labeller = labeller(party = party_names), scales = "free_x", nrow = 2) +
-                 geom_ribbon(aes(ymin = pct_05, ymax = pct_95, fill = party), alpha = 0.2, show.legend = FALSE) +
                  geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
