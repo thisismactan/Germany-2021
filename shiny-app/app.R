@@ -526,7 +526,7 @@ server <- function(input, output) {
                                                       diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
                                                       diff(input$date_range_forecast) > 60 ~ "months"), 
                               limits = input$date_range_forecast, date_labels = "%e %b %Y") +
-                 scale_y_continuous(breaks = 50 * (0:8)) +
+                 scale_y_continuous(breaks = 50 * (0:8), limits = c(-1, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
@@ -554,7 +554,8 @@ server <- function(input, output) {
                                                        max(state_seat_timeline_subset()$pct_95) %in% 20:49 ~ 5 * (0:10),
                                                        max(state_seat_timeline_subset()$pct_95) %in% 50:99 ~ 10 * (0:10),
                                                        max(state_seat_timeline_subset()$pct_95) %in% 100:199 ~ 20 * (0:10),
-                                                       max(state_seat_timeline_subset()$pct_95) >= 200 ~ 50 * (0:10))) +
+                                                       max(state_seat_timeline_subset()$pct_95) >= 200 ~ 50 * (0:10)), 
+                                    limits = c(-1, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
@@ -581,7 +582,8 @@ server <- function(input, output) {
                                                        max(state_seat_timeline_subset()$pct_95) %in% 20:49 ~ 5 * (0:10),
                                                        max(state_seat_timeline_subset()$pct_95) %in% 50:99 ~ 10 * (0:10),
                                                        max(state_seat_timeline_subset()$pct_95) %in% 100:199 ~ 20 * (0:10),
-                                                       max(state_seat_timeline_subset()$pct_95) >= 200 ~ 50 * (0:10))) +
+                                                       max(state_seat_timeline_subset()$pct_95) >= 200 ~ 50 * (0:10)), 
+                                    limits = c(-1, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
@@ -611,7 +613,8 @@ server <- function(input, output) {
                                                        max(state_seat_timeline_subset()$pct_95) %in% 20:49 ~ 5 * (0:10),
                                                        max(state_seat_timeline_subset()$pct_95) %in% 50:99 ~ 10 * (0:10),
                                                        max(state_seat_timeline_subset()$pct_95) %in% 100:199 ~ 20 * (0:10),
-                                                       max(state_seat_timeline_subset()$pct_95) >= 200 ~ 50 * (0:10))) +
+                                                       max(state_seat_timeline_subset()$pct_95) >= 200 ~ 50 * (0:10)), 
+                                    limits = c(-1, NA)) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
@@ -769,7 +772,7 @@ server <- function(input, output) {
                                                     diff(input$date_range_polls) > 60 & diff(input$date_range_polls) <= 360 ~ "months",
                                                     diff(input$date_range_polls) > 360 ~ "2 months"), 
                             limits = input$date_range_polls, date_labels = "%e %b %Y") +
-               scale_y_continuous(labels = percent_format(accuracy = 1)) +
+               scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(-1, NA)) +
                scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                theme(text = element_text(family = "Lato"), axis.text = element_text(size = 6), axis.ticks.x = element_blank(),
