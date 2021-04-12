@@ -15,3 +15,6 @@ Like all the forecasts I do, the German forecast relies on simulation to obtain 
 This last script writes several CSV files to the `output` directory that record the results of the simulations. I've used the `visualizations.R` script to generate some useful plots of the results, including things like vote distributions, seat distributions, and the evolution of the forecast over time.
 
 Those are the essentials, really; the wiki goes into some more detail on a few things. I've gotten to work on this one relatively early, so later on in the year I'll begin writing forecast updates and going in-depth on how the forecast works on the aforementioned Quora space. Be sure to check that out!
+
+## Is there a convenient dashboard of some kind where I can see what the forecast says right now?
+Yes! There's an interactive Shiny dashboard live now where you can check out maps and graphs ([click here to check it out](https://mactan.shinyapps.io/germany-2021)). While I'll still be making cosmetic tweaks to it, it now has basically everything I want it to say about the forecast and will be updated every time I run the simulator.
