@@ -532,7 +532,7 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
-                      subtitle = "Nationwide"),
+                      subtitle = "Nationwide", caption = "Error bars indicate 90% confidence intervals"),
                width_svg = 7
         )
         # Second case: if more than 3 states are selected
@@ -617,7 +617,7 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
-                      subtitle = state_subset()
+                      subtitle = state_subset(), caption = "Error bars indicate 90% confidence intervals"
                  ),
                width_svg = 7
         )
@@ -648,7 +648,7 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
-                      subtitle = "Nationwide"),
+                      subtitle = "Nationwide", caption = "Error bars indicate 90% confidence intervals"),
                width_svg = 7
         )
         # Second case: if more than 3 states are selected
@@ -697,7 +697,7 @@ server <- function(input, output) {
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
-                 labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
+                 labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag", 
                       subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
                                         tail(state_subset(), 1))
                  ),
@@ -725,7 +725,7 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
-                      subtitle = state_subset()
+                      subtitle = state_subset(), caption = "Error bars indicate 90% confidence intervals"
                  ),
                width_svg = 7
         )
