@@ -7,6 +7,7 @@ library(readr)
 library(sf)
 library(sp)
 library(tidyverse)
+library(lubridate)
 library(scales)
 library(extrafont)
 library(ggiraph)
@@ -44,6 +45,19 @@ vote_timeline <- read_csv("data/vote_timeline.csv") %>%
   left_join(state_sims %>% group_by(state) %>% summarise(pct_of_electorate = mean(pct_of_electorate)), by = c("state")) %>%
   mutate(party = ordered(party, levels = party_order))
 
+# Polls
+polls <- read_csv("data/polls.csv")  %>%
+  mutate(age = as.numeric(today() - median_date),
+         loess_weight = n^0.25 / ifelse(spread == 1, 3, 1)) %>%
+  filter(party != "other") %>%
+  mutate(party = ordered(party, levels = party_order),
+         label = paste0(pollster, "\n", start_date, " - ", end_date, "\nn = ", comma(n, accuracy = 1)))
+
+poll_average_timeline <- read_csv("data/poll_averages_over_time.csv") %>%
+  mutate(party = ordered(party, levels = party_order),
+         tooltip = paste0(date, "\n", party_abbr[as.character(party)], ": ", percent(avg, accuracy = 0.1), " (90% CI: ",
+                          percent(lower, accuracy = 0.1), " - ", percent(upper, accuracy = 0.1), ")"))
+
 # Vectors/lists that might need to be called later
 state_names <- state_shp$name_1
 const_names <- const_shp$mouseover_label
@@ -60,6 +74,9 @@ const_coords <- read_csv("data/constituency_coords.csv")
 
 # CSS stuff
 tooltip_css <- "background-color:gray;color:white;font-style:italic;padding:10px;border-radius:5px;"
+
+# Forecast update time
+update_time <- read_rds("data/update_time.rds")
 
 # The app
 ui <- fluidPage(
@@ -133,7 +150,6 @@ ui <- fluidPage(
                                                   deselectAllText = "Deselect all",
                                                   selectedTextFormat = "count > 3")),
                                     actionButton("apply_state_filter", "Apply filters"),
-                                    conditionalPanel(condition = "input.graph_type == 'Current'"),
                                     conditionalPanel(condition = "input.graph_type == 'Over time'",
                                                      sliderInput("date_range_forecast", "Date range", min = as.Date("2021-03-07"), 
                                                                  max = as.Date("2021-09-26"), value = as.Date(c("2021-03-07", "2021-09-26"))
@@ -141,21 +157,34 @@ ui <- fluidPage(
                                     )
         ),
         position = "right")
-    )
+    ),
     
-    # # National polling
-    # tabPanel(
-    #   "National polling",
-    #   sidebarLayout(
-    #     ## Main panel: display graph
-    #     mainPanel(mainPanel(ggiraphOutput("poll_graph", width = "90%", height = "90%")))
-    #   ))
-  )
+    # National polling
+    tabPanel(
+      "National polling",
+      sidebarLayout(
+        ## Main panel: display graph
+        mainPanel = mainPanel(mainPanel(ggiraphOutput("poll_graph", width = "1200", height = "800"))),
+        
+        ## Sidebar panel: choose graph
+        sidebarPanel = sidebarPanel(radioButtons("poll_graph_type", label = "Graph", 
+                                                 choices = c("Current polling average", "Polling averages over time")),
+                                    conditionalPanel(condition = "input.poll_graph_type == 'Polling averages over time'",
+                                                     sliderInput("date_range_polls", "Date range", min = as.Date("2017-10-01"),
+                                                                 max = as.Date("2021-09-26"), value = as.Date(c("2017-10-01", "2021-09-26"))
+                                                                 )
+                                                     )
+                                    ),
+        position = "right"
+      )
+    )
+  ),
+  tags$footer(HTML(paste("<br><p><i>Last updated", update_time, "</i>")))
 )
   
 
 server <- function(input, output) {
-  # THE MAP
+  # THE MAP ####
   ## Allow user to choose geography (state or constituency)
   map_geography <- reactive({
     shp_list[[input$map_geography]]
@@ -212,7 +241,7 @@ server <- function(input, output) {
     
   )
   
-  # THE FORECAST
+  # THE FORECAST ####
   ## Simulation subset to states
   state_sim_subset <- eventReactive(
     input$apply_state_filter,
@@ -318,7 +347,8 @@ server <- function(input, output) {
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
                  labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
-                      subtitle = "Nationwide")
+                      subtitle = "Nationwide"),
+               width_svg = 7
                )
         # Second case: if more than 3 states are selected
       } else if(length(state_subset()) > 3) {
@@ -341,7 +371,8 @@ server <- function(input, output) {
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
                  labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
-                      subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
+                      subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more")),
+               width_svg = 7
         )
         # Third case: if between 1 and 3 states are selected, list all of them
       } else if(length(state_subset()) > 1) {
@@ -366,7 +397,8 @@ server <- function(input, output) {
                  labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
                       subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
                                         tail(state_subset(), 1))
-                 )
+                 ),
+               width_svg = 7
         )
         # Fourth case: if just the one state is selected, list it
       } else if(length(state_subset()) == 1) {
@@ -390,7 +422,8 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
                  labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
                       subtitle = state_subset()
-                 )
+                 ),
+               width_svg = 7
         )
       }
     }
@@ -412,7 +445,8 @@ server <- function(input, output) {
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
                  labs(title = "Current projected vote share", x = "Share of second vote", y = "Probability",
-                      subtitle = "Nationwide")
+                      subtitle = "Nationwide"),
+               width_svg = 7
         )
         # Second case: if more than 3 states are selected
       } else if(length(state_subset()) > 3) {
@@ -430,7 +464,8 @@ server <- function(input, output) {
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
                  labs(title = "Current projected vote share", x = "Share of second vote", y = "Probability",
-                      subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
+                      subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more")),
+               width_svg = 7
         )
         # Third case: if between 1 and 3 states are selected, list all of them
       } else if(length(state_subset()) > 1) {
@@ -450,7 +485,8 @@ server <- function(input, output) {
                  labs(title = "Current projected vote share", x = "Share of second vote", y = "Probability",
                       subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
                                         tail(state_subset(), 1))
-                 )
+                 ),
+               width_svg = 7
         )
         # Fourth case: if just the one state is selected, list it
       } else if(length(state_subset()) == 1) {
@@ -469,7 +505,8 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
                  labs(title = "Current projected vote share", x = "Share of second vote", y = "Probability",
                       subtitle = state_subset()
-                 )
+                 ),
+               width_svg = 7
         )
       }
     }
@@ -496,7 +533,8 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
-                      subtitle = "Nationwide")
+                      subtitle = "Nationwide"),
+               width_svg = 7
         )
         # Second case: if more than 3 states are selected
       } else if(length(state_subset()) > 3) {
@@ -523,7 +561,8 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
-                      subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
+                      subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more")),
+               width_svg = 7
         )
         # Third case: if between 0 and 3 states are selected, list all of them
       } else if(length(state_subset()) > 1) {
@@ -551,7 +590,8 @@ server <- function(input, output) {
                  labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
                       subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
                                         tail(state_subset(), 1))
-                 )
+                 ),
+               width_svg = 7
         )
       } else if(length(state_subset()) == 1) {
         girafe(ggobj = state_seat_timeline_subset() %>%
@@ -579,7 +619,8 @@ server <- function(input, output) {
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted seats over time", x = "Date", y = "Seats in Bundestag",
                       subtitle = state_subset()
-                 )
+                 ),
+               width_svg = 7
         )
       }
     }
@@ -608,7 +649,8 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
-                      subtitle = "Nationwide")
+                      subtitle = "Nationwide"),
+               width_svg = 7
         )
         # Second case: if more than 3 states are selected
       } else if(length(state_subset()) > 3) {
@@ -632,7 +674,8 @@ server <- function(input, output) {
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 6),
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
-                      subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more"))
+                      subtitle = paste0(paste(head(state_subset(), 3), collapse = ", "), ", and ", length(state_subset()) - 3, " more")),
+               width_svg = 7
         )
         # Third case: if between 0 and 3 states are selected, list all of them
       } else if(length(state_subset()) > 1) {
@@ -658,7 +701,8 @@ server <- function(input, output) {
                  labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
                       subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
                                         tail(state_subset(), 1))
-                 )
+                 ),
+               width_svg = 7
         )
       } else if(length(state_subset()) == 1) {
         girafe(ggobj = state_vote_timeline_subset() %>%
@@ -683,9 +727,56 @@ server <- function(input, output) {
                        axis.text.x = element_text(angle = 90, vjust = 0.5)) +
                  labs(title = "Forecasted vote share over time", x = "Date", y = "Seats in Bundestag",
                       subtitle = state_subset()
-                 )
+                 ),
+               width_svg = 7
         )
       }
+    }
+  })
+  
+  # THE POLLS ####
+  output$poll_graph <- renderggiraph({
+    if(input$poll_graph_type == "Current polling average") {
+      girafe(ggobj = polls %>%
+               mutate(weight = (age <= 45) * loess_weight / exp((age + 1)^0.5)) %>%
+               group_by(party) %>%
+               summarise(avg = wtd.mean(pct, weight),
+                         sd = sqrt(n() * wtd.var(pct, weight) / (n() - 1.5)),
+                         eff_n = sum(weight)^2 / sum(weight^2)) %>%
+               ggplot(aes(x = party, y = avg, fill = party)) +
+               geom_col_interactive(aes(tooltip = paste0(party_abbr[as.character(party)], ": ", percent(avg, accuracy = 0.1), "±", 
+                                                         number(164.5 * sd / sqrt(eff_n), accuracy = 0.1), " pp"))) +
+               geom_errorbar(aes(ymin = avg - 1.645 * sd / sqrt(eff_n), ymax = avg + 1.645 * sd / sqrt(eff_n)), col = "#888888") +
+               geom_text(aes(y = avg + 0.008, label = percent(avg, accuracy = 0.1)), size = 3, family = "Lato", fontface = "bold") +
+               scale_x_discrete(labels = party_abbr) + 
+               scale_y_continuous(labels = percent_format(accuracy = 1)) +
+               scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+               theme(text = element_text(family = "Lato"), axis.text = element_text(size = 6), axis.ticks.x = element_blank()) +
+               labs(title = "2021 German federal election polling average", x = "", y = "Share of second vote",
+                    caption = "Error bars indicate 90% confidence intervals"),
+             width_svg = 7)
+    } else if(input$poll_graph_type == "Polling averages over time") {
+      girafe(ggobj = poll_average_timeline %>%
+               ggplot(aes(x = date, y = avg)) +
+               geom_point_interactive(data = polls,
+                                      aes(x = median_date, y = pct, col = party, tooltip = label), size = 0, alpha = 0.5) +
+               geom_ribbon(aes(ymin = lower, ymax = upper, fill = party), alpha = 0.2) +
+               geom_line(aes(col = party)) +
+               geom_point_interactive(aes(tooltip = tooltip), size = 1, alpha = 0.01) +
+               scale_x_date(date_breaks = case_when(diff(input$date_range_polls) <= 7 ~ "days",
+                                                    diff(input$date_range_polls) > 7 & diff(input$date_range_polls) <= 30 ~ "weeks",
+                                                    diff(input$date_range_polls) > 30 & diff(input$date_range_polls) <= 60 ~ "2 weeks",
+                                                    diff(input$date_range_polls) > 60 & diff(input$date_range_polls) <= 360 ~ "months",
+                                                    diff(input$date_range_polls) > 360 ~ "2 months"), 
+                            limits = input$date_range_polls, date_labels = "%e %b %Y") +
+               scale_y_continuous(labels = percent_format(accuracy = 1)) +
+               scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
+               scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
+               theme(text = element_text(family = "Lato"), axis.text = element_text(size = 6), axis.ticks.x = element_blank(),
+                     axis.text.x = element_text(angle = 90, vjust = 0.5), legend.position = "bottom") +
+               labs(title = "2021 German federal election polling", x = "Date", y = "Share of second vote",
+                    caption = "Error bars indicate 90% confidence intervals"),
+             width_svg = 7)
     }
   })
 }
