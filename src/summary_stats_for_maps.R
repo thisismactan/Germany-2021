@@ -32,7 +32,7 @@ state_summary_stats_1 <- state_summary_stats %>%
                                 party == "cdu" & state == "Bayern" ~ "CSU",
                                 party == "cdu" & state != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   rename_with(function(name) paste0(name, "_1"), .cols = -state)
@@ -51,7 +51,7 @@ state_summary_stats_2 <- state_summary_stats %>%
                                 party == "cdu" & state == "Bayern" ~ "CSU",
                                 party == "cdu" & state != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   rename_with(function(name) paste0(name, "_2"), .cols = -state)
@@ -70,7 +70,7 @@ state_summary_stats_3 <- state_summary_stats %>%
                                 party == "cdu" & state == "Bayern" ~ "CSU",
                                 party == "cdu" & state != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   rename_with(function(name) paste0(name, "_3"), .cols = -state)
@@ -89,7 +89,7 @@ state_summary_stats_4 <- state_summary_stats %>%
                                 party == "cdu" & state == "Bayern" ~ "CSU",
                                 party == "cdu" & state != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   rename_with(function(name) paste0(name, "_4"), .cols = -state)
@@ -108,7 +108,7 @@ state_summary_stats_5 <- state_summary_stats %>%
                                 party == "cdu" & state == "Bayern" ~ "CSU",
                                 party == "cdu" & state != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   rename_with(function(name) paste0(name, "_5"), .cols = -state)
@@ -127,7 +127,7 @@ state_summary_stats_6 <- state_summary_stats %>%
                                 party == "cdu" & state == "Bayern" ~ "CSU",
                                 party == "cdu" & state != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   rename_with(function(name) paste0(name, "_6"), .cols = -state)
@@ -166,7 +166,7 @@ const_summary_stats_1 <- const_summary_stats %>%
                                 party == "cdu" & state_name == "Bayern" ~ "CSU",
                                 party == "cdu" & state_name != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   rename_with(function(name) paste0(name, "_1"), .cols = -c("constituency", "id", "state_name"))
@@ -185,7 +185,7 @@ const_summary_stats_2 <- const_summary_stats %>%
                                 party == "cdu" & state_name == "Bayern" ~ "CSU",
                                 party == "cdu" & state_name != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   dplyr::select(-state_name) %>%
@@ -205,7 +205,7 @@ const_summary_stats_3 <- const_summary_stats %>%
                                 party == "cdu" & state_name == "Bayern" ~ "CSU",
                                 party == "cdu" & state_name != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   dplyr::select(-state_name) %>%
@@ -225,7 +225,7 @@ const_summary_stats_4 <- const_summary_stats %>%
                                 party == "cdu" & state_name == "Bayern" ~ "CSU",
                                 party == "cdu" & state_name != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   dplyr::select(-state_name) %>%
@@ -245,7 +245,7 @@ const_summary_stats_5 <- const_summary_stats %>%
                                 party == "cdu" & state_name == "Bayern" ~ "CSU",
                                 party == "cdu" & state_name != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   dplyr::select(-state_name) %>%
@@ -265,7 +265,7 @@ const_summary_stats_6 <- const_summary_stats %>%
                                 party == "cdu" & state_name == "Bayern" ~ "CSU",
                                 party == "cdu" & state_name != "Bayern" ~ "CDU",
                                 party == "fdp" ~ "FDP",
-                                party == "gruene" ~ "Greens",
+                                party == "gruene" ~ "Grüne",
                                 party == "linke" ~ "Linke",
                                 party == "spd" ~ "SPD")) %>%
   dplyr::select(-state_name) %>%

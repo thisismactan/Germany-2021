@@ -53,7 +53,7 @@ poll_average_graph <- poll_average %>%
   ggplot(aes(x = party, y = avg, fill = party)) +
   geom_hline(yintercept = 0.05) +
   geom_col() +
-  geom_errorbar(aes(ymin = avg - 1.645 * sd / eff_n, ymax = avg + 1.645 * sd / eff_n), col = "#888888") +
+  geom_errorbar(aes(ymin = avg - 1.645 * sd / sqrt(eff_n), ymax = avg + 1.645 * sd / sqrt(eff_n)), col = "#888888") +
   geom_text(aes(y = avg + 0.008, label = scales::percent(avg, accuracy = 0.1)), size = 3) +
   scale_x_discrete(labels = party_abbr) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
@@ -86,8 +86,8 @@ for(i in 1:length(poll_average_df_list)) {
     summarise(avg = wtd.mean(pct, weight),
               sd = sqrt(n() * wtd.var(pct, weight) / (n() - 1.5)),
               eff_n = sum(weight)^2 / sum(weight^2)) %>%
-    mutate(lower = avg - 1.645 * sd / eff_n,
-           upper = avg + 1.645 * sd / eff_n,
+    mutate(lower = avg - 1.645 * sd / sqrt(eff_n),
+           upper = avg + 1.645 * sd / sqrt(eff_n),
            date = date_sequence[i]) %>%
     dplyr::select(date, party, avg, lower, upper))
 }

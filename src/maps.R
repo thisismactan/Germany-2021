@@ -143,3 +143,6 @@ leaflet(const_shp) %>%
 # Write the two shapefiles (with data) as RDS objects to the Shiny app data folder
 write_rds(state_shp, "shiny-app/data/state_shp.rds")
 write_rds(const_shp, "shiny-app/data/const_shp.rds")
+
+# Also write the update time for the Shiny app
+write_rds(paste0(as.character(Sys.time() + as.difftime(6, units = "hours")), " CEST"), "shiny-app/data/update_time.rds")
