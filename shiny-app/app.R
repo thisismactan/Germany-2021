@@ -572,6 +572,7 @@ server <- function(input, output) {
                  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
                  geom_point_interactive(aes(col = party, tooltip = paste0(date, "\n", pct_50, " seats (90% CI: ", pct_05, "-", pct_95, ")")), 
                                         size = 1, alpha = 0.01, show.legend = FALSE) +
+                 geom_line(aes(col = party), show.legend = FALSE) +
                  scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
                                                       diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
                                                       diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
@@ -772,7 +773,7 @@ server <- function(input, output) {
                                                     diff(input$date_range_polls) > 60 & diff(input$date_range_polls) <= 360 ~ "months",
                                                     diff(input$date_range_polls) > 360 ~ "2 months"), 
                             limits = input$date_range_polls, date_labels = "%e %b %Y") +
-               scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(-1, NA)) +
+               scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(-0.001, NA)) +
                scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                theme(text = element_text(family = "Lato"), axis.text = element_text(size = 6), axis.ticks.x = element_blank(),
