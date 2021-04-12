@@ -194,7 +194,6 @@ server <- function(input, output) {
   output$map <- renderLeaflet({
     leaflet(state_shp) %>%
       addTiles() %>%
-      addMouseCoordinates() %>%
       addPolylines(opacity = 1, color = "white", weight = 4) %>%
       setView(lng = 9, lat = 51.1, zoom = 6)
   })
@@ -758,6 +757,7 @@ server <- function(input, output) {
     } else if(input$poll_graph_type == "Polling averages over time") {
       girafe(ggobj = poll_average_timeline %>%
                ggplot(aes(x = date, y = avg)) +
+               geom_vline(xintercept = as.Date("2021-09-26")) +
                geom_point_interactive(data = polls,
                                       aes(x = median_date, y = pct, col = party, tooltip = label), size = 0, alpha = 0.5) +
                geom_ribbon(aes(ymin = lower, ymax = upper, fill = party), alpha = 0.2) +
