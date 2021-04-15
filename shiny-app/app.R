@@ -767,6 +767,9 @@ server <- function(input, output) {
                geom_ribbon(aes(ymin = lower, ymax = upper, fill = party), alpha = 0.2) +
                geom_line(aes(col = party)) +
                geom_point_interactive(aes(tooltip = tooltip), size = 1, alpha = 0.01) +
+               geom_text(data = poll_average_timeline %>% filter(date == max(date)), 
+                         aes(x = date + diff(input$date_range_polls) / 45, y = avg, label = percent(avg, accuracy = 0.1), col = party), 
+                         size = 2, family = "Lato", show.legend = FALSE) +
                scale_x_date(date_breaks = case_when(diff(input$date_range_polls) <= 7 ~ "days",
                                                     diff(input$date_range_polls) > 7 & diff(input$date_range_polls) <= 30 ~ "weeks",
                                                     diff(input$date_range_polls) > 30 & diff(input$date_range_polls) <= 60 ~ "2 weeks",
