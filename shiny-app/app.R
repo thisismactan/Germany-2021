@@ -53,6 +53,15 @@ polls <- read_csv("data/polls.csv")  %>%
   mutate(party = ordered(party, levels = party_order),
          label = paste0(pollster, "\n", start_date, " - ", end_date, "\nn = ", comma(n, accuracy = 1)))
 
+# Poll table (maybe later, but don't deploy this)
+# poll_table <- polls %>%
+#   mutate(pct = percent(pct, accuracy = 0.1),
+#          n = comma(n, accuracy = 1)) %>%
+#   dplyr::select(`Start date` = start_date, `End date` = end_date, Pollster = pollster, `Sample size` = n, party, pct) %>%
+#   spread(party, pct) %>%
+#   rename(Linke = linke, Grüne = gruene, SPD = spd, FDP = fdp, `CDU/CSU` = cdu, AfD = afd) %>%
+#   as.data.frame()
+
 poll_average_timeline <- read_csv("data/poll_averages_over_time.csv") %>%
   mutate(party = ordered(party, levels = party_order),
          tooltip = paste0(date, "\n", party_abbr[as.character(party)], ": ", percent(avg, accuracy = 0.1), " (90% CI: ",
@@ -136,7 +145,8 @@ ui <- fluidPage(
       "Forecast",
       sidebarLayout(
         ## Main panel: display graphs
-        mainPanel = mainPanel(ggiraphOutput("forecast_graph", width = 1200, height = 800)),
+        mainPanel = mainPanel(ggiraphOutput("forecast_graph", width = 1200, height = 800),
+                              downloadLink("download_sims", label = "Click here to download simulation results")),
         
         ## Sidebar panel: choose between projected vote and projected seats, current and over time, possibly filter by state
         sidebarPanel = sidebarPanel(tags$h3("Graph settings"),
@@ -164,10 +174,11 @@ ui <- fluidPage(
       "National polling",
       sidebarLayout(
         ## Main panel: display graph
-        mainPanel = mainPanel(mainPanel(ggiraphOutput("poll_graph", width = "1200", height = "800"))),
+        mainPanel = mainPanel(ggiraphOutput("poll_graph", width = "1200", height = "800"),
+                              downloadLink("download_polls", label = "Click here to download polls")),
         
         ## Sidebar panel: choose graph
-        sidebarPanel = sidebarPanel(radioButtons("poll_graph_type", label = "Graph", 
+        sidebarPanel = sidebarPanel(radioButtons("poll_graph_type", label = "Display", 
                                                  choices = c("Current polling average", "Polling averages over time")),
                                     conditionalPanel(condition = "input.poll_graph_type == 'Polling averages over time'",
                                                      sliderInput("date_range_polls", "Date range", min = as.Date("2017-10-01"),
@@ -786,6 +797,10 @@ server <- function(input, output) {
              width_svg = 7)
     }
   })
+  
+  # DOWNLOADABLE ####
+  output$download_sims <- downloadHandler("state_simulations.csv", function(file) write_csv(state_sims, file))
+  output$download_polls <- downloadHandler("germany_polls.csv", function(file) write_csv(polls %>% dplyr::select(-label), file))
 }
 
 shinyApp(ui = ui, server = server)
