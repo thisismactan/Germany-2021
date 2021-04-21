@@ -343,7 +343,7 @@ state_shp <- readOGR("data/shapes/germany_states.shp") %>%
 # The actual map
 leaflet(state_shp) %>%
   addTiles() %>%
-  addPolygons(color = "black", weight = 1, opacity = 1, fill = TRUE, fillColor = ~color, fillOpacity = ~alpha, label = ~mouseover_label,
+  addPolygons(color = "white", weight = 1, opacity = 1, fill = TRUE, fillColor = ~color, fillOpacity = ~alpha, label = ~mouseover_label,
               popup = ~popup_label, highlightOptions = highlightOptions(color = "black", weight = 4, bringToFront = TRUE, opacity = 1))
 
 # Constituencies
