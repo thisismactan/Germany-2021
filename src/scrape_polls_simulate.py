@@ -20,15 +20,17 @@ for i in range(5):
 polls_2021 = polls_2021.iloc[:, 0:12].copy()
 
 # Rename columns
-polls_2021.columns = ['abs', 'afd', 'fdp', 'dates', 'gruene', 'lead', 'linke',
-                      'other', 'pollster', 'spd', 'n', 'cdu']
+polls_2021.columns = ['pollster', 'dates', 'n', 'abs', 'cdu', 'spd', 'afd',
+                      'fdp', 'linke', 'gruene', 'other', 'lead']
 
 polls_2021 = polls_2021[['pollster', 'dates', 'n', 'abs', 'cdu', 'spd',
                          'afd', 'fdp', 'linke', 'gruene', 'other', 'lead']]
 
 # Drop rows that aren't polls
 polls_2021 = polls_2021.loc[polls_2021['n'] != '–', :].copy()
-polls_2021 = polls_2021.loc[~polls_2021['cdu'].str.contains('a', na = False)]
+
+if polls_2021['cdu'].dtype == np.dtype('O'):
+    polls_2021 = polls_2021.loc[~polls_2021['cdu'].str.contains('a', na = False)]
 
 # Convert n to numeric
 polls_2021['n'] = pd.to_numeric(polls_2021['n'].str.replace('[' + punctuation + ']', ''))
