@@ -299,7 +299,7 @@ state_shp <- readOGR("data/shapes/germany_states.shp") %>%
                            party_1 == "gruene" ~ "#19A229",
                            party_1 == "linke" ~ "#BE3075",
                            party_1 == "spd" ~ "red"),
-         alpha = sqrt((vote_pct50_1 - 0.2) / 0.2),
+         alpha = sqrt(pmax((vote_pct50_1 - 0.2) / 0.2, 0.02)),
          english_name = case_when(is.na(varname_1) ~ name_1,
                                   varname_1 == "<Null>" ~ name_1,
                                   !is.na(varname_1) ~ varname_1),
@@ -364,7 +364,7 @@ const_shp <- readOGR("data/shapes/germany_constituencies.shp") %>%
                            party_1 == "gruene" ~ "#19A229",
                            party_1 == "linke" ~ "#BE3075",
                            party_1 == "spd" ~ "red"),
-         alpha = sqrt(pmax((prob_1 - 0.4) / (1 - 0.4), 0)),
+         alpha = sqrt(pmax((prob_1 - 0.35) / (1 - 0.35), 0)),
          mouseover_label = constituency,
          popup_label = paste0("<H4><b><u>", constituency, "</u><br><i>", state_name, "</i></b></H4>
                               <b><i>Projected vote (90% CI)</i></b><br>
