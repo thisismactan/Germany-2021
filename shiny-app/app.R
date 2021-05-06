@@ -275,10 +275,14 @@ server <- function(input, output) {
         group_by(sim_id, party) %>%
         summarise(total_seats = sum(total_seats)) %>%
         ungroup() %>%
-        mutate(round_seats = 5 * floor(total_seats / 5)) %>%
-        group_by(party, round_seats) %>%
+        mutate(binwidth = floor(log(max(total_seats)))) %>%
+        mutate(round_seats = binwidth * floor(total_seats / binwidth)) %>%
+        group_by(party, round_seats, binwidth) %>%
         summarise(prob = n() / 10000) %>%
-        mutate(description = paste0(round_seats, "-", round_seats + 4, " seats\nProbability: ", percent(prob, accuracy = 0.1)))
+        mutate(description = case_when(
+          binwidth == 1 & round_seats == 1 ~ paste0(round_seats, " seat\nProbability: ", percent(prob, accuracy = 0.1)),
+          binwidth == 1 & round_seats != 1 ~ paste0(round_seats, " seats\nProbability: ", percent(prob, accuracy = 0.1)),
+          binwidth > 1 ~ paste0(round_seats, "-", round_seats + (binwidth - 1), " seats\nProbability: ", percent(prob, accuracy = 0.1))))
     },
     ignoreNULL = FALSE
   )
@@ -349,9 +353,9 @@ server <- function(input, output) {
                                         aes(xintercept = avg_seats, col = party, 
                                             tooltip = paste0("Median prediction: ", avg_seats, " seats")), 
                                         size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3, scales = "free_x") +
                  geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 50 * (0:10)) +
+                 scale_x_continuous(breaks = 50 * (0:10), limits = c(-0.5, max(state_seat_sim_subset()$round_seats) + 5)) +
                  scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
@@ -368,14 +372,15 @@ server <- function(input, output) {
                                         aes(xintercept = avg_seats, col = party, 
                                             tooltip = paste0("Median prediction: ", avg_seats, " seats")), 
                                         size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3, scales = "free_x") +
                  geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
                  scale_x_continuous(breaks = case_when(max(state_seat_sim_subset()$round_seats) < 10 ~ as.numeric(0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 10:19 ~ 2 * (0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 20:49 ~ 5 * (0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 50:99 ~ 10 * (0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 100:199 ~ 20 * (0:10),
-                                                       max(state_seat_sim_subset()$round_seats) >= 200 ~ 50 * (0:10))) +
+                                                       max(state_seat_sim_subset()$round_seats) >= 200 ~ 50 * (0:10)),
+                                    limits = c(-0.5, max(state_seat_sim_subset()$round_seats) + 5)) +
                  scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
@@ -392,21 +397,21 @@ server <- function(input, output) {
                                         aes(xintercept = avg_seats, col = party, 
                                             tooltip = paste0("Median prediction: ", avg_seats, " seats")), 
                                         size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3, scales = "free_x") +
                  geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
                  scale_x_continuous(breaks = case_when(max(state_seat_sim_subset()$round_seats) < 10 ~ as.numeric(0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 10:19 ~ 2 * (0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 20:49 ~ 5 * (0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 50:99 ~ 10 * (0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 100:199 ~ 20 * (0:10),
-                                                       max(state_seat_sim_subset()$round_seats) >= 200 ~ 50 * (0:10))) +
+                                                       max(state_seat_sim_subset()$round_seats) >= 200 ~ 50 * (0:10)),
+                                    limits = c(-0.5, max(state_seat_sim_subset()$round_seats) + 5)) +
                  scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
                  labs(title = "Current projected seats", x = "Seats in Bundestag", y = "Probability",
-                      subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
-                                        tail(state_subset(), 1))
+                      subtitle = paste(state_subset(), collapse = ", ")
                  ),
                width_svg = 7
         )
@@ -418,14 +423,15 @@ server <- function(input, output) {
                                         aes(xintercept = avg_seats, col = party, 
                                             tooltip = paste0("Median prediction: ", avg_seats, " seats")), 
                                         size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3, scales = "free_x") +
                  geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
                  scale_x_continuous(breaks = case_when(max(state_seat_sim_subset()$round_seats) < 10 ~ as.numeric(0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 10:19 ~ 2 * (0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 20:49 ~ 5 * (0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 50:99 ~ 10 * (0:10),
                                                        max(state_seat_sim_subset()$round_seats) %in% 100:199 ~ 20 * (0:10),
-                                                       max(state_seat_sim_subset()$round_seats) >= 200 ~ 50 * (0:10))) +
+                                                       max(state_seat_sim_subset()$round_seats) >= 200 ~ 50 * (0:10)),
+                                    limits = c(-0.5, max(state_seat_sim_subset()$round_seats) + 5)) +
                  scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
@@ -447,9 +453,10 @@ server <- function(input, output) {
                                         aes(xintercept = avg_pct, col = party, 
                                             tooltip = paste0("Mean prediction: ", percent(avg_pct, accuracy = 0.1))), 
                                         size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3, scales = "free_x") +
                  geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 0.05 * (0:20), labels = percent_format(accuracy = 1)) +
+                 scale_x_continuous(breaks = 0.05 * (0:20), limits = c(-0.005, max(state_vote_sim_subset()$round_pct) + 0.01), 
+                                    labels = percent_format(accuracy = 1)) +
                  scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
@@ -466,9 +473,10 @@ server <- function(input, output) {
                                         aes(xintercept = avg_pct, col = party, 
                                             tooltip = paste0("Mean prediction: ", percent(avg_pct, accuracy = 0.1))), 
                                         size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3, scales = "free_x") +
                  geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 0.05 * (0:20), labels = percent_format(accuracy = 1)) +
+                 scale_x_continuous(breaks = 0.05 * (0:20), limits = c(-0.005, max(state_vote_sim_subset()$round_pct) + 0.01), 
+                                    labels = percent_format(accuracy = 1)) +
                  scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
@@ -485,16 +493,16 @@ server <- function(input, output) {
                                         aes(xintercept = avg_pct, col = party, 
                                             tooltip = paste0("Mean prediction: ", percent(avg_pct, accuracy = 0.1))), 
                                         size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3, scales = "free_x") +
                  geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 0.05 * (0:20), labels = percent_format(accuracy = 1)) +
+                 scale_x_continuous(breaks = 0.05 * (0:20), limits = c(-0.005, max(state_vote_sim_subset()$round_pct) + 0.01), 
+                                    labels = percent_format(accuracy = 1)) +
                  scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                  theme(text = element_text(family = "Lato"), strip.text = element_text(size = 8), axis.text = element_text(size = 7)) +
                  labs(title = "Current projected vote share", x = "Share of second vote", y = "Probability",
-                      subtitle = paste0(paste(head(state_subset(), length(state_subset()) - 1), collapse = ", "), ", and ", 
-                                        tail(state_subset(), 1))
+                      subtitle = paste(state_subset(), collapse = ", ")
                  ),
                width_svg = 7
         )
@@ -506,9 +514,10 @@ server <- function(input, output) {
                                         aes(xintercept = avg_pct, col = party, 
                                             tooltip = paste0("Mean prediction: ", percent(avg_pct, accuracy = 0.1))), 
                                         size = 0, show.legend = FALSE) +
-                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3) +
+                 facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3, scales = ) +
                  geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 0.05 * (0:20), labels = percent_format(accuracy = 1)) +
+                 scale_x_continuous(breaks = 0.05 * (0:20), limits = c(-0.005, max(state_vote_sim_subset()$round_pct) + 0.01), 
+                                    labels = percent_format(accuracy = 1)) +
                  scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
