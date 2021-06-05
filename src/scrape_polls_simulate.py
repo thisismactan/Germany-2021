@@ -62,8 +62,8 @@ for i in range(len(start_date_list)):
 
 #%% Create some relevant variables
 # Variables related to field dates
-polls_2021['start_date'] = pd.to_datetime(pd.Series(start_date_list), format = '%d %b %Y')
-polls_2021['end_date'] = pd.to_datetime(pd.Series(end_date_list), format = '%d %b %Y')
+polls_2021['start_date'] = pd.to_datetime(pd.Series(start_date_list))
+polls_2021['end_date'] = pd.to_datetime(pd.Series(end_date_list))
 polls_2021['spread'] = (polls_2021['end_date'] - polls_2021['start_date']) + pd.Timedelta('1 day')
 polls_2021['median_date'] = (polls_2021['start_date'] + 0.5 * polls_2021['spread']).dt.round(freq = 'D')
 polls_2021['spread'] = polls_2021['spread'].dt.days
