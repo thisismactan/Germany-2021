@@ -47,7 +47,7 @@ vote_timeline <- read_csv("data/vote_timeline.csv") %>%
 
 # Polls
 polls <- read_csv("data/polls.csv")  %>%
-  mutate(age = as.numeric(today() - median_date),
+  mutate(age = as.numeric(today() - as.Date(median_date)),
          loess_weight = n^0.25 / ifelse(spread == 1, 3, 1)) %>%
   filter(party != "other") %>%
   mutate(party = ordered(party, levels = party_order),
