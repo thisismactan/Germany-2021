@@ -17,11 +17,9 @@ polls_2021 = pd.DataFrame()
 for i in range(5):
     polls_2021 = polls_2021.append(poll_tables[i])
 
-polls_2021 = polls_2021.iloc[:, 0:12].copy()
-
 # Rename columns
-polls_2021.columns = ['pollster', 'dates', 'n', 'abs', 'cdu', 'spd', 'afd',
-                      'fdp', 'linke', 'gruene', 'other', 'lead']
+polls_2021.columns = ['abs', 'afd', 'fdp', 'fw', 'dates', 'gruene', 'lead', 
+                      'linke', 'other', 'pollster', 'spd', 'n', 'cdu']
 
 polls_2021 = polls_2021[['pollster', 'dates', 'n', 'abs', 'cdu', 'spd',
                          'afd', 'fdp', 'linke', 'gruene', 'other', 'lead']]
