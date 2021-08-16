@@ -279,6 +279,7 @@ server <- function(input, output) {
         mutate(round_seats = binwidth * floor(total_seats / binwidth)) %>%
         group_by(party, round_seats, binwidth) %>%
         summarise(prob = n() / 10000) %>%
+        ungroup() %>%
         mutate(description = case_when(
           binwidth == 1 & round_seats == 1 ~ paste0(round_seats, " seat\nProbability: ", percent(prob, accuracy = 0.1)),
           binwidth == 1 & round_seats != 1 ~ paste0(round_seats, " seats\nProbability: ", percent(prob, accuracy = 0.1)),
@@ -299,6 +300,7 @@ server <- function(input, output) {
         mutate(round_pct = floor(100 * pct) / 100) %>%
         group_by(party, round_pct) %>%
         summarise(prob = n() / 10000) %>%
+        ungroup() %>%
         mutate(description = paste0(100 * round_pct, "-", 100 * round_pct + 1, "% of second vote\nProbability: ", percent(prob, accuracy = 0.1)))
     },
     ignoreNULL = FALSE
@@ -349,7 +351,7 @@ server <- function(input, output) {
       if(length(state_subset()) == 16) {
         girafe(ggobj = state_seat_sim_subset() %>%
                  ggplot(aes(x = round_seats, y = prob, fill = party)) +
-                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
+                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)) %>% ungroup(),
                                         aes(xintercept = avg_seats, col = party, 
                                             tooltip = paste0("Median prediction: ", avg_seats, " seats")), 
                                         size = 0, show.legend = FALSE) +
@@ -368,7 +370,7 @@ server <- function(input, output) {
       } else if(length(state_subset()) > 3) {
         girafe(ggobj = state_seat_sim_subset() %>%
                  ggplot(aes(x = round_seats, y = prob, fill = party)) +
-                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
+                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)) %>% ungroup(),
                                         aes(xintercept = avg_seats, col = party, 
                                             tooltip = paste0("Median prediction: ", avg_seats, " seats")), 
                                         size = 0, show.legend = FALSE) +
@@ -393,7 +395,7 @@ server <- function(input, output) {
       } else if(length(state_subset()) > 1) {
         girafe(ggobj = state_seat_sim_subset() %>%
                  ggplot(aes(x = round_seats, y = prob, fill = party)) +
-                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
+                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)) %>% ungroup(),
                                         aes(xintercept = avg_seats, col = party, 
                                             tooltip = paste0("Median prediction: ", avg_seats, " seats")), 
                                         size = 0, show.legend = FALSE) +
@@ -419,7 +421,7 @@ server <- function(input, output) {
       } else if(length(state_subset()) == 1) {
         girafe(ggobj = state_seat_sim_subset() %>%
                  ggplot(aes(x = round_seats, y = prob, fill = party)) +
-                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)),
+                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_seats = median(total_seats)) %>% ungroup(),
                                         aes(xintercept = avg_seats, col = party, 
                                             tooltip = paste0("Median prediction: ", avg_seats, " seats")), 
                                         size = 0, show.legend = FALSE) +
@@ -449,7 +451,7 @@ server <- function(input, output) {
       if(length(state_subset()) == 16) {
         girafe(ggobj = state_vote_sim_subset() %>%
                  ggplot(aes(x = round_pct, y = prob, fill = party)) +
-                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)),
+                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)) %>% ungroup(),
                                         aes(xintercept = avg_pct, col = party, 
                                             tooltip = paste0("Mean prediction: ", percent(avg_pct, accuracy = 0.1))), 
                                         size = 0, show.legend = FALSE) +
@@ -469,7 +471,7 @@ server <- function(input, output) {
       } else if(length(state_subset()) > 3) {
         girafe(ggobj = state_vote_sim_subset() %>%
                  ggplot(aes(x = round_pct, y = prob, fill = party)) +
-                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)),
+                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)) %>% ungroup(),
                                         aes(xintercept = avg_pct, col = party, 
                                             tooltip = paste0("Mean prediction: ", percent(avg_pct, accuracy = 0.1))), 
                                         size = 0, show.legend = FALSE) +
@@ -489,7 +491,7 @@ server <- function(input, output) {
       } else if(length(state_subset()) > 1) {
         girafe(ggobj = state_vote_sim_subset() %>%
                  ggplot(aes(x = round_pct, y = prob, fill = party)) +
-                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)),
+                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)) %>% ungroup(),
                                         aes(xintercept = avg_pct, col = party, 
                                             tooltip = paste0("Mean prediction: ", percent(avg_pct, accuracy = 0.1))), 
                                         size = 0, show.legend = FALSE) +
@@ -510,7 +512,7 @@ server <- function(input, output) {
       } else if(length(state_subset()) == 1) {
         girafe(ggobj = state_vote_sim_subset() %>%
                  ggplot(aes(x = round_pct, y = prob, fill = party)) +
-                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)),
+                 geom_vline_interactive(data = state_sim_subset() %>% group_by(party) %>% summarise(avg_pct = mean(pct)) %>% ungroup(),
                                         aes(xintercept = avg_pct, col = party, 
                                             tooltip = paste0("Mean prediction: ", percent(avg_pct, accuracy = 0.1))), 
                                         size = 0, show.legend = FALSE) +
@@ -765,7 +767,8 @@ server <- function(input, output) {
                group_by(party) %>%
                summarise(avg = wtd.mean(pct, weight),
                          sd = sqrt(n() * wtd.var(pct, weight) / (n() - 1.5)),
-                         eff_n = sum(weight)^2 / sum(weight^2)) %>%
+                         eff_n = sum(weight)^2 / sum(weight^2)) %>% 
+               ungroup() %>%
                ggplot(aes(x = party, y = avg, fill = party)) +
                geom_col_interactive(aes(tooltip = paste0(party_abbr[as.character(party)], ": ", percent(avg, accuracy = 0.1), "±", 
                                                          number(164.5 * sd / sqrt(eff_n), accuracy = 0.1), " pp"))) +
