@@ -15,18 +15,16 @@ library(Hmisc)
 
 # Party colors/labels
 party_colors = c("afd" = "#00A0E2", "cdu" = "black", "fdp" = "#FEB900", "gruene" = "#19A229", 
-                 "linke" = "#BE3075", "other" = "gray", "spd" = "red")
+                 "linke" = "#BE3075", "spd" = "red")
 
 party_names = c("afd" = "Alternative for Germany (AfD)",
                 "cdu" = "Union parties (CDU/CSU)",
                 "fdp" = "Free Democratic Party (FDP)",
                 "gruene" = "Alliance 90/The Greens (Grüne)",
                 "linke" = "The Left (Linke)",
-                "other" = "Other",
                 "spd" = "Social Democratic Party (SPD)")
 
-party_abbr = c("afd" = "AfD", "cdu" = "Union", "fdp" = "FDP", "gruene" = "Grüne", "linke" = "Linke",
-               "other" = "Other", "spd" = "SPD")
+party_abbr = c("afd" = "AfD", "cdu" = "Union", "fdp" = "FDP", "gruene" = "Grüne", "linke" = "Linke", "spd" = "SPD")
 
 party_order = c("linke", "gruene", "spd", "fdp", "cdu", "afd")
 

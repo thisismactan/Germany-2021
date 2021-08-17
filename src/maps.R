@@ -147,9 +147,11 @@ constituency_key <- read_csv("data/constituency_results.csv") %>%
   distinct()
 
 const_sims <- read_csv("output/const_sims.csv") %>%
-  mutate(party = ordered(party, levels = party_order))
+  mutate(party = ordered(party, levels = party_order)) %>%
+  filter(sim_id < 1000)
 
 const_summary_stats <- const_sims %>%
+  filter(sim_id < 1000) %>%
   group_by(sim_id, constituency) %>%
   mutate(winner = pct == max(pct)) %>%
   group_by(constituency, party) %>%
