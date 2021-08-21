@@ -143,7 +143,7 @@ ui <- fluidPage(
       "Forecast",
       sidebarLayout(
         ## Main panel: display graphs
-        mainPanel = mainPanel(ggiraphOutput("forecast_graph", width = 1200, height = 800),
+        mainPanel = mainPanel(girafeOutput("forecast_graph", width = 1200, height = 800),
                               downloadLink("download_sims", label = "Click here to download simulation results")),
         
         ## Sidebar panel: choose between projected vote and projected seats, current and over time, possibly filter by state
@@ -172,7 +172,7 @@ ui <- fluidPage(
       "National polling",
       sidebarLayout(
         ## Main panel: display graph
-        mainPanel = mainPanel(ggiraphOutput("poll_graph", width = "1200", height = "800"),
+        mainPanel = mainPanel(girafeOutput("poll_graph", width = "1200", height = "800"),
                               downloadLink("download_polls", label = "Click here to download polls")),
         
         ## Sidebar panel: choose graph
@@ -342,7 +342,7 @@ server <- function(input, output) {
     ignoreNULL = FALSE
   )
   
-  output$forecast_graph <- renderggiraph({
+  output$forecast_graph <- renderGirafe({
     # First: input$graph_type == "Current" and input$forecast_outcome == "Seats"
     if(input$graph_type == "Current" & input$forecast_outcome == "Seats") {
       # First subcase: if all states are selected
@@ -758,7 +758,7 @@ server <- function(input, output) {
   })
   
   # THE POLLS ####
-  output$poll_graph <- renderggiraph({
+  output$poll_graph <- renderGirafe({
     if(input$poll_graph_type == "Current polling average") {
       girafe(ggobj = polls %>%
                mutate(weight = (age <= 45) * loess_weight / exp((age + 1)^0.5)) %>%
