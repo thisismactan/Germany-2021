@@ -28,6 +28,22 @@ party_abbr = c("afd" = "AfD", "cdu" = "Union", "fdp" = "FDP", "gruene" = "Grüne
 
 party_order = c("linke", "gruene", "spd", "fdp", "cdu", "afd")
 
+# Coalition colors/labels
+coalition_colors = c("cdu_fdp" = "black", "cdu_fdp_gruene" = "orange1", "cdu_gruene" = "brown", 
+                     "cdu_spd" = "purple1", "spd_fdp_gruene" = "green4", "spd_gruene" = "red")
+
+coalition_names = c("cdu_fdp" = "Center-right (CDU/CSU/FDP)",
+                    "cdu_fdp_gruene" = "Jamaika (CDU/CSU/FDP/Grüne)",
+                    "cdu_gruene" = "Halfghanistan (CDU/CSU/Grüne)",
+                    "cdu_spd" = "Grand coalition (CDU/CSU/SPD)",
+                    "spd_fdp_gruene" = "Traffic light (SPD/FDP/Grüne)",
+                    "spd_gruene" = "Christmas (SPD/Grüne)")
+
+coalition_abbr = c("cdu_fdp" = "Center-right", "cdu_fdp_gruene" = "Jamaika", "cdu_gruene" = "Halfghanistan", 
+                   "cdu_spd" = "Grand coalition", "spd_fdp_gruene" = "Traffic light", "spd_gruene" = "Christmas")
+
+coalition_order = c("cdu_fdp", "cdu_fdp_gruene", "cdu_gruene", "cdu_spd", "purple1", "spd_fdp_gruene", "spd_gruene")
+
 # Shapefiles
 state_shp <- read_rds("data/state_shp.rds")
 const_shp <- read_rds("data/const_shp.rds")
@@ -42,6 +58,15 @@ seat_timeline <- read_csv("data/seat_timeline.csv") %>%
 vote_timeline <- read_csv("data/vote_timeline.csv") %>%
   left_join(state_sims %>% group_by(state) %>% summarise(pct_of_electorate = mean(pct_of_electorate)), by = c("state")) %>%
   mutate(party = ordered(party, levels = party_order))
+coalition_timeline <- read_csv("data/coalition_prob_timeline.csv") %>%
+  mutate(coalition = ordered(coalition, levels = coalition_order),
+         coalition_full = case_when(coalition == "cdu_fdp" ~ "CDU/CSU-FDP",
+                                    coalition == "cdu_fdp_gruene" ~ "CDU/CSU-FDP-Grüne",
+                                    coalition == "cdu_gruene" ~ "CDU/CSU-Grüne",
+                                    coalition == "cdu_spd" ~ "CDU/CSU-SPD",
+                                    coalition == "spd_fdp_gruene" ~ "SPD-FDP-Grüne",
+                                    coalition == "spd_gruene" ~ "SPD-Grüne"),
+         tooltip = paste0(coalition_full, "\nMajority probability: ", percent(prob_majority, accuracy = 1)))
 
 # Polls
 polls <- read_csv("data/polls.csv")  %>%
@@ -149,7 +174,8 @@ ui <- fluidPage(
         ## Sidebar panel: choose between projected vote and projected seats, current and over time, possibly filter by state
         sidebarPanel = sidebarPanel(tags$h3("Graph settings"),
                                     radioButtons("graph_type", label = "Graph", choices = c("Current", "Over time")),
-                                    radioButtons("forecast_outcome", label = "Forecast outcome", choices = c("Seats", "Vote share")),
+                                    radioButtons("forecast_outcome", label = "Forecast outcome", 
+                                                 choices = c("Seats", "Vote share", "Coalition probabilities")),
                                     pickerInput("state_filter", label = "Select states", choices = state_names, selected = state_names, 
                                                 multiple = TRUE,
                                                 options = pickerOptions(
@@ -158,7 +184,7 @@ ui <- fluidPage(
                                                   deselectAllText = "Deselect all",
                                                   selectedTextFormat = "count > 3")),
                                     actionButton("apply_state_filter", "Apply filters"),
-                                    conditionalPanel(condition = "input.graph_type == 'Over time'",
+                                    conditionalPanel(condition = "input.graph_type == 'Over time' | input.forecast_outcome == 'Coalition probabilities",
                                                      sliderInput("date_range_forecast", "Date range", min = as.Date("2021-03-07"), 
                                                                  max = as.Date("2021-09-26"), value = as.Date(c("2021-03-07", "2021-09-26"))
                                                      )
@@ -754,6 +780,27 @@ server <- function(input, output) {
                width_svg = 7
         )
       }
+    } else if(input$forecast_outcome == "Coalition probabilities") {
+      girafe(ggobj = coalition_timeline %>%
+               ggplot(aes(x = date, y = prob_majority, col = coalition)) +
+               geom_vline(xintercept = as.Date("2021-09-26")) +
+               geom_line() +
+               geom_text(data = coalition_timeline %>% filter(date == max(date)), 
+                         aes(x = date + diff(input$date_range_forecast) / 45, label = scales::percent(prob_majority, accuracy = 1)), 
+                         size = 2, family = "Lato", show.legend = FALSE) +
+               geom_point_interactive(aes(col = coalition, tooltip = tooltip), size = 1, alpha = 0.01, show.legend = FALSE) +
+               scale_x_date(date_breaks = case_when(diff(input$date_range_forecast) <= 7 ~ "days",
+                                                    diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
+                                                    diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
+                                                    diff(input$date_range_forecast) > 60 ~ "months"), 
+                            limits = input$date_range_forecast, date_labels = "%e %b %Y") +
+               scale_y_continuous(breaks = (0:10) / 10, labels = percent_format(accuracy = 1), limits = c(0, NA)) +
+               scale_colour_manual(name = "Hypothetical\ncoalition", labels = coalition_names, values = coalition_colors) +
+               theme(text = element_text(family = "Lato"), axis.text = element_text(size = 6),
+                     legend.position = "bottom", axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+               guides(col = guide_legend(nrow = 3)) +
+               labs(title = "Coalition probabilities", x = "Date", y = "Probability of majority",
+                    caption = "Probabilities need not sum to 100%"))
     }
   })
   

@@ -596,6 +596,10 @@ seat_summary_stats_timeline = pd.read_csv('output/seat_summary_stats_timeline.cs
 # Write it back out
 seat_summary_stats_timeline.to_csv('output/seat_summary_stats_timeline.csv', index = False)
 seat_summary_stats_timeline\
+    .loc[seat_summary_stats_timeline['coalition'].str.contains('_'),
+         ['date', 'coalition', 'prob_majority']]\
+    .to_csv('shiny-app/data/coalition_prob_timeline.csv', index = False)
+seat_summary_stats_timeline\
     .loc[seat_summary_stats_timeline['coalition'].isin(['afd', 'cdu', 'fdp', 'gruene', 'linke', 'spd'])]\
     .drop(columns = 'prob_majority')\
     .to_csv('shiny-app/data/seat_timeline.csv', index = False)
