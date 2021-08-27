@@ -1021,7 +1021,13 @@ date,coalition,prob_majority
 2021-08-25,spd_gruene,0.0002
 2021-08-26,cdu_fdp,0.0002
 2021-08-26,cdu_fdp_gruene,0.9896
-2021-08-26,cdu_gruene,0.027
+2021-08-26,cdu_gruene,0.027000000000000003
 2021-08-26,cdu_spd,0.1889
 2021-08-26,spd_fdp_gruene,0.9535
 2021-08-26,spd_gruene,0.0004
+2021-08-27,cdu_fdp,0.0
+2021-08-27,cdu_fdp_gruene,0.9814
+2021-08-27,cdu_gruene,0.0278
+2021-08-27,cdu_spd,0.1866
+2021-08-27,spd_fdp_gruene,0.9716
+2021-08-27,spd_gruene,0.0016
