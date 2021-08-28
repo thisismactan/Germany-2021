@@ -804,6 +804,17 @@ server <- function(input, output) {
     }
   })
   
+  polls_filtered <- reactive({
+    polls %>% 
+      filter(median_date >= input$date_range_polls[1], 
+             median_date <= input$date_range_polls[2])
+  })
+  
+  poll_timeline_filtered <- reactive({
+    poll_average_timeline %>%
+      filter(date >= input$date_range_polls[1], date <= input$date_range_polls[2])
+  })
+  
   # THE POLLS ####
   output$poll_graph <- renderGirafe({
     if(input$poll_graph_type == "Current polling average") {
@@ -827,10 +838,10 @@ server <- function(input, output) {
                     caption = "Error bars indicate 90% confidence intervals"),
              width_svg = 7)
     } else if(input$poll_graph_type == "Polling averages over time") {
-      girafe(ggobj = poll_average_timeline %>%
+      girafe(ggobj = poll_timeline_filtered() %>%
                ggplot(aes(x = date, y = avg)) +
                geom_vline(xintercept = as.Date("2021-09-26")) +
-               geom_point_interactive(data = polls,
+               geom_point_interactive(data = polls_filtered(),
                                       aes(x = median_date, y = pct, col = party, tooltip = label), size = 0, alpha = 0.5) +
                geom_ribbon(aes(ymin = lower, ymax = upper, fill = party), alpha = 0.2) +
                geom_line(aes(col = party)) +
@@ -843,7 +854,7 @@ server <- function(input, output) {
                                                     diff(input$date_range_polls) > 30 & diff(input$date_range_polls) <= 60 ~ "2 weeks",
                                                     diff(input$date_range_polls) > 60 & diff(input$date_range_polls) <= 360 ~ "months",
                                                     diff(input$date_range_polls) > 360 ~ "2 months"), 
-                            limits = input$date_range_polls, date_labels = "%e %b %Y") +
+                            limits = c(input$date_range_polls, input$date_range_polls + 10), date_labels = "%e %b %Y") +
                scale_y_continuous(labels = percent_format(accuracy = 1), limits = c(-0.001, NA)) +
                scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
                scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
