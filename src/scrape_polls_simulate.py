@@ -19,13 +19,14 @@ for i in range(5):
 
 # Rename columns
 polls_2021.columns = ['abs', 'afd', 'fdp', 'fw', 'dates', 'gruene', 'lead', 
-                      'linke', 'other', 'pollster', 'spd', 'n', 'cdu']
+                      'linke', 'other', 'pollster', 'spd', 'n', 'cdu', 'blank']
 
 polls_2021 = polls_2021[['pollster', 'dates', 'n', 'abs', 'cdu', 'spd',
                          'afd', 'fdp', 'linke', 'gruene', 'other', 'lead']]
 
 # Drop rows that aren't polls
 polls_2021 = polls_2021.loc[polls_2021['n'] != '–', :].copy()
+polls_2021 = polls_2021.loc[polls_2021['dates'] != 'Aug 2021', :].copy()
 
 if polls_2021['cdu'].dtype == np.dtype('O'):
     polls_2021 = polls_2021.loc[~polls_2021['cdu'].str.contains('a', na = False)]
