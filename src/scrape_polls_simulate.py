@@ -19,7 +19,7 @@ for i in range(5):
 
 # Rename columns
 polls_2021.columns = ['abs', 'afd', 'fdp', 'fw', 'dates', 'gruene', 'lead', 
-                      'linke', 'other', 'pollster', 'spd', 'n', 'cdu', 'blank']
+                      'linke', 'other', 'pollster', 'spd', 'n', 'cdu']
 
 polls_2021 = polls_2021[['pollster', 'dates', 'n', 'abs', 'cdu', 'spd',
                          'afd', 'fdp', 'linke', 'gruene', 'other', 'lead']]
