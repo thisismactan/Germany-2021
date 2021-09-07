@@ -41,14 +41,14 @@ polls_2021 = polls_2021.reset_index().drop(columns = 'index')
 
 # Start and end dates
 ## End dates first (easier)
-end_date_list = [i[-1] for i in polls_2021['dates'].str.split('–|-')]
+end_date_list = [i[-1] for i in polls_2021['dates'].str.split('–|-| – ')]
 
 ## End month-years and just years
 end_monthyear = [j[1] + ' ' + j[2] for j in [i.split(' ') for i in end_date_list]]
 end_year = [j[2] for j in [i.split(' ') for i in end_date_list]]
 
 ## Now use those to create start dates
-start_date_list = [i[0] for i in polls_2021['dates'].str.split('–|-')]
+start_date_list = [i[0] for i in polls_2021['dates'].str.split('–|-| – ')]
 for i in range(len(start_date_list)):
     # If all we have is the day, add the same month-year as end date
     if len(start_date_list[i]) <= 2:
