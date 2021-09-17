@@ -9,7 +9,7 @@ exec(open('src/models.py').read())
 
 #%% Scrape and clean polls
 polls_url = 'https://en.wikipedia.org/wiki/Opinion_polling_for_the_2021_German_federal_election'
-poll_tables = pd.read_html(polls_url)[0:5]
+poll_tables = pd.read_html(polls_url)[1:6]
 
 # Bit of cleanup
 polls_2021 = pd.DataFrame()
