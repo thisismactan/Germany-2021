@@ -9,17 +9,18 @@ exec(open('src/models.py').read())
 
 #%% Scrape and clean polls
 polls_url = 'https://en.wikipedia.org/wiki/Opinion_polling_for_the_2021_German_federal_election'
-poll_tables = pd.read_html(polls_url)[1:6]
+poll_tables = pd.read_html(polls_url)[0:5]
 
 # Bit of cleanup
 polls_2021 = pd.DataFrame()
 
 for i in range(5):
+    poll_tables[i].columns = [x[0] for x in poll_tables[i].columns]
     polls_2021 = polls_2021.append(poll_tables[i])
 
 # Rename columns
-polls_2021.columns = ['abs', 'afd', 'fdp', 'fw', 'dates', 'gruene', 'lead', 
-                      'linke', 'other', 'pollster', 'spd', 'n', 'cdu']
+polls_2021.columns = ['pollster', 'dates', 'n', 'abs', 'cdu', 'spd', 'afd', 
+                      'fdp', 'linke', 'gruene', 'fw', 'other', 'lead']
 
 polls_2021 = polls_2021[['pollster', 'dates', 'n', 'abs', 'cdu', 'spd',
                          'afd', 'fdp', 'linke', 'gruene', 'other', 'lead']]
