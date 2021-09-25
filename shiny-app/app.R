@@ -793,7 +793,7 @@ server <- function(input, output) {
                                                     diff(input$date_range_forecast) > 7 & diff(input$date_range_forecast) <= 30 ~ "weeks",
                                                     diff(input$date_range_forecast) > 30 & diff(input$date_range_forecast) <= 60 ~ "2 weeks",
                                                     diff(input$date_range_forecast) > 60 ~ "months"), 
-                            limits = input$date_range_forecast, date_labels = "%e %b %Y") +
+                            limits = c(input$date_range_forecast[1], input$date_range_forecast[2] + 20), date_labels = "%e %b %Y") +
                scale_y_continuous(breaks = (0:10) / 10, labels = percent_format(accuracy = 1), limits = c(0, NA)) +
                scale_colour_manual(name = "Hypothetical\ncoalition", labels = coalition_names, values = coalition_colors) +
                theme(text = element_text(family = "Lato"), axis.text = element_text(size = 6),
