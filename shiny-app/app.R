@@ -381,7 +381,7 @@ server <- function(input, output) {
                                         size = 0, show.legend = FALSE) +
                  facet_wrap(~party, labeller = labeller(party = party_names), nrow = 3, scales = "free_x") +
                  geom_col_interactive(aes(tooltip = description), alpha = 0.5, show.legend = FALSE) +
-                 scale_x_continuous(breaks = 50 * (0:10), limits = c(-0.5, max(state_seat_sim_subset()$round_seats) + 5)) +
+                 scale_x_continuous(breaks = 50 * (0:10), limits = c(-1, max(state_seat_sim_subset()$round_seats) + 5)) +
                  scale_y_continuous(labels = percent_format(accuracy = 1)) +
                  scale_fill_manual(name = "Party", values = party_colors, labels = party_names) +
                  scale_colour_manual(name = "Party", values = party_colors, labels = party_names) +
