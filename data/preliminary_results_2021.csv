@@ -80,7 +80,7 @@
 79,Berlin-Steglitz-Zehlendorf,Berlin,afd,9221,9905
 80,Berlin-Charlottenburg-Wilmersdorf,Berlin,afd,6530,7359
 81,Berlin-Tempelhof-Schöneberg,Berlin,afd,10007,10912
-82,Berlin-Neukölln,Berlin,afd,10152,10713
+82,Berlin-Neukölln,Berlin,afd,10152,10173
 83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,Berlin,afd,6615,7004
 84,Berlin-Treptow-Köpenick,Berlin,afd,17796,19127
 85,Berlin-Marzahn-Hellersdorf,Berlin,afd,20854,22536
@@ -298,7 +298,7 @@
 297,Saarlouis,Saarland,afd,15111,15651
 298,St. Wendel,Saarland,afd,12339,12899
 299,Homburg,Saarland,afd,16209,16066
-1,Flensburg – Schleswig,Schleswig-Holstein,cdu,41721,361417
+1,Flensburg – Schleswig,Schleswig-Holstein,cdu,41721,36417
 2,Nordfriesland – Dithmarschen Nord,Schleswig-Holstein,cdu,43771,35518
 3,Steinburg – Dithmarschen Süd,Schleswig-Holstein,cdu,39434,32843
 4,Rendsburg-Eckernförde,Schleswig-Holstein,cdu,47697,38527
@@ -397,7 +397,7 @@
 97,Rhein-Sieg-Kreis I,Nordrhein-Westfalen,cdu,60775,51481
 98,Rhein-Sieg-Kreis II,Nordrhein-Westfalen,cdu,70143,51795
 99,Oberbergischer Kreis,Nordrhein-Westfalen,cdu,53757,44018
-100,Rheinisch-Bergischer Kreis,Nordrhein-Westfalen,cdu,31197,33246
+100,Rheinisch-Bergischer Kreis,Nordrhein-Westfalen,cdu,52680,48268
 101,Leverkusen – Köln IV,Nordrhein-Westfalen,cdu,31197,33246
 102,Wuppertal I,Nordrhein-Westfalen,cdu,31960,30526
 103,Solingen – Remscheid – Wuppertal II,Nordrhein-Westfalen,cdu,44771,39420
@@ -675,7 +675,7 @@
 76,Berlin-Pankow,Berlin,fdp,12509,14652
 77,Berlin-Reinickendorf,Berlin,fdp,10907,13395
 78,Berlin-Spandau – Charlottenburg Nord,Berlin,fdp,10427,12434
-79,Berlin-Steglitz-Zehlendorf,Berlin,fdp,15961,2173
+79,Berlin-Steglitz-Zehlendorf,Berlin,fdp,15961,22173
 80,Berlin-Charlottenburg-Wilmersdorf,Berlin,fdp,14934,20022
 81,Berlin-Tempelhof-Schöneberg,Berlin,fdp,12820,16683
 82,Berlin-Neukölln,Berlin,fdp,8631,9767
@@ -1380,7 +1380,7 @@
 183,Frankfurt am Main II,Hessen,linke,10629,11902
 184,Groß-Gerau,Hessen,linke,5047,5394
 185,Offenbach,Hessen,linke,7497,7818
-186,Darmstadt,Hessen,linke,9332,764
+186,Darmstadt,Hessen,linke,9332,10764
 187,Odenwald,Hessen,linke,5991,6329
 188,Bergstraße,Hessen,linke,4150,4630
 189,Eichsfeld – Nordhausen – Kyffhäuserkreis,Thüringen,linke,16584,15165
@@ -1482,7 +1482,7 @@
 285,Rottweil – Tuttlingen,Baden-Württemberg,linke,3176,3319
 286,Schwarzwald-Baar,Baden-Württemberg,linke,2757,3062
 287,Konstanz,Baden-Württemberg,linke,5591,5804
-288,Waldshut,Baden-Württemberg,linke,3593,3384
+288,Waldshut,Baden-Württemberg,linke,3593,3884
 289,Reutlingen,Baden-Württemberg,linke,6169,5081
 290,Tübingen,Baden-Württemberg,linke,7525,8231
 291,Ulm,Baden-Württemberg,linke,4602,5376
@@ -1998,7 +1998,7 @@
 203,Trier,Rheinland-Pfalz,spd,47925,44101
 204,Montabaur,Rheinland-Pfalz,spd,50977,49344
 205,Mainz,Rheinland-Pfalz,spd,49847,53866
-206, ,Rheinland-Pfalz,spd,49748,49656
+206,Worms,Rheinland-Pfalz,spd,49748,49656
 207,Ludwigshafen/Frankenthal,Rheinland-Pfalz,spd,50108,45896
 208,Neustadt – Speyer,Rheinland-Pfalz,spd,48158,47121
 209,Kaiserslautern,Rheinland-Pfalz,spd,56523,54460
@@ -2087,7 +2087,7 @@
 292,Biberach,Baden-Württemberg,spd,24467,23064
 293,Bodensee,Baden-Württemberg,spd,28500,26988
 294,Ravensburg,Baden-Württemberg,spd,20128,27752
-295,Zollernalb – Sigmaringen,Baden-Württemberg,spd,24968,267176
+295,Zollernalb – Sigmaringen,Baden-Württemberg,spd,24968,26716
 296,Saarbrücken,Saarland,spd,51749,53532
 297,Saarlouis,Saarland,spd,57353,56920
 298,St. Wendel,Saarland,spd,48132,51223
