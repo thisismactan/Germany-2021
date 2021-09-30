@@ -1,0 +1,2094 @@
+﻿id,constituency,state,party,first_votes,second_votes
+1,Flensburg – Schleswig,Schleswig-Holstein,afd,9766,10315
+2,Nordfriesland – Dithmarschen Nord,Schleswig-Holstein,afd,8270,8796
+3,Steinburg – Dithmarschen Süd,Schleswig-Holstein,afd,10429,11304
+4,Rendsburg-Eckernförde,Schleswig-Holstein,afd,10197,10562
+5,Kiel,Schleswig-Holstein,afd,7179,7676
+6,Plön – Neumünster,Schleswig-Holstein,afd,9404,9741
+7,Pinneberg,Schleswig-Holstein,afd,11934,12845
+8,Segeberg – Stormarn-Mitte,Schleswig-Holstein,afd,14039,14527
+9,Ostholstein – Stormarn-Nord,Schleswig-Holstein,afd,9646,10073
+10,Herzogtum Lauenburg – Stormarn-Süd,Schleswig-Holstein,afd,14053,14684
+11,Lübeck,Schleswig-Holstein,afd,7551,7807
+12,Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I,Mecklenburg-Vorpommern,afd,25380,24179
+13,Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I,Mecklenburg-Vorpommern,afd,24760,24670
+14,Rostock – Landkreis Rostock II,Mecklenburg-Vorpommern,afd,19885,20660
+15,Vorpommern-Rügen – Vorpommern-Greifswald I,Mecklenburg-Vorpommern,afd,33034,31314
+16,Mecklenburgische Seenplatte I – Vorpommern-Greifswald II,Mecklenburg-Vorpommern,afd,36599,35102
+17,Mecklenburgische Seenplatte II – Landkreis Rostock III,Mecklenburg-Vorpommern,afd,30346,29443
+18,Hamburg-Mitte,Hamburg,afd,8694,9161
+19,Hamburg-Altona,Hamburg,afd,5221,5069
+20,Hamburg-Eimsbüttel,Hamburg,afd,5447,5657
+21,Hamburg-Nord,Hamburg,afd,6259,6807
+22,Hamburg-Wandsbek,Hamburg,afd,11483,11284
+23,Hamburg-Bergedorf – Harburg,Hamburg,afd,12779,12637
+24,Aurich – Emden,Niedersachsen,afd,,11163
+25,Unterems,Niedersachsen,afd,13584,14251
+26,Friesland – Wilhelmshaven – Wittmund,Niedersachsen,afd,10227,10951
+27,Oldenburg – Ammerland,Niedersachsen,afd,8571,8903
+28,Delmenhorst – Wesermarsch – Oldenburg-Land,Niedersachsen,afd,11996,12984
+29,Cuxhaven – Stade II,Niedersachsen,afd,10227,11000
+30,Stade I – Rotenburg II,Niedersachsen,afd,10732,11000
+31,Mittelems,Niedersachsen,afd,8992,9233
+32,Cloppenburg – Vechta,Niedersachsen,afd,12673,12771
+33,Diepholz – Nienburg I,Niedersachsen,afd,9683,10370
+34,Osterholz – Verden,Niedersachsen,afd,,11320
+35,Rotenburg I – Heidekreis,Niedersachsen,afd,9181,9944
+36,Harburg,Niedersachsen,afd,11007,11670
+37,Lüchow-Dannenberg – Lüneburg,Niedersachsen,afd,8598,9148
+38,Osnabrück-Land,Niedersachsen,afd,9416,10068
+39,Stadt Osnabrück,Niedersachsen,afd,6694,6902
+40,Nienburg II – Schaumburg,Niedersachsen,afd,11693,12433
+41,Stadt Hannover I,Niedersachsen,afd,7539,7677
+42,Stadt Hannover II,Niedersachsen,afd,6475,6753
+43,Hannover-Land I,Niedersachsen,afd,12942,13293
+44,Celle – Uelzen,Niedersachsen,afd,14496,14421
+45,Gifhorn – Peine,Niedersachsen,afd,15346,16052
+46,Hameln-Pyrmont – Holzminden,Niedersachsen,afd,11208,11590
+47,Hannover-Land II,Niedersachsen,afd,13377,13850
+48,Hildesheim,Niedersachsen,afd,11386,12161
+49,Salzgitter – Wolfenbüttel,Niedersachsen,afd,14329,14413
+50,Braunschweig,Niedersachsen,afd,8045,8238
+51,Helmstedt – Wolfsburg,Niedersachsen,afd,12339,12241
+52,Goslar – Northeim – Osterode,Niedersachsen,afd,11231,11811
+53,Göttingen,Niedersachsen,afd,,9783
+54,Bremen I,Bremen,afd,9118,9866
+55,Bremen II – Bremerhaven,Bremen,afd,12510,12688
+56,Prignitz – Ostprignitz-Ruppin – Havelland I,Brandenburg,afd,23798,23220
+57,Uckermark – Barnim I,Brandenburg,afd,26166,25744
+58,Oberhavel – Havelland II,Brandenburg,afd,30861,30793
+59,Märkisch-Oderland – Barnim II,Brandenburg,afd,31925,31813
+60,Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I,Brandenburg,afd,23936,23845
+61,Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II,Brandenburg,afd,17302,18657
+62,Dahme-Spreewald – Teltow-Fläming III – Oberspreewald-Lausitz I,Brandenburg,afd,33713,34395
+63,Frankfurt (Oder) – Oder-Spree,Brandenburg,afd,30180,28336
+64,Cottbus – Spree-Neiße,Brandenburg,afd,32529,30728
+65,Elbe-Elster – Oberspreewald-Lausitz II,Brandenburg,afd,29559,29849
+66,Altmark,Sachsen-Anhalt,afd,20875,20630
+67,Börde – Jerichower Land,Sachsen-Anhalt,afd,29843,29603
+68,Harz,Sachsen-Anhalt,afd,24947,24788
+69,Magdeburg,Sachsen-Anhalt,afd,23398,23446
+70,Dessau – Wittenberg,Sachsen-Anhalt,afd,22002,21631
+71,Anhalt,Sachsen-Anhalt,afd,33226,31002
+72,Halle,Sachsen-Anhalt,afd,22516,21913
+73,Burgenland – Saalekreis,Sachsen-Anhalt,afd,32328,31000
+74,Mansfeld,Sachsen-Anhalt,afd,32933,31474
+75,Berlin-Mitte,Berlin,afd,7597,7734
+76,Berlin-Pankow,Berlin,afd,16237,15962
+77,Berlin-Reinickendorf,Berlin,afd,12245,12291
+78,Berlin-Spandau – Charlottenburg Nord,Berlin,afd,12416,12765
+79,Berlin-Steglitz-Zehlendorf,Berlin,afd,9221,9905
+80,Berlin-Charlottenburg-Wilmersdorf,Berlin,afd,6530,7359
+81,Berlin-Tempelhof-Schöneberg,Berlin,afd,10007,10912
+82,Berlin-Neukölln,Berlin,afd,10152,10713
+83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,Berlin,afd,6615,7004
+84,Berlin-Treptow-Köpenick,Berlin,afd,17796,19127
+85,Berlin-Marzahn-Hellersdorf,Berlin,afd,20854,22536
+86,Berlin-Lichtenberg,Berlin,afd,17352,17817
+87,Aachen I,Nordrhein-Westfalen,afd,5314,5427
+88,Aachen II,Nordrhein-Westfalen,afd,12632,12408
+89,Heinsberg,Nordrhein-Westfalen,afd,10965,11358
+90,Düren,Nordrhein-Westfalen,afd,12947,13171
+91,Rhein-Erft-Kreis I,Nordrhein-Westfalen,afd,13537,13417
+92,Euskirchen – Rhein-Erft-Kreis II,Nordrhein-Westfalen,afd,15098,14893
+93,Köln I,Nordrhein-Westfalen,afd,8789,8363
+94,Köln II,Nordrhein-Westfalen,afd,5587,5891
+95,Köln III,Nordrhein-Westfalen,afd,8015,7876
+96,Bonn,Nordrhein-Westfalen,afd,7448,7749
+97,Rhein-Sieg-Kreis I,Nordrhein-Westfalen,afd,13043,13604
+98,Rhein-Sieg-Kreis II,Nordrhein-Westfalen,afd,10385,10551
+99,Oberbergischer Kreis,Nordrhein-Westfalen,afd,15071,15211
+100,Rheinisch-Bergischer Kreis,Nordrhein-Westfalen,afd,9512,10055
+101,Leverkusen – Köln IV,Nordrhein-Westfalen,afd,10797,10966
+102,Wuppertal I,Nordrhein-Westfalen,afd,11995,12090
+103,Solingen – Remscheid – Wuppertal II,Nordrhein-Westfalen,afd,12335,12497
+104,Mettmann I,Nordrhein-Westfalen,afd,10704,10658
+105,Mettmann II,Nordrhein-Westfalen,afd,8895,9105
+106,Düsseldorf I,Nordrhein-Westfalen,afd,7002,7495
+107,Düsseldorf II,Nordrhein-Westfalen,afd,8214,8503
+108,Neuss I,Nordrhein-Westfalen,afd,10800,11298
+109,Mönchengladbach,Nordrhein-Westfalen,afd,9915,9641
+110,Krefeld I – Neuss II,Nordrhein-Westfalen,afd,9149,9341
+111,Viersen,Nordrhein-Westfalen,afd,10312,10357
+112,Kleve,Nordrhein-Westfalen,afd,9788,9633
+113,Wesel I,Nordrhein-Westfalen,afd,10842,10994
+114,Krefeld II – Wesel II,Nordrhein-Westfalen,afd,9077,9189
+115,Duisburg I,Nordrhein-Westfalen,afd,11101,9802
+116,Duisburg II,Nordrhein-Westfalen,afd,13363,11834
+117,Oberhausen – Wesel III,Nordrhein-Westfalen,afd,13599,13099
+118,Mülheim – Essen I,Nordrhein-Westfalen,afd,11704,11135
+119,Essen II,Nordrhein-Westfalen,afd,12015,11521
+120,Essen III,Nordrhein-Westfalen,afd,8225,8397
+121,Recklinghausen I,Nordrhein-Westfalen,afd,11087,10927
+122,Recklinghausen II,Nordrhein-Westfalen,afd,13108,12522
+123,Gelsenkirchen,Nordrhein-Westfalen,afd,15555,14204
+124,Steinfurt I – Borken I,Nordrhein-Westfalen,afd,8482,8385
+125,Bottrop – Recklinghausen III,Nordrhein-Westfalen,afd,14067,13891
+126,Borken II,Nordrhein-Westfalen,afd,7909,7724
+127,Coesfeld – Steinfurt II,Nordrhein-Westfalen,afd,7241,7341
+128,Steinfurt III,Nordrhein-Westfalen,afd,8785,9253
+129,Münster,Nordrhein-Westfalen,afd,5234,5599
+130,Warendorf,Nordrhein-Westfalen,afd,10209,10530
+131,Gütersloh I,Nordrhein-Westfalen,afd,12812,13298
+132,Bielefeld – Gütersloh II,Nordrhein-Westfalen,afd,12295,12445
+133,Herford – Minden-Lübbecke II,Nordrhein-Westfalen,afd,15852,16146
+134,Minden-Lübbecke I,Nordrhein-Westfalen,afd,13441,13890
+135,Lippe I,Nordrhein-Westfalen,afd,16214,16782
+136,Höxter – Lippe II,Nordrhein-Westfalen,afd,11244,11535
+137,Paderborn – Gütersloh III,Nordrhein-Westfalen,afd,13152,14360
+138,Hagen – Ennepe-Ruhr-Kreis I,Nordrhein-Westfalen,afd,14418,13747
+139,Ennepe-Ruhr-Kreis II,Nordrhein-Westfalen,afd,9731,9654
+140,Bochum I,Nordrhein-Westfalen,afd,,10235
+141,Herne – Bochum II,Nordrhein-Westfalen,afd,11849,11882
+142,Dortmund I,Nordrhein-Westfalen,afd,10577,10746
+143,Dortmund II,Nordrhein-Westfalen,afd,11816,11290
+144,Unna I,Nordrhein-Westfalen,afd,11736,11428
+145,Hamm – Unna II,Nordrhein-Westfalen,afd,15562,15497
+146,Soest,Nordrhein-Westfalen,afd,13992,14206
+147,Hochsauerlandkreis,Nordrhein-Westfalen,afd,10068,11532
+148,Siegen-Wittgenstein,Nordrhein-Westfalen,afd,14422,14718
+149,Olpe – Märkischer Kreis I,Nordrhein-Westfalen,afd,13104,13100
+150,Märkischer Kreis II,Nordrhein-Westfalen,afd,12935,13083
+151,Nordsachsen,Sachsen,afd,32706,32067
+152,Leipzig I,Sachsen,afd,26451,25888
+153,Leipzig II,Sachsen,afd,20668,20212
+154,Leipzig-Land,Sachsen,afd,39344,38457
+155,Meißen,Sachsen,afd,45707,43944
+156,Bautzen I,Sachsen,afd,52492,50051
+157,Görlitz,Sachsen,afd,53971,49124
+158,Sächsische Schweiz-Osterzgebirge,Sachsen,afd,50206,48582
+159,Dresden I,Sachsen,afd,33779,32122
+160,Dresden II – Bautzen II,Sachsen,afd,34973,35996
+161,Mittelsachsen,Sachsen,afd,48720,43819
+162,Chemnitz,Sachsen,afd,30499,30086
+163,Chemnitzer Umland – Erzgebirgskreis II,Sachsen,afd,39264,37180
+164,Erzgebirgskreis I,Sachsen,afd,50571,48795
+165,Zwickau,Sachsen,afd,37132,36597
+166,Vogtlandkreis,Sachsen,afd,36392,34116
+167,Waldeck,Hessen,afd,12536,12897
+168,Kassel,Hessen,afd,11349,12128
+169,Werra-Meißner – Hersfeld-Rotenburg,Hessen,afd,14202,14898
+170,Schwalm-Eder,Hessen,afd,14379,15048
+171,Marburg,Hessen,afd,12590,12541
+172,Lahn-Dill,Hessen,afd,15816,17509
+173,Gießen,Hessen,afd,14440,14786
+174,Fulda,Hessen,afd,24505,21442
+175,Main-Kinzig – Wetterau II – Schotten,Hessen,afd,17588,17080
+176,Hochtaunus,Hessen,afd,10709,11165
+177,Wetterau I,Hessen,afd,11318,11680
+178,Rheingau-Taunus – Limburg,Hessen,afd,13547,14522
+179,Wiesbaden,Hessen,afd,9192,9587
+180,Hanau,Hessen,afd,13364,13258
+181,Main-Taunus,Hessen,afd,10577,10415
+182,Frankfurt am Main I,Hessen,afd,7909,7846
+183,Frankfurt am Main II,Hessen,afd,7990,8188
+184,Groß-Gerau,Hessen,afd,10880,11246
+185,Offenbach,Hessen,afd,11851,12055
+186,Darmstadt,Hessen,afd,11210,12194
+187,Odenwald,Hessen,afd,14961,15983
+188,Bergstraße,Hessen,afd,14351,14376
+189,Eichsfeld – Nordhausen – Kyffhäuserkreis,Thüringen,afd,34643,34295
+190,Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis,Thüringen,afd,38166,37732
+191,Jena – Sömmerda – Weimarer Land I,Thüringen,afd,29578,30264
+192,Gotha – Ilm-Kreis,Thüringen,afd,37244,36509
+193,Erfurt – Weimar – Weimarer Land II,Thüringen,afd,27234,26805
+194,Gera – Greiz – Altenburger Land,Thüringen,afd,48043,46667
+195,Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis,Thüringen,afd,48175,46379
+196,Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg,Thüringen,afd,35887,44573
+197,Neuwied,Rheinland-Pfalz,afd,16812,17505
+198,Ahrweiler,Rheinland-Pfalz,afd,10823,11322
+199,Koblenz,Rheinland-Pfalz,afd,9753,10426
+200,Mosel/Rhein-Hunsrück,Rheinland-Pfalz,afd,10645,11061
+201,Kreuznach,Rheinland-Pfalz,afd,12973,13510
+202,Bitburg,Rheinland-Pfalz,afd,7947,8784
+203,Trier,Rheinland-Pfalz,afd,8220,8995
+204,Montabaur,Rheinland-Pfalz,afd,14024,14499
+205,Mainz,Rheinland-Pfalz,afd,10316,10789
+206,Worms,Rheinland-Pfalz,afd,16043,17033
+207,Ludwigshafen/Frankenthal,Rheinland-Pfalz,afd,17740,18075
+208,Neustadt – Speyer,Rheinland-Pfalz,afd,17204,17499
+209,Kaiserslautern,Rheinland-Pfalz,afd,20002,20702
+210,Pirmasens,Rheinland-Pfalz,afd,16462,17129
+211,Südpfalz,Rheinland-Pfalz,afd,16658,17703
+212,Altötting,Bayern,afd,14218,13941
+213,Erding – Ebersberg,Bayern,afd,11447,12226
+214,Freising,Bayern,afd,18041,17515
+215,Fürstenfeldbruck,Bayern,afd,13056,13209
+216,Ingolstadt,Bayern,afd,17806,18694
+217,München-Nord,Bayern,afd,7588,8250
+218,München-Ost,Bayern,afd,8058,8978
+219,München-Süd,Bayern,afd,7640,7909
+220,München-West/Mitte,Bayern,afd,7594,8403
+221,München-Land,Bayern,afd,9816,10488
+222,Rosenheim,Bayern,afd,15767,16578
+223,Bad Tölz-Wolfratshausen – Miesbach,Bayern,afd,,10909
+224,Starnberg – Landsberg am Lech,Bayern,afd,10695,11050
+225,Traunstein,Bayern,afd,12668,14026
+226,Weilheim,Bayern,afd,9696,10886
+227,Deggendorf,Bayern,afd,17432,17911
+228,Landshut,Bayern,afd,19186,19973
+229,Passau,Bayern,afd,16212,16020
+230,Rottal-Inn,Bayern,afd,16808,16384
+231,Straubing,Bayern,afd,16792,17400
+232,Amberg,Bayern,afd,17811,17950
+233,Regensburg,Bayern,afd,16556,17342
+234,Schwandorf,Bayern,afd,23141,23507
+235,Weiden,Bayern,afd,13522,14897
+236,Bamberg,Bayern,afd,13279,14284
+237,Bayreuth,Bayern,afd,10777,11635
+238,Coburg,Bayern,afd,11873,12837
+239,Hof,Bayern,afd,14705,14560
+240,Kulmbach,Bayern,afd,14415,15774
+241,Ansbach,Bayern,afd,18417,19141
+242,Erlangen,Bayern,afd,10671,10872
+243,Fürth,Bayern,afd,16857,17692
+244,Nürnberg-Nord,Bayern,afd,8485,8887
+245,Nürnberg-Süd,Bayern,afd,13118,12898
+246,Roth,Bayern,afd,14943,16042
+247,Aschaffenburg,Bayern,afd,13955,13715
+248,Bad Kissingen,Bayern,afd,17131,18435
+249,Main-Spessart,Bayern,afd,12575,13919
+250,Schweinfurt,Bayern,afd,15467,15686
+251,Würzburg,Bayern,afd,,12214
+252,Augsburg-Stadt,Bayern,afd,13431,13888
+253,Augsburg-Land,Bayern,afd,19660,19481
+254,Donau-Ries,Bayern,afd,15723,17135
+255,Neu-Ulm,Bayern,afd,22525,22323
+256,Oberallgäu,Bayern,afd,14475,14350
+257,Ostallgäu,Bayern,afd,20020,19772
+258,Stuttgart I,Baden-Württemberg,afd,6295,6590
+259,Stuttgart II,Baden-Württemberg,afd,9603,9539
+260,Böblingen,Baden-Württemberg,afd,16176,16810
+261,Esslingen,Baden-Württemberg,afd,9123,9733
+262,Nürtingen,Baden-Württemberg,afd,13592,14321
+263,Göppingen,Baden-Württemberg,afd,15818,15413
+264,Waiblingen,Baden-Württemberg,afd,15195,15473
+265,Ludwigsburg,Baden-Württemberg,afd,14394,14319
+266,Neckar-Zaber,Baden-Württemberg,afd,18478,18701
+267,Heilbronn,Baden-Württemberg,afd,23092,23829
+268,Schwäbisch Hall – Hohenlohe,Baden-Württemberg,afd,20579,21787
+269,Backnang – Schwäbisch Gmünd,Baden-Württemberg,afd,15822,15990
+270,Aalen – Heidenheim,Baden-Württemberg,afd,16973,17920
+271,Karlsruhe-Stadt,Baden-Württemberg,afd,10808,10773
+272,Karlsruhe-Land,Baden-Württemberg,afd,14964,15869
+273,Rastatt,Baden-Württemberg,afd,16454,16331
+274,Heidelberg,Baden-Württemberg,afd,10823,10821
+275,Mannheim,Baden-Württemberg,afd,13772,12843
+276,Odenwald – Tauber,Baden-Württemberg,afd,19372,19208
+277,Rhein-Neckar,Baden-Württemberg,afd,15250,15647
+278,Bruchsal – Schwetzingen,Baden-Württemberg,afd,17352,17461
+279,Pforzheim,Baden-Württemberg,afd,22943,22030
+280,Calw,Baden-Württemberg,afd,18668,19473
+281,Freiburg,Baden-Württemberg,afd,8107,8854
+282,Lörrach – Müllheim,Baden-Württemberg,afd,13981,14195
+283,Emmendingen – Lahr,Baden-Württemberg,afd,14397,14969
+284,Offenburg,Baden-Württemberg,afd,13875,15319
+285,Rottweil – Tuttlingen,Baden-Württemberg,afd,20292,19747
+286,Schwarzwald-Baar,Baden-Württemberg,afd,12794,13101
+287,Konstanz,Baden-Württemberg,afd,13487,13341
+288,Waldshut,Baden-Württemberg,afd,11406,11251
+289,Reutlingen,Baden-Württemberg,afd,15354,15651
+290,Tübingen,Baden-Württemberg,afd,12485,12549
+291,Ulm,Baden-Württemberg,afd,15930,16045
+292,Biberach,Baden-Württemberg,afd,13384,14216
+293,Bodensee,Baden-Württemberg,afd,12584,11916
+294,Ravensburg,Baden-Württemberg,afd,11730,12651
+295,Zollernalb – Sigmaringen,Baden-Württemberg,afd,15553,16476
+296,Saarbrücken,Saarland,afd,12569,13005
+297,Saarlouis,Saarland,afd,15111,15651
+298,St. Wendel,Saarland,afd,12339,12899
+299,Homburg,Saarland,afd,16209,16066
+1,Flensburg – Schleswig,Schleswig-Holstein,cdu,41721,361417
+2,Nordfriesland – Dithmarschen Nord,Schleswig-Holstein,cdu,43771,35518
+3,Steinburg – Dithmarschen Süd,Schleswig-Holstein,cdu,39434,32843
+4,Rendsburg-Eckernförde,Schleswig-Holstein,cdu,47697,38527
+5,Kiel,Schleswig-Holstein,cdu,28341,23867
+6,Plön – Neumünster,Schleswig-Holstein,cdu,36869,30290
+7,Pinneberg,Schleswig-Holstein,cdu,48888,41347
+8,Segeberg – Stormarn-Mitte,Schleswig-Holstein,cdu,55264,44284
+9,Ostholstein – Stormarn-Nord,Schleswig-Holstein,cdu,42989,35564
+10,Herzogtum Lauenburg – Stormarn-Süd,Schleswig-Holstein,cdu,51838,45372
+11,Lübeck,Schleswig-Holstein,cdu,24960,20757
+12,Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I,Mecklenburg-Vorpommern,cdu,31721,26403
+13,Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I,Mecklenburg-Vorpommern,cdu,26209,24623
+14,Rostock – Landkreis Rostock II,Mecklenburg-Vorpommern,cdu,27666,23106
+15,Vorpommern-Rügen – Vorpommern-Greifswald I,Mecklenburg-Vorpommern,cdu,33898,30911
+16,Mecklenburgische Seenplatte I – Vorpommern-Greifswald II,Mecklenburg-Vorpommern,cdu,31182,28684
+17,Mecklenburgische Seenplatte II – Landkreis Rostock III,Mecklenburg-Vorpommern,cdu,29949,26407
+18,Hamburg-Mitte,Hamburg,cdu,23241,19964
+19,Hamburg-Altona,Hamburg,cdu,25516,22539
+20,Hamburg-Eimsbüttel,Hamburg,cdu,27436,23845
+21,Hamburg-Nord,Hamburg,cdu,43833,34406
+22,Hamburg-Wandsbek,Hamburg,cdu,33081,29102
+23,Hamburg-Bergedorf – Harburg,Hamburg,cdu,26514,25441
+24,Aurich – Emden,Niedersachsen,cdu,24013,24061
+25,Unterems,Niedersachsen,cdu,77143,52067
+26,Friesland – Wilhelmshaven – Wittmund,Niedersachsen,cdu,29286,28535
+27,Oldenburg – Ammerland,Niedersachsen,cdu,34291,32097
+28,Delmenhorst – Wesermarsch – Oldenburg-Land,Niedersachsen,cdu,40396,36637
+29,Cuxhaven – Stade II,Niedersachsen,cdu,42085,36586
+30,Stade I – Rotenburg II,Niedersachsen,cdu,52063,39965
+31,Mittelems,Niedersachsen,cdu,72515,60728
+32,Cloppenburg – Vechta,Niedersachsen,cdu,80133,62838
+33,Diepholz – Nienburg I,Niedersachsen,cdu,49112,36915
+34,Osterholz – Verden,Niedersachsen,cdu,50250,36169
+35,Rotenburg I – Heidekreis,Niedersachsen,cdu,32716,31115
+36,Harburg,Niedersachsen,cdu,46710,39848
+37,Lüchow-Dannenberg – Lüneburg,Niedersachsen,cdu,34293,29017
+38,Osnabrück-Land,Niedersachsen,cdu,54536,42864
+39,Stadt Osnabrück,Niedersachsen,cdu,43318,34461
+40,Nienburg II – Schaumburg,Niedersachsen,cdu,43818,33969
+41,Stadt Hannover I,Niedersachsen,cdu,27286,23410
+42,Stadt Hannover II,Niedersachsen,cdu,26196,22538
+43,Hannover-Land I,Niedersachsen,cdu,55183,44530
+44,Celle – Uelzen,Niedersachsen,cdu,51497,40986
+45,Gifhorn – Peine,Niedersachsen,cdu,40280,37840
+46,Hameln-Pyrmont – Holzminden,Niedersachsen,cdu,33575,29809
+47,Hannover-Land II,Niedersachsen,cdu,45721,40612
+48,Hildesheim,Niedersachsen,cdu,41282,36506
+49,Salzgitter – Wolfenbüttel,Niedersachsen,cdu,39528,33445
+50,Braunschweig,Niedersachsen,cdu,31272,25927
+51,Helmstedt – Wolfsburg,Niedersachsen,cdu,34367,31827
+52,Goslar – Northeim – Osterode,Niedersachsen,cdu,47188,33602
+53,Göttingen,Niedersachsen,cdu,42955,34587
+54,Bremen I,Bremen,cdu,39488,32435
+55,Bremen II – Bremerhaven,Bremen,cdu,28384,23996
+56,Prignitz – Ostprignitz-Ruppin – Havelland I,Brandenburg,cdu,23433,19416
+57,Uckermark – Barnim I,Brandenburg,cdu,22990,19825
+58,Oberhavel – Havelland II,Brandenburg,cdu,39992,33373
+59,Märkisch-Oderland – Barnim II,Brandenburg,cdu,40811,26260
+60,Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I,Brandenburg,cdu,29239,22276
+61,Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II,Brandenburg,cdu,26050,26288
+62,Dahme-Spreewald – Teltow-Fläming III – Oberspreewald-Lausitz I,Brandenburg,cdu,38092,31302
+63,Frankfurt (Oder) – Oder-Spree,Brandenburg,cdu,22876,19890
+64,Cottbus – Spree-Neiße,Brandenburg,cdu,21071,17502
+65,Elbe-Elster – Oberspreewald-Lausitz II,Brandenburg,cdu,19130,17777
+66,Altmark,Sachsen-Anhalt,cdu,23431,22567
+67,Börde – Jerichower Land,Sachsen-Anhalt,cdu,36641,32720
+68,Harz,Sachsen-Anhalt,cdu,37886,30510
+69,Magdeburg,Sachsen-Anhalt,cdu,34175,28698
+70,Dessau – Wittenberg,Sachsen-Anhalt,cdu,39043,26740
+71,Anhalt,Sachsen-Anhalt,cdu,32293,29822
+72,Halle,Sachsen-Anhalt,cdu,30498,26281
+73,Burgenland – Saalekreis,Sachsen-Anhalt,cdu,32649,26535
+74,Mansfeld,Sachsen-Anhalt,cdu,32731,28411
+75,Berlin-Mitte,Berlin,cdu,20002,16856
+76,Berlin-Pankow,Berlin,cdu,23039,21261
+77,Berlin-Reinickendorf,Berlin,cdu,34148,30246
+78,Berlin-Spandau – Charlottenburg Nord,Berlin,cdu,28899,26260
+79,Berlin-Steglitz-Zehlendorf,Berlin,cdu,48949,39980
+80,Berlin-Charlottenburg-Wilmersdorf,Berlin,cdu,34157,29105
+81,Berlin-Tempelhof-Schöneberg,Berlin,cdu,38375,31836
+82,Berlin-Neukölln,Berlin,cdu,25578,22691
+83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,Berlin,cdu,13078,11985
+84,Berlin-Treptow-Köpenick,Berlin,cdu,21141,20557
+85,Berlin-Marzahn-Hellersdorf,Berlin,cdu,39403,21869
+86,Berlin-Lichtenberg,Berlin,cdu,17693,16874
+87,Aachen I,Nordrhein-Westfalen,cdu,35562,31772
+88,Aachen II,Nordrhein-Westfalen,cdu,54809,49839
+89,Heinsberg,Nordrhein-Westfalen,cdu,57093,46466
+90,Düren,Nordrhein-Westfalen,cdu,55718,46217
+91,Rhein-Erft-Kreis I,Nordrhein-Westfalen,cdu,63633,55066
+92,Euskirchen – Rhein-Erft-Kreis II,Nordrhein-Westfalen,cdu,65979,58085
+93,Köln I,Nordrhein-Westfalen,cdu,31636,27695
+94,Köln II,Nordrhein-Westfalen,cdu,50918,41834
+95,Köln III,Nordrhein-Westfalen,cdu,28674,27485
+96,Bonn,Nordrhein-Westfalen,cdu,44872,41551
+97,Rhein-Sieg-Kreis I,Nordrhein-Westfalen,cdu,60775,51481
+98,Rhein-Sieg-Kreis II,Nordrhein-Westfalen,cdu,70143,51795
+99,Oberbergischer Kreis,Nordrhein-Westfalen,cdu,53757,44018
+100,Rheinisch-Bergischer Kreis,Nordrhein-Westfalen,cdu,31197,33246
+101,Leverkusen – Köln IV,Nordrhein-Westfalen,cdu,31197,33246
+102,Wuppertal I,Nordrhein-Westfalen,cdu,31960,30526
+103,Solingen – Remscheid – Wuppertal II,Nordrhein-Westfalen,cdu,44771,39420
+104,Mettmann I,Nordrhein-Westfalen,cdu,47326,43354
+105,Mettmann II,Nordrhein-Westfalen,cdu,38425,33256
+106,Düsseldorf I,Nordrhein-Westfalen,cdu,54154,44888
+107,Düsseldorf II,Nordrhein-Westfalen,cdu,34801,31639
+108,Neuss I,Nordrhein-Westfalen,cdu,57443,48164
+109,Mönchengladbach,Nordrhein-Westfalen,cdu,45554,36555
+110,Krefeld I – Neuss II,Nordrhein-Westfalen,cdu,51498,45633
+111,Viersen,Nordrhein-Westfalen,cdu,62124,52898
+112,Kleve,Nordrhein-Westfalen,cdu,63699,54792
+113,Wesel I,Nordrhein-Westfalen,cdu,47447,42544
+114,Krefeld II – Wesel II,Nordrhein-Westfalen,cdu,37026,32308
+115,Duisburg I,Nordrhein-Westfalen,cdu,24299,23165
+116,Duisburg II,Nordrhein-Westfalen,cdu,19402,18168
+117,Oberhausen – Wesel III,Nordrhein-Westfalen,cdu,32276,30770
+118,Mülheim – Essen I,Nordrhein-Westfalen,cdu,33091,32698
+119,Essen II,Nordrhein-Westfalen,cdu,23735,21039
+120,Essen III,Nordrhein-Westfalen,cdu,46639,37108
+121,Recklinghausen I,Nordrhein-Westfalen,cdu,30845,27988
+122,Recklinghausen II,Nordrhein-Westfalen,cdu,38326,33611
+123,Gelsenkirchen,Nordrhein-Westfalen,cdu,21954,22091
+124,Steinfurt I – Borken I,Nordrhein-Westfalen,cdu,62322,52625
+125,Bottrop – Recklinghausen III,Nordrhein-Westfalen,cdu,39830,36814
+126,Borken II,Nordrhein-Westfalen,cdu,70334,59104
+127,Coesfeld – Steinfurt II,Nordrhein-Westfalen,cdu,65402,55228
+128,Steinfurt III,Nordrhein-Westfalen,cdu,52445,42527
+129,Münster,Nordrhein-Westfalen,cdu,51095,43788
+130,Warendorf,Nordrhein-Westfalen,cdu,59635,51728
+131,Gütersloh I,Nordrhein-Westfalen,cdu,71185,52422
+132,Bielefeld – Gütersloh II,Nordrhein-Westfalen,cdu,40928,37355
+133,Herford – Minden-Lübbecke II,Nordrhein-Westfalen,cdu,45137,39769
+134,Minden-Lübbecke I,Nordrhein-Westfalen,cdu,39675,35820
+135,Lippe I,Nordrhein-Westfalen,cdu,44618,38974
+136,Höxter – Lippe II,Nordrhein-Westfalen,cdu,53297,43267
+137,Paderborn – Gütersloh III,Nordrhein-Westfalen,cdu,84670,58421
+138,Hagen – Ennepe-Ruhr-Kreis I,Nordrhein-Westfalen,cdu,37721,34212
+139,Ennepe-Ruhr-Kreis II,Nordrhein-Westfalen,cdu,33357,29856
+140,Bochum I,Nordrhein-Westfalen,cdu,32961,29863
+141,Herne – Bochum II,Nordrhein-Westfalen,cdu,24068,23166
+142,Dortmund I,Nordrhein-Westfalen,cdu,30051,27797
+143,Dortmund II,Nordrhein-Westfalen,cdu,28897,27650
+144,Unna I,Nordrhein-Westfalen,cdu,36810,31995
+145,Hamm – Unna II,Nordrhein-Westfalen,cdu,44266,40444
+146,Soest,Nordrhein-Westfalen,cdu,58791,51696
+147,Hochsauerlandkreis,Nordrhein-Westfalen,cdu,62811,52018
+148,Siegen-Wittgenstein,Nordrhein-Westfalen,cdu,54043,42157
+149,Olpe – Märkischer Kreis I,Nordrhein-Westfalen,cdu,56879,50364
+150,Märkischer Kreis II,Nordrhein-Westfalen,cdu,47935,40363
+151,Nordsachsen,Sachsen,cdu,26882,22998
+152,Leipzig I,Sachsen,cdu,34100,24949
+153,Leipzig II,Sachsen,cdu,29538,23558
+154,Leipzig-Land,Sachsen,cdu,39060,32708
+155,Meißen,Sachsen,cdu,32924,25907
+156,Bautzen I,Sachsen,cdu,40928,29213
+157,Görlitz,Sachsen,cdu,39299,27633
+158,Sächsische Schweiz-Osterzgebirge,Sachsen,cdu,29173,26028
+159,Dresden I,Sachsen,cdu,37809,27708
+160,Dresden II – Bautzen II,Sachsen,cdu,35012,26035
+161,Mittelsachsen,Sachsen,cdu,34636,25603
+162,Chemnitz,Sachsen,cdu,25802,20713
+163,Chemnitzer Umland – Erzgebirgskreis II,Sachsen,cdu,32110,24661
+164,Erzgebirgskreis I,Sachsen,cdu,40550,31341
+165,Zwickau,Sachsen,cdu,30792,27024
+166,Vogtlandkreis,Sachsen,cdu,37635,26781
+167,Waldeck,Hessen,cdu,35734,30394
+168,Kassel,Hessen,cdu,32761,28181
+169,Werra-Meißner – Hersfeld-Rotenburg,Hessen,cdu,34525,27867
+170,Schwalm-Eder,Hessen,cdu,33440,29913
+171,Marburg,Hessen,cdu,36528,31040
+172,Lahn-Dill,Hessen,cdu,45441,37724
+173,Gießen,Hessen,cdu,47136,36122
+174,Fulda,Hessen,cdu,61574,50307
+175,Main-Kinzig – Wetterau II – Schotten,Hessen,cdu,37119,32681
+176,Hochtaunus,Hessen,cdu,44549,37331
+177,Wetterau I,Hessen,cdu,38796,32416
+178,Rheingau-Taunus – Limburg,Hessen,cdu,51318,44414
+179,Wiesbaden,Hessen,cdu,35374,28522
+180,Hanau,Hessen,cdu,36019,29220
+181,Main-Taunus,Hessen,cdu,51943,42229
+182,Frankfurt am Main I,Hessen,cdu,31163,25915
+183,Frankfurt am Main II,Hessen,cdu,38996,31661
+184,Groß-Gerau,Hessen,cdu,35334,27301
+185,Offenbach,Hessen,cdu,43330,35743
+186,Darmstadt,Hessen,cdu,42351,34462
+187,Odenwald,Hessen,cdu,49364,42858
+188,Bergstraße,Hessen,cdu,46121,37059
+189,Eichsfeld – Nordhausen – Kyffhäuserkreis,Thüringen,cdu,40600,33664
+190,Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis,Thüringen,cdu,35423,28248
+191,Jena – Sömmerda – Weimarer Land I,Thüringen,cdu,28169,23868
+192,Gotha – Ilm-Kreis,Thüringen,cdu,25920,21825
+193,Erfurt – Weimar – Weimarer Land II,Thüringen,cdu,28636,23578
+194,Gera – Greiz – Altenburger Land,Thüringen,cdu,33068,27304
+195,Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis,Thüringen,cdu,34483,27005
+196,Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg,Thüringen,cdu,37727,27921
+197,Neuwied,Rheinland-Pfalz,cdu,57429,48340
+198,Ahrweiler,Rheinland-Pfalz,cdu,50282,41945
+199,Koblenz,Rheinland-Pfalz,cdu,46074,37958
+200,Mosel/Rhein-Hunsrück,Rheinland-Pfalz,cdu,45364,38664
+201,Kreuznach,Rheinland-Pfalz,cdu,39588,33402
+202,Bitburg,Rheinland-Pfalz,cdu,46227,37020
+203,Trier,Rheinland-Pfalz,cdu,40273,34563
+204,Montabaur,Rheinland-Pfalz,cdu,48608,43125
+205,Mainz,Rheinland-Pfalz,cdu,47208,42709
+206,Worms,Rheinland-Pfalz,cdu,52824,37547
+207,Ludwigshafen/Frankenthal,Rheinland-Pfalz,cdu,38193,33727
+208,Neustadt – Speyer,Rheinland-Pfalz,cdu,51770,41322
+209,Kaiserslautern,Rheinland-Pfalz,cdu,35803,33226
+210,Pirmasens,Rheinland-Pfalz,cdu,39181,33453
+211,Südpfalz,Rheinland-Pfalz,cdu,47851,39424
+212,Altötting,Bayern,cdu,55694,44066
+213,Erding – Ebersberg,Bayern,cdu,70654,55991
+214,Freising,Bayern,cdu,69687,62927
+215,Fürstenfeldbruck,Bayern,cdu,72722,63944
+216,Ingolstadt,Bayern,cdu,83663,64559
+217,München-Nord,Bayern,cdu,44854,39996
+218,München-Ost,Bayern,cdu,61111,49284
+219,München-Süd,Bayern,cdu,46058,40585
+220,München-West/Mitte,Bayern,cdu,53302,45549
+221,München-Land,Bayern,cdu,77521,64664
+222,Rosenheim,Bayern,cdu,68648,59119
+223,Bad Tölz-Wolfratshausen – Miesbach,Bayern,cdu,55500,46305
+224,Starnberg – Landsberg am Lech,Bayern,cdu,68594,57919
+225,Traunstein,Bayern,cdu,59525,51404
+226,Weilheim,Bayern,cdu,57180,48178
+227,Deggendorf,Bayern,cdu,47268,42155
+228,Landshut,Bayern,cdu,70683,64381
+229,Passau,Bayern,cdu,41529,44215
+230,Rottal-Inn,Bayern,cdu,46493,45688
+231,Straubing,Bayern,cdu,58484,46738
+232,Amberg,Bayern,cdu,69257,60414
+233,Regensburg,Bayern,cdu,69839,61188
+234,Schwandorf,Bayern,cdu,60927,59438
+235,Weiden,Bayern,cdu,50576,46454
+236,Bamberg,Bayern,cdu,54725,49464
+237,Bayreuth,Bayern,cdu,54465,43765
+238,Coburg,Bayern,cdu,44890,39345
+239,Hof,Bayern,cdu,51312,41307
+240,Kulmbach,Bayern,cdu,65163,49390
+241,Ansbach,Bayern,cdu,73313,63302
+242,Erlangen,Bayern,cdu,54275,44696
+243,Fürth,Bayern,cdu,65875,58978
+244,Nürnberg-Nord,Bayern,cdu,41023,34350
+245,Nürnberg-Süd,Bayern,cdu,44174,38641
+246,Roth,Bayern,cdu,71477,60979
+247,Aschaffenburg,Bayern,cdu,59261,45734
+248,Bad Kissingen,Bayern,cdu,67454,65060
+249,Main-Spessart,Bayern,cdu,60490,54100
+250,Schweinfurt,Bayern,cdu,63694,54439
+251,Würzburg,Bayern,cdu,67646,55954
+252,Augsburg-Stadt,Bayern,cdu,42779,38653
+253,Augsburg-Land,Bayern,cdu,82420,67884
+254,Donau-Ries,Bayern,cdu,64045,54929
+255,Neu-Ulm,Bayern,cdu,69687,59045
+256,Oberallgäu,Bayern,cdu,53568,55012
+257,Ostallgäu,Bayern,cdu,76399,62638
+258,Stuttgart I,Baden-Württemberg,cdu,36601,31534
+259,Stuttgart II,Baden-Württemberg,cdu,34301,28403
+260,Böblingen,Baden-Württemberg,cdu,57504,50676
+261,Esslingen,Baden-Württemberg,cdu,41976,33175
+262,Nürtingen,Baden-Württemberg,cdu,49482,42807
+263,Göppingen,Baden-Württemberg,cdu,41556,35078
+264,Waiblingen,Baden-Württemberg,cdu,50565,44987
+265,Ludwigsburg,Baden-Württemberg,cdu,50293,42304
+266,Neckar-Zaber,Baden-Württemberg,cdu,56247,46316
+267,Heilbronn,Baden-Württemberg,cdu,50298,43324
+268,Schwäbisch Hall – Hohenlohe,Baden-Württemberg,cdu,54896,41950
+269,Backnang – Schwäbisch Gmünd,Baden-Württemberg,cdu,41151,35030
+270,Aalen – Heidenheim,Baden-Württemberg,cdu,61781,45819
+271,Karlsruhe-Stadt,Baden-Württemberg,cdu,30920,27996
+272,Karlsruhe-Land,Baden-Württemberg,cdu,50581,42831
+273,Rastatt,Baden-Württemberg,cdu,50991,41499
+274,Heidelberg,Baden-Württemberg,cdu,42582,36783
+275,Mannheim,Baden-Württemberg,cdu,27981,25671
+276,Odenwald – Tauber,Baden-Württemberg,cdu,57391,48866
+277,Rhein-Neckar,Baden-Württemberg,cdu,43307,38731
+278,Bruchsal – Schwetzingen,Baden-Württemberg,cdu,44465,38866
+279,Pforzheim,Baden-Württemberg,cdu,46289,39323
+280,Calw,Baden-Württemberg,cdu,51214,42847
+281,Freiburg,Baden-Württemberg,cdu,37109,31300
+282,Lörrach – Müllheim,Baden-Württemberg,cdu,43511,38499
+283,Emmendingen – Lahr,Baden-Württemberg,cdu,46410,41326
+284,Offenburg,Baden-Württemberg,cdu,54139,40211
+285,Rottweil – Tuttlingen,Baden-Württemberg,cdu,46535,40818
+286,Schwarzwald-Baar,Baden-Württemberg,cdu,44188,32317
+287,Konstanz,Baden-Württemberg,cdu,53360,36208
+288,Waldshut,Baden-Württemberg,cdu,45192,35474
+289,Reutlingen,Baden-Württemberg,cdu,49631,39505
+290,Tübingen,Baden-Württemberg,cdu,43021,34773
+291,Ulm,Baden-Württemberg,cdu,57611,46806
+292,Biberach,Baden-Württemberg,cdu,46193,40205
+293,Bodensee,Baden-Württemberg,cdu,41622,36568
+294,Ravensburg,Baden-Württemberg,cdu,44591,38922
+295,Zollernalb – Sigmaringen,Baden-Württemberg,cdu,41106,39332
+296,Saarbrücken,Saarland,cdu,35252,28798
+297,Saarlouis,Saarland,cdu,43669,38084
+298,St. Wendel,Saarland,cdu,43923,36246
+299,Homburg,Saarland,cdu,36474,32006
+1,Flensburg – Schleswig,Schleswig-Holstein,fdp,12298,19188
+2,Nordfriesland – Dithmarschen Nord,Schleswig-Holstein,fdp,13963,18350
+3,Steinburg – Dithmarschen Süd,Schleswig-Holstein,fdp,19303,18499
+4,Rendsburg-Eckernförde,Schleswig-Holstein,fdp,12900,19317
+5,Kiel,Schleswig-Holstein,fdp,11499,16168
+6,Plön – Neumünster,Schleswig-Holstein,fdp,12420,15902
+7,Pinneberg,Schleswig-Holstein,fdp,20464,25321
+8,Segeberg – Stormarn-Mitte,Schleswig-Holstein,fdp,20575,27675
+9,Ostholstein – Stormarn-Nord,Schleswig-Holstein,fdp,13288,17986
+10,Herzogtum Lauenburg – Stormarn-Süd,Schleswig-Holstein,fdp,20546,27692
+11,Lübeck,Schleswig-Holstein,fdp,8341,11963
+12,Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I,Mecklenburg-Vorpommern,fdp,11755,13154
+13,Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I,Mecklenburg-Vorpommern,fdp,10322,11629
+14,Rostock – Landkreis Rostock II,Mecklenburg-Vorpommern,fdp,12242,14857
+15,Vorpommern-Rügen – Vorpommern-Greifswald I,Mecklenburg-Vorpommern,fdp,11015,13775
+16,Mecklenburgische Seenplatte I – Vorpommern-Greifswald II,Mecklenburg-Vorpommern,fdp,11168,11438
+17,Mecklenburgische Seenplatte II – Landkreis Rostock III,Mecklenburg-Vorpommern,fdp,9824,10607
+18,Hamburg-Mitte,Hamburg,fdp,14352,18630
+19,Hamburg-Altona,Hamburg,fdp,12409,16558
+20,Hamburg-Eimsbüttel,Hamburg,fdp,12961,18159
+21,Hamburg-Nord,Hamburg,fdp,15783,26165
+22,Hamburg-Wandsbek,Hamburg,fdp,15714,19220
+23,Hamburg-Bergedorf – Harburg,Hamburg,fdp,13343,15670
+24,Aurich – Emden,Niedersachsen,fdp,11784,12099
+25,Unterems,Niedersachsen,fdp,10763,17672
+26,Friesland – Wilhelmshaven – Wittmund,Niedersachsen,fdp,9502,13874
+27,Oldenburg – Ammerland,Niedersachsen,fdp,12858,17673
+28,Delmenhorst – Wesermarsch – Oldenburg-Land,Niedersachsen,fdp,17275,18569
+29,Cuxhaven – Stade II,Niedersachsen,fdp,9622,14052
+30,Stade I – Rotenburg II,Niedersachsen,fdp,12018,16719
+31,Mittelems,Niedersachsen,fdp,17466,21075
+32,Cloppenburg – Vechta,Niedersachsen,fdp,14397,19747
+33,Diepholz – Nienburg I,Niedersachsen,fdp,13671,17627
+34,Osterholz – Verden,Niedersachsen,fdp,13754,15642
+35,Rotenburg I – Heidekreis,Niedersachsen,fdp,7353,12526
+36,Harburg,Niedersachsen,fdp,14395,20425
+37,Lüchow-Dannenberg – Lüneburg,Niedersachsen,fdp,9516,13255
+38,Osnabrück-Land,Niedersachsen,fdp,13003,16653
+39,Stadt Osnabrück,Niedersachsen,fdp,10089,14627
+40,Nienburg II – Schaumburg,Niedersachsen,fdp,8804,14210
+41,Stadt Hannover I,Niedersachsen,fdp,9573,13282
+42,Stadt Hannover II,Niedersachsen,fdp,9543,13288
+43,Hannover-Land I,Niedersachsen,fdp,12557,19551
+44,Celle – Uelzen,Niedersachsen,fdp,13413,17991
+45,Gifhorn – Peine,Niedersachsen,fdp,10739,16238
+46,Hameln-Pyrmont – Holzminden,Niedersachsen,fdp,9102,13624
+47,Hannover-Land II,Niedersachsen,fdp,11883,18319
+48,Hildesheim,Niedersachsen,fdp,11507,15395
+49,Salzgitter – Wolfenbüttel,Niedersachsen,fdp,9545,13465
+50,Braunschweig,Niedersachsen,fdp,9816,14045
+51,Helmstedt – Wolfsburg,Niedersachsen,fdp,9766,13073
+52,Goslar – Northeim – Osterode,Niedersachsen,fdp,8826,14238
+53,Göttingen,Niedersachsen,fdp,15260,15637
+54,Bremen I,Bremen,fdp,13900,18349
+55,Bremen II – Bremerhaven,Bremen,fdp,8453,12057
+56,Prignitz – Ostprignitz-Ruppin – Havelland I,Brandenburg,fdp,7354,9071
+57,Uckermark – Barnim I,Brandenburg,fdp,10964,10421
+58,Oberhavel – Havelland II,Brandenburg,fdp,17319,19799
+59,Märkisch-Oderland – Barnim II,Brandenburg,fdp,12271,14936
+60,Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I,Brandenburg,fdp,9266,11930
+61,Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II,Brandenburg,fdp,16870,20219
+62,Dahme-Spreewald – Teltow-Fläming III – Oberspreewald-Lausitz I,Brandenburg,fdp,15080,18904
+63,Frankfurt (Oder) – Oder-Spree,Brandenburg,fdp,9974,12431
+64,Cottbus – Spree-Neiße,Brandenburg,fdp,11400,13603
+65,Elbe-Elster – Oberspreewald-Lausitz II,Brandenburg,fdp,10597,11114
+66,Altmark,Sachsen-Anhalt,fdp,9125,9396
+67,Börde – Jerichower Land,Sachsen-Anhalt,fdp,11816,13588
+68,Harz,Sachsen-Anhalt,fdp,10063,12533
+69,Magdeburg,Sachsen-Anhalt,fdp,12140,14673
+70,Dessau – Wittenberg,Sachsen-Anhalt,fdp,7591,10402
+71,Anhalt,Sachsen-Anhalt,fdp,10636,12704
+72,Halle,Sachsen-Anhalt,fdp,11867,15149
+73,Burgenland – Saalekreis,Sachsen-Anhalt,fdp,11764,12785
+74,Mansfeld,Sachsen-Anhalt,fdp,11087,12784
+75,Berlin-Mitte,Berlin,fdp,10038,13179
+76,Berlin-Pankow,Berlin,fdp,12509,14652
+77,Berlin-Reinickendorf,Berlin,fdp,10907,13395
+78,Berlin-Spandau – Charlottenburg Nord,Berlin,fdp,10427,12434
+79,Berlin-Steglitz-Zehlendorf,Berlin,fdp,15961,2173
+80,Berlin-Charlottenburg-Wilmersdorf,Berlin,fdp,14934,20022
+81,Berlin-Tempelhof-Schöneberg,Berlin,fdp,12820,16683
+82,Berlin-Neukölln,Berlin,fdp,8631,9767
+83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,Berlin,fdp,9225,10851
+84,Berlin-Treptow-Köpenick,Berlin,fdp,9236,12651
+85,Berlin-Marzahn-Hellersdorf,Berlin,fdp,6158,9772
+86,Berlin-Lichtenberg,Berlin,fdp,8678,10064
+87,Aachen I,Nordrhein-Westfalen,fdp,10906,15032
+88,Aachen II,Nordrhein-Westfalen,fdp,12055,17893
+89,Heinsberg,Nordrhein-Westfalen,fdp,10689,16022
+90,Düren,Nordrhein-Westfalen,fdp,11237,17104
+91,Rhein-Erft-Kreis I,Nordrhein-Westfalen,fdp,17542,24227
+92,Euskirchen – Rhein-Erft-Kreis II,Nordrhein-Westfalen,fdp,19804,23317
+93,Köln I,Nordrhein-Westfalen,fdp,11490,15040
+94,Köln II,Nordrhein-Westfalen,fdp,16950,26470
+95,Köln III,Nordrhein-Westfalen,fdp,10708,13845
+96,Bonn,Nordrhein-Westfalen,fdp,23198,21902
+97,Rhein-Sieg-Kreis I,Nordrhein-Westfalen,fdp,16603,23124
+98,Rhein-Sieg-Kreis II,Nordrhein-Westfalen,fdp,13914,23435
+99,Oberbergischer Kreis,Nordrhein-Westfalen,fdp,15636,19796
+100,Rheinisch-Bergischer Kreis,Nordrhein-Westfalen,fdp,29570,24378
+101,Leverkusen – Köln IV,Nordrhein-Westfalen,fdp,11050,15931
+102,Wuppertal I,Nordrhein-Westfalen,fdp,13756,15970
+103,Solingen – Remscheid – Wuppertal II,Nordrhein-Westfalen,fdp,17405,20265
+104,Mettmann I,Nordrhein-Westfalen,fdp,14873,21083
+105,Mettmann II,Nordrhein-Westfalen,fdp,11157,16235
+106,Düsseldorf I,Nordrhein-Westfalen,fdp,24242,27743
+107,Düsseldorf II,Nordrhein-Westfalen,fdp,14143,17335
+108,Neuss I,Nordrhein-Westfalen,fdp,12932,20332
+109,Mönchengladbach,Nordrhein-Westfalen,fdp,10957,15458
+110,Krefeld I – Neuss II,Nordrhein-Westfalen,fdp,18780,22069
+111,Viersen,Nordrhein-Westfalen,fdp,15140,22281
+112,Kleve,Nordrhein-Westfalen,fdp,14821,19542
+113,Wesel I,Nordrhein-Westfalen,fdp,14452,17303
+114,Krefeld II – Wesel II,Nordrhein-Westfalen,fdp,10952,14899
+115,Duisburg I,Nordrhein-Westfalen,fdp,8203,10595
+116,Duisburg II,Nordrhein-Westfalen,fdp,6901,7913
+117,Oberhausen – Wesel III,Nordrhein-Westfalen,fdp,10132,13573
+118,Mülheim – Essen I,Nordrhein-Westfalen,fdp,11883,15186
+119,Essen II,Nordrhein-Westfalen,fdp,6976,9531
+120,Essen III,Nordrhein-Westfalen,fdp,10871,17954
+121,Recklinghausen I,Nordrhein-Westfalen,fdp,8481,11990
+122,Recklinghausen II,Nordrhein-Westfalen,fdp,11283,13573
+123,Gelsenkirchen,Nordrhein-Westfalen,fdp,9014,9721
+124,Steinfurt I – Borken I,Nordrhein-Westfalen,fdp,14515,17783
+125,Bottrop – Recklinghausen III,Nordrhein-Westfalen,fdp,11364,14650
+126,Borken II,Nordrhein-Westfalen,fdp,13404,19081
+127,Coesfeld – Steinfurt II,Nordrhein-Westfalen,fdp,12409,17927
+128,Steinfurt III,Nordrhein-Westfalen,fdp,11393,16113
+129,Münster,Nordrhein-Westfalen,fdp,13038,20786
+130,Warendorf,Nordrhein-Westfalen,fdp,12787,18194
+131,Gütersloh I,Nordrhein-Westfalen,fdp,13507,21208
+132,Bielefeld – Gütersloh II,Nordrhein-Westfalen,fdp,17795,20648
+133,Herford – Minden-Lübbecke II,Nordrhein-Westfalen,fdp,14020,19878
+134,Minden-Lübbecke I,Nordrhein-Westfalen,fdp,12494,17484
+135,Lippe I,Nordrhein-Westfalen,fdp,16625,20198
+136,Höxter – Lippe II,Nordrhein-Westfalen,fdp,9463,15488
+137,Paderborn – Gütersloh III,Nordrhein-Westfalen,fdp,9845,21878
+138,Hagen – Ennepe-Ruhr-Kreis I,Nordrhein-Westfalen,fdp,13520,16179
+139,Ennepe-Ruhr-Kreis II,Nordrhein-Westfalen,fdp,11530,14432
+140,Bochum I,Nordrhein-Westfalen,fdp,13656,14552
+141,Herne – Bochum II,Nordrhein-Westfalen,fdp,8441,10626
+142,Dortmund I,Nordrhein-Westfalen,fdp,10416,14550
+143,Dortmund II,Nordrhein-Westfalen,fdp,10270,13629
+144,Unna I,Nordrhein-Westfalen,fdp,9137,15286
+145,Hamm – Unna II,Nordrhein-Westfalen,fdp,12058,16764
+146,Soest,Nordrhein-Westfalen,fdp,17825,21004
+147,Hochsauerlandkreis,Nordrhein-Westfalen,fdp,10806,18712
+148,Siegen-Wittgenstein,Nordrhein-Westfalen,fdp,13590,18595
+149,Olpe – Märkischer Kreis I,Nordrhein-Westfalen,fdp,15946,19227
+150,Märkischer Kreis II,Nordrhein-Westfalen,fdp,12750,17127
+151,Nordsachsen,Sachsen,fdp,10251,12475
+152,Leipzig I,Sachsen,fdp,13397,17655
+153,Leipzig II,Sachsen,fdp,13272,17438
+154,Leipzig-Land,Sachsen,fdp,15693,18322
+155,Meißen,Sachsen,fdp,13728,17207
+156,Bautzen I,Sachsen,fdp,12634,17188
+157,Görlitz,Sachsen,fdp,11220,15039
+158,Sächsische Schweiz-Osterzgebirge,Sachsen,fdp,12921,17814
+159,Dresden I,Sachsen,fdp,18588,21988
+160,Dresden II – Bautzen II,Sachsen,fdp,20717,22882
+161,Mittelsachsen,Sachsen,fdp,14420,16903
+162,Chemnitz,Sachsen,fdp,13934,15782
+163,Chemnitzer Umland – Erzgebirgskreis II,Sachsen,fdp,11872,15116
+164,Erzgebirgskreis I,Sachsen,fdp,11914,16208
+165,Zwickau,Sachsen,fdp,13985,15426
+166,Vogtlandkreis,Sachsen,fdp,11509,13706
+167,Waldeck,Hessen,fdp,12072,15283
+168,Kassel,Hessen,fdp,12947,16436
+169,Werra-Meißner – Hersfeld-Rotenburg,Hessen,fdp,7135,12807
+170,Schwalm-Eder,Hessen,fdp,12233,15421
+171,Marburg,Hessen,fdp,9335,14806
+172,Lahn-Dill,Hessen,fdp,12056,17327
+173,Gießen,Hessen,fdp,12068,17047
+174,Fulda,Hessen,fdp,13892,20528
+175,Main-Kinzig – Wetterau II – Schotten,Hessen,fdp,15094,17038
+176,Hochtaunus,Hessen,fdp,16132,21994
+177,Wetterau I,Hessen,fdp,15000,19044
+178,Rheingau-Taunus – Limburg,Hessen,fdp,18126,23746
+179,Wiesbaden,Hessen,fdp,13996,18945
+180,Hanau,Hessen,fdp,13105,17156
+181,Main-Taunus,Hessen,fdp,20278,26311
+182,Frankfurt am Main I,Hessen,fdp,16369,21361
+183,Frankfurt am Main II,Hessen,fdp,19766,25530
+184,Groß-Gerau,Hessen,fdp,10725,14998
+185,Offenbach,Hessen,fdp,14827,20626
+186,Darmstadt,Hessen,fdp,17192,22256
+187,Odenwald,Hessen,fdp,17113,22437
+188,Bergstraße,Hessen,fdp,16175,20426
+189,Eichsfeld – Nordhausen – Kyffhäuserkreis,Thüringen,fdp,10348,13697
+190,Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis,Thüringen,fdp,8867,13261
+191,Jena – Sömmerda – Weimarer Land I,Thüringen,fdp,10688,14071
+192,Gotha – Ilm-Kreis,Thüringen,fdp,9491,12126
+193,Erfurt – Weimar – Weimarer Land II,Thüringen,fdp,12308,15504
+194,Gera – Greiz – Altenburger Land,Thüringen,fdp,14276,16212
+195,Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis,Thüringen,fdp,12343,15425
+196,Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg,Thüringen,fdp,10685,13990
+197,Neuwied,Rheinland-Pfalz,fdp,15931,20751
+198,Ahrweiler,Rheinland-Pfalz,fdp,12123,17483
+199,Koblenz,Rheinland-Pfalz,fdp,11179,16371
+200,Mosel/Rhein-Hunsrück,Rheinland-Pfalz,fdp,15664,16664
+201,Kreuznach,Rheinland-Pfalz,fdp,9753,15704
+202,Bitburg,Rheinland-Pfalz,fdp,9011,13983
+203,Trier,Rheinland-Pfalz,fdp,10126,16186
+204,Montabaur,Rheinland-Pfalz,fdp,15131,19050
+205,Mainz,Rheinland-Pfalz,fdp,14432,23211
+206,Worms,Rheinland-Pfalz,fdp,12966,20095
+207,Ludwigshafen/Frankenthal,Rheinland-Pfalz,fdp,13687,18420
+208,Neustadt – Speyer,Rheinland-Pfalz,fdp,14624,21827
+209,Kaiserslautern,Rheinland-Pfalz,fdp,11870,17242
+210,Pirmasens,Rheinland-Pfalz,fdp,9874,14353
+211,Südpfalz,Rheinland-Pfalz,fdp,17017,21117
+212,Altötting,Bayern,fdp,9244,13295
+213,Erding – Ebersberg,Bayern,fdp,13224,20227
+214,Freising,Bayern,fdp,14688,21739
+215,Fürstenfeldbruck,Bayern,fdp,16029,23045
+216,Ingolstadt,Bayern,fdp,10876,19802
+217,München-Nord,Bayern,fdp,19477,25953
+218,München-Ost,Bayern,fdp,18104,27092
+219,München-Süd,Bayern,fdp,16437,21485
+220,München-West/Mitte,Bayern,fdp,19153,26401
+221,München-Land,Bayern,fdp,18180,28706
+222,Rosenheim,Bayern,fdp,17670,23044
+223,Bad Tölz-Wolfratshausen – Miesbach,Bayern,fdp,11634,17070
+224,Starnberg – Landsberg am Lech,Bayern,fdp,16601,23906
+225,Traunstein,Bayern,fdp,12259,15736
+226,Weilheim,Bayern,fdp,8551,14312
+227,Deggendorf,Bayern,fdp,6327,10775
+228,Landshut,Bayern,fdp,22772,20205
+229,Passau,Bayern,fdp,10515,12782
+230,Rottal-Inn,Bayern,fdp,10210,12904
+231,Straubing,Bayern,fdp,6896,11605
+232,Amberg,Bayern,fdp,10211,15064
+233,Regensburg,Bayern,fdp,13754,18773
+234,Schwandorf,Bayern,fdp,7333,12649
+235,Weiden,Bayern,fdp,6301,9601
+236,Bamberg,Bayern,fdp,9820,14335
+237,Bayreuth,Bayern,fdp,9180,12020
+238,Coburg,Bayern,fdp,6368,10683
+239,Hof,Bayern,fdp,6493,10553
+240,Kulmbach,Bayern,fdp,6482,11399
+241,Ansbach,Bayern,fdp,13024,16212
+242,Erlangen,Bayern,fdp,10388,16084
+243,Fürth,Bayern,fdp,12884,18766
+244,Nürnberg-Nord,Bayern,fdp,10882,14692
+245,Nürnberg-Süd,Bayern,fdp,8765,11479
+246,Roth,Bayern,fdp,12595,16973
+247,Aschaffenburg,Bayern,fdp,11680,16198
+248,Bad Kissingen,Bayern,fdp,12205,15212
+249,Main-Spessart,Bayern,fdp,9515,14151
+250,Schweinfurt,Bayern,fdp,12407,15037
+251,Würzburg,Bayern,fdp,19412,19226
+252,Augsburg-Stadt,Bayern,fdp,12881,16968
+253,Augsburg-Land,Bayern,fdp,16032,22301
+254,Donau-Ries,Bayern,fdp,9915,15593
+255,Neu-Ulm,Bayern,fdp,14518,22003
+256,Oberallgäu,Bayern,fdp,23605,20953
+257,Ostallgäu,Bayern,fdp,14262,21572
+258,Stuttgart I,Baden-Württemberg,fdp,16504,26036
+259,Stuttgart II,Baden-Württemberg,fdp,14691,20271
+260,Böblingen,Baden-Württemberg,fdp,32183,35080
+261,Esslingen,Baden-Württemberg,fdp,16011,20901
+262,Nürtingen,Baden-Württemberg,fdp,22751,28789
+263,Göppingen,Baden-Württemberg,fdp,16481,21723
+264,Waiblingen,Baden-Württemberg,fdp,27123,30999
+265,Ludwigsburg,Baden-Württemberg,fdp,23886,27609
+266,Neckar-Zaber,Baden-Württemberg,fdp,22790,30782
+267,Heilbronn,Baden-Württemberg,fdp,24746,29384
+268,Schwäbisch Hall – Hohenlohe,Baden-Württemberg,fdp,19941,27850
+269,Backnang – Schwäbisch Gmünd,Baden-Württemberg,fdp,16182,21342
+270,Aalen – Heidenheim,Baden-Württemberg,fdp,15689,24534
+271,Karlsruhe-Stadt,Baden-Württemberg,fdp,15789,20613
+272,Karlsruhe-Land,Baden-Württemberg,fdp,19066,24660
+273,Rastatt,Baden-Württemberg,fdp,17764,21250
+274,Heidelberg,Baden-Württemberg,fdp,15906,23240
+275,Mannheim,Baden-Württemberg,fdp,14888,18518
+276,Odenwald – Tauber,Baden-Württemberg,fdp,15549,20942
+277,Rhein-Neckar,Baden-Württemberg,fdp,17699,21861
+278,Bruchsal – Schwetzingen,Baden-Württemberg,fdp,17635,21978
+279,Pforzheim,Baden-Württemberg,fdp,20631,26506
+280,Calw,Baden-Württemberg,fdp,22681,26760
+281,Freiburg,Baden-Württemberg,fdp,13833,19144
+282,Lörrach – Müllheim,Baden-Württemberg,fdp,24430,24667
+283,Emmendingen – Lahr,Baden-Württemberg,fdp,16622,22136
+284,Offenburg,Baden-Württemberg,fdp,16688,22799
+285,Rottweil – Tuttlingen,Baden-Württemberg,fdp,24782,26768
+286,Schwarzwald-Baar,Baden-Württemberg,fdp,16747,19692
+287,Konstanz,Baden-Württemberg,fdp,17047,23509
+288,Waldshut,Baden-Württemberg,fdp,10186,18356
+289,Reutlingen,Baden-Württemberg,fdp,20411,25288
+290,Tübingen,Baden-Württemberg,fdp,15060,22678
+291,Ulm,Baden-Württemberg,fdp,19745,25385
+292,Biberach,Baden-Württemberg,fdp,12987,19093
+293,Bodensee,Baden-Württemberg,fdp,16751,21610
+294,Ravensburg,Baden-Württemberg,fdp,20932,21738
+295,Zollernalb – Sigmaringen,Baden-Württemberg,fdp,18682,23201
+296,Saarbrücken,Saarland,fdp,11647,16437
+297,Saarlouis,Saarland,fdp,12777,18871
+298,St. Wendel,Saarland,fdp,11355,14915
+299,Homburg,Saarland,fdp,11015,15716
+1,Flensburg – Schleswig,Schleswig-Holstein,gruene,50231,33299
+2,Nordfriesland – Dithmarschen Nord,Schleswig-Holstein,gruene,20615,22595
+3,Steinburg – Dithmarschen Süd,Schleswig-Holstein,gruene,16685,19241
+4,Rendsburg-Eckernförde,Schleswig-Holstein,gruene,23831,28828
+5,Kiel,Schleswig-Holstein,gruene,43560,44124
+6,Plön – Neumünster,Schleswig-Holstein,gruene,20739,23052
+7,Pinneberg,Schleswig-Holstein,gruene,31750,33917
+8,Segeberg – Stormarn-Mitte,Schleswig-Holstein,gruene,27109,33361
+9,Ostholstein – Stormarn-Nord,Schleswig-Holstein,gruene,19027,22315
+10,Herzogtum Lauenburg – Stormarn-Süd,Schleswig-Holstein,gruene,33953,32475
+11,Lübeck,Schleswig-Holstein,gruene,25882,27112
+12,Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I,Mecklenburg-Vorpommern,gruene,12034,12375
+13,Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I,Mecklenburg-Vorpommern,gruene,8163,10146
+14,Rostock – Landkreis Rostock II,Mecklenburg-Vorpommern,gruene,16556,20942
+15,Vorpommern-Rügen – Vorpommern-Greifswald I,Mecklenburg-Vorpommern,gruene,12197,14654
+16,Mecklenburgische Seenplatte I – Vorpommern-Greifswald II,Mecklenburg-Vorpommern,gruene,6112,6619
+17,Mecklenburgische Seenplatte II – Landkreis Rostock III,Mecklenburg-Vorpommern,gruene,7585,7186
+18,Hamburg-Mitte,Hamburg,gruene,46288,49767
+19,Hamburg-Altona,Hamburg,gruene,44897,46023
+20,Hamburg-Eimsbüttel,Hamburg,gruene,47778,48004
+21,Hamburg-Nord,Hamburg,gruene,47288,46482
+22,Hamburg-Wandsbek,Hamburg,gruene,26597,32127
+23,Hamburg-Bergedorf – Harburg,Hamburg,gruene,24221,27885
+24,Aurich – Emden,Niedersachsen,gruene,12649,17657
+25,Unterems,Niedersachsen,gruene,16434,18578
+26,Friesland – Wilhelmshaven – Wittmund,Niedersachsen,gruene,13504,17020
+27,Oldenburg – Ammerland,Niedersachsen,gruene,35115,40916
+28,Delmenhorst – Wesermarsch – Oldenburg-Land,Niedersachsen,gruene,21200,23965
+29,Cuxhaven – Stade II,Niedersachsen,gruene,15388,17553
+30,Stade I – Rotenburg II,Niedersachsen,gruene,19925,22092
+31,Mittelems,Niedersachsen,gruene,22561,22512
+32,Cloppenburg – Vechta,Niedersachsen,gruene,17366,18093
+33,Diepholz – Nienburg I,Niedersachsen,gruene,19702,21138
+34,Osterholz – Verden,Niedersachsen,gruene,21922,24171
+35,Rotenburg I – Heidekreis,Niedersachsen,gruene,10035,16856
+36,Harburg,Niedersachsen,gruene,24120,26776
+37,Lüchow-Dannenberg – Lüneburg,Niedersachsen,gruene,34605,30578
+38,Osnabrück-Land,Niedersachsen,gruene,22011,22159
+39,Stadt Osnabrück,Niedersachsen,gruene,34136,34542
+40,Nienburg II – Schaumburg,Niedersachsen,gruene,18096,19968
+41,Stadt Hannover I,Niedersachsen,gruene,27860,30360
+42,Stadt Hannover II,Niedersachsen,gruene,37779,41976
+43,Hannover-Land I,Niedersachsen,gruene,22487,26217
+44,Celle – Uelzen,Niedersachsen,gruene,18770,21880
+45,Gifhorn – Peine,Niedersachsen,gruene,15761,21955
+46,Hameln-Pyrmont – Holzminden,Niedersachsen,gruene,13259,17274
+47,Hannover-Land II,Niedersachsen,gruene,22284,29201
+48,Hildesheim,Niedersachsen,gruene,22973,26565
+49,Salzgitter – Wolfenbüttel,Niedersachsen,gruene,15349,18133
+50,Braunschweig,Niedersachsen,gruene,28214,33397
+51,Helmstedt – Wolfsburg,Niedersachsen,gruene,11305,15481
+52,Goslar – Northeim – Osterode,Niedersachsen,gruene,14955,17116
+53,Göttingen,Niedersachsen,gruene,37058,32447
+54,Bremen I,Bremen,gruene,39704,44297
+55,Bremen II – Bremerhaven,Bremen,gruene,20700,23869
+56,Prignitz – Ostprignitz-Ruppin – Havelland I,Brandenburg,gruene,5623,7677
+57,Uckermark – Barnim I,Brandenburg,gruene,7526,9094
+58,Oberhavel – Havelland II,Brandenburg,gruene,19025,20660
+59,Märkisch-Oderland – Barnim II,Brandenburg,gruene,11741,13954
+60,Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I,Brandenburg,gruene,9474,12205
+61,Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II,Brandenburg,gruene,35452,35863
+62,Dahme-Spreewald – Teltow-Fläming III – Oberspreewald-Lausitz I,Brandenburg,gruene,13523,16160
+63,Frankfurt (Oder) – Oder-Spree,Brandenburg,gruene,8868,9995
+64,Cottbus – Spree-Neiße,Brandenburg,gruene,4662,6939
+65,Elbe-Elster – Oberspreewald-Lausitz II,Brandenburg,gruene,4110,4920
+66,Altmark,Sachsen-Anhalt,gruene,4674,5834
+67,Börde – Jerichower Land,Sachsen-Anhalt,gruene,6184,7268
+68,Harz,Sachsen-Anhalt,gruene,6321,7495
+69,Magdeburg,Sachsen-Anhalt,gruene,14383,16352
+70,Dessau – Wittenberg,Sachsen-Anhalt,gruene,7632,6531
+71,Anhalt,Sachsen-Anhalt,gruene,4587,5470
+72,Halle,Sachsen-Anhalt,gruene,12520,19914
+73,Burgenland – Saalekreis,Sachsen-Anhalt,gruene,4206,5000
+74,Mansfeld,Sachsen-Anhalt,gruene,3820,4834
+75,Berlin-Mitte,Berlin,gruene,45870,46120
+76,Berlin-Pankow,Berlin,gruene,46357,48098
+77,Berlin-Reinickendorf,Berlin,gruene,17600,19525
+78,Berlin-Spandau – Charlottenburg Nord,Berlin,gruene,14683,17926
+79,Berlin-Steglitz-Zehlendorf,Berlin,gruene,38895,39567
+80,Berlin-Charlottenburg-Wilmersdorf,Berlin,gruene,37371,40297
+81,Berlin-Tempelhof-Schöneberg,Berlin,gruene,44032,44189
+82,Berlin-Neukölln,Berlin,gruene,27103,31057
+83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,Berlin,gruene,64404,62676
+84,Berlin-Treptow-Köpenick,Berlin,gruene,16143,25150
+85,Berlin-Marzahn-Hellersdorf,Berlin,gruene,8301,11464
+86,Berlin-Lichtenberg,Berlin,gruene,19467,22099
+87,Aachen I,Nordrhein-Westfalen,gruene,41942,40421
+88,Aachen II,Nordrhein-Westfalen,gruene,19973,19916
+89,Heinsberg,Nordrhein-Westfalen,gruene,15368,16861
+90,Düren,Nordrhein-Westfalen,gruene,14174,16951
+91,Rhein-Erft-Kreis I,Nordrhein-Westfalen,gruene,25408,27564
+92,Euskirchen – Rhein-Erft-Kreis II,Nordrhein-Westfalen,gruene,25005,26165
+93,Köln I,Nordrhein-Westfalen,gruene,33405,33501
+94,Köln II,Nordrhein-Westfalen,gruene,70657,65240
+95,Köln III,Nordrhein-Westfalen,gruene,43600,44407
+96,Bonn,Nordrhein-Westfalen,gruene,46467,50175
+97,Rhein-Sieg-Kreis I,Nordrhein-Westfalen,gruene,26270,29305
+98,Rhein-Sieg-Kreis II,Nordrhein-Westfalen,gruene,26955,31027
+99,Oberbergischer Kreis,Nordrhein-Westfalen,gruene,19015,19959
+100,Rheinisch-Bergischer Kreis,Nordrhein-Westfalen,gruene,31607,32302
+101,Leverkusen – Köln IV,Nordrhein-Westfalen,gruene,17290,29329
+102,Wuppertal I,Nordrhein-Westfalen,gruene,18932,25387
+103,Solingen – Remscheid – Wuppertal II,Nordrhein-Westfalen,gruene,20967,24294
+104,Mettmann I,Nordrhein-Westfalen,gruene,36095,25430
+105,Mettmann II,Nordrhein-Westfalen,gruene,17728,18112
+106,Düsseldorf I,Nordrhein-Westfalen,gruene,36929,39451
+107,Düsseldorf II,Nordrhein-Westfalen,gruene,30201,31524
+108,Neuss I,Nordrhein-Westfalen,gruene,18050,21951
+109,Mönchengladbach,Nordrhein-Westfalen,gruene,17302,18166
+110,Krefeld I – Neuss II,Nordrhein-Westfalen,gruene,24382,24013
+111,Viersen,Nordrhein-Westfalen,gruene,24394,25671
+112,Kleve,Nordrhein-Westfalen,gruene,23476,23587
+113,Wesel I,Nordrhein-Westfalen,gruene,19928,20629
+114,Krefeld II – Wesel II,Nordrhein-Westfalen,gruene,17398,19539
+115,Duisburg I,Nordrhein-Westfalen,gruene,16776,17912
+116,Duisburg II,Nordrhein-Westfalen,gruene,10518,10287
+117,Oberhausen – Wesel III,Nordrhein-Westfalen,gruene,17169,17945
+118,Mülheim – Essen I,Nordrhein-Westfalen,gruene,19547,20232
+119,Essen II,Nordrhein-Westfalen,gruene,12647,13971
+120,Essen III,Nordrhein-Westfalen,gruene,28741,30772
+121,Recklinghausen I,Nordrhein-Westfalen,gruene,12833,15180
+122,Recklinghausen II,Nordrhein-Westfalen,gruene,14836,15629
+123,Gelsenkirchen,Nordrhein-Westfalen,gruene,11286,11170
+124,Steinfurt I – Borken I,Nordrhein-Westfalen,gruene,18743,20525
+125,Bottrop – Recklinghausen III,Nordrhein-Westfalen,gruene,15152,16433
+126,Borken II,Nordrhein-Westfalen,gruene,20027,21738
+127,Coesfeld – Steinfurt II,Nordrhein-Westfalen,gruene,27069,25507
+128,Steinfurt III,Nordrhein-Westfalen,gruene,23978,23996
+129,Münster,Nordrhein-Westfalen,gruene,63160,60036
+130,Warendorf,Nordrhein-Westfalen,gruene,21215,23296
+131,Gütersloh I,Nordrhein-Westfalen,gruene,22850,28308
+132,Bielefeld – Gütersloh II,Nordrhein-Westfalen,gruene,40012,40175
+133,Herford – Minden-Lübbecke II,Nordrhein-Westfalen,gruene,18088,22732
+134,Minden-Lübbecke I,Nordrhein-Westfalen,gruene,15885,19762
+135,Lippe I,Nordrhein-Westfalen,gruene,26907,23252
+136,Höxter – Lippe II,Nordrhein-Westfalen,gruene,12685,14715
+137,Paderborn – Gütersloh III,Nordrhein-Westfalen,gruene,22926,26982
+138,Hagen – Ennepe-Ruhr-Kreis I,Nordrhein-Westfalen,gruene,17953,17242
+139,Ennepe-Ruhr-Kreis II,Nordrhein-Westfalen,gruene,21734,21941
+140,Bochum I,Nordrhein-Westfalen,gruene,28284,30771
+141,Herne – Bochum II,Nordrhein-Westfalen,gruene,14243,15383
+142,Dortmund I,Nordrhein-Westfalen,gruene,26308,31867
+143,Dortmund II,Nordrhein-Westfalen,gruene,21028,21714
+144,Unna I,Nordrhein-Westfalen,gruene,20340,20019
+145,Hamm – Unna II,Nordrhein-Westfalen,gruene,16959,19149
+146,Soest,Nordrhein-Westfalen,gruene,22154,24089
+147,Hochsauerlandkreis,Nordrhein-Westfalen,gruene,12478,15473
+148,Siegen-Wittgenstein,Nordrhein-Westfalen,gruene,16623,17834
+149,Olpe – Märkischer Kreis I,Nordrhein-Westfalen,gruene,13645,15243
+150,Märkischer Kreis II,Nordrhein-Westfalen,gruene,12867,14882
+151,Nordsachsen,Sachsen,gruene,5883,5462
+152,Leipzig I,Sachsen,gruene,19776,25843
+153,Leipzig II,Sachsen,gruene,32994,38259
+154,Leipzig-Land,Sachsen,gruene,8054,9381
+155,Meißen,Sachsen,gruene,7589,8872
+156,Bautzen I,Sachsen,gruene,4089,6247
+157,Görlitz,Sachsen,gruene,6167,7345
+158,Sächsische Schweiz-Osterzgebirge,Sachsen,gruene,6830,8024
+159,Dresden I,Sachsen,gruene,17135,27367
+160,Dresden II – Bautzen II,Sachsen,gruene,25522,31260
+161,Mittelsachsen,Sachsen,gruene,5396,6819
+162,Chemnitz,Sachsen,gruene,9934,12680
+163,Chemnitzer Umland – Erzgebirgskreis II,Sachsen,gruene,5617,6138
+164,Erzgebirgskreis I,Sachsen,gruene,4001,5194
+165,Zwickau,Sachsen,gruene,5987,7134
+166,Vogtlandkreis,Sachsen,gruene,6379,6263
+167,Waldeck,Hessen,gruene,13581,14772
+168,Kassel,Hessen,gruene,27753,30358
+169,Werra-Meißner – Hersfeld-Rotenburg,Hessen,gruene,8032,11595
+170,Schwalm-Eder,Hessen,gruene,12360,14089
+171,Marburg,Hessen,gruene,18708,22347
+172,Lahn-Dill,Hessen,gruene,13763,16957
+173,Gießen,Hessen,gruene,21204,26051
+174,Fulda,Hessen,gruene,13832,16323
+175,Main-Kinzig – Wetterau II – Schotten,Hessen,gruene,12692,15008
+176,Hochtaunus,Hessen,gruene,21770,22487
+177,Wetterau I,Hessen,gruene,18987,21916
+178,Rheingau-Taunus – Limburg,Hessen,gruene,24418,25329
+179,Wiesbaden,Hessen,gruene,25811,26817
+180,Hanau,Hessen,gruene,15994,18274
+181,Main-Taunus,Hessen,gruene,26350,26747
+182,Frankfurt am Main I,Hessen,gruene,26922,33821
+183,Frankfurt am Main II,Hessen,gruene,50230,44370
+184,Groß-Gerau,Hessen,gruene,14890,18928
+185,Offenbach,Hessen,gruene,26229,27053
+186,Darmstadt,Hessen,gruene,44364,41958
+187,Odenwald,Hessen,gruene,21631,24697
+188,Bergstraße,Hessen,gruene,20954,21458
+189,Eichsfeld – Nordhausen – Kyffhäuserkreis,Thüringen,gruene,5901,7176
+190,Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis,Thüringen,gruene,5429,7456
+191,Jena – Sömmerda – Weimarer Land I,Thüringen,gruene,14654,16709
+192,Gotha – Ilm-Kreis,Thüringen,gruene,6497,8105
+193,Erfurt – Weimar – Weimarer Land II,Thüringen,gruene,19474,21829
+194,Gera – Greiz – Altenburger Land,Thüringen,gruene,6297,7328
+195,Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis,Thüringen,gruene,6293,7387
+196,Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg,Thüringen,gruene,3614,7228
+197,Neuwied,Rheinland-Pfalz,gruene,16559,18930
+198,Ahrweiler,Rheinland-Pfalz,gruene,15554,17687
+199,Koblenz,Rheinland-Pfalz,gruene,17980,21007
+200,Mosel/Rhein-Hunsrück,Rheinland-Pfalz,gruene,12833,12230
+201,Kreuznach,Rheinland-Pfalz,gruene,9958,12903
+202,Bitburg,Rheinland-Pfalz,gruene,8507,11396
+203,Trier,Rheinland-Pfalz,gruene,18917,22695
+204,Montabaur,Rheinland-Pfalz,gruene,14240,16880
+205,Mainz,Rheinland-Pfalz,gruene,37390,46284
+206,Worms,Rheinland-Pfalz,gruene,15949,20799
+207,Ludwigshafen/Frankenthal,Rheinland-Pfalz,gruene,17061,18128
+208,Neustadt – Speyer,Rheinland-Pfalz,gruene,20868,23949
+209,Kaiserslautern,Rheinland-Pfalz,gruene,14579,17611
+210,Pirmasens,Rheinland-Pfalz,gruene,7866,9852
+211,Südpfalz,Rheinland-Pfalz,gruene,19061,22881
+212,Altötting,Bayern,gruene,11145,12247
+213,Erding – Ebersberg,Bayern,gruene,24838,24620
+214,Freising,Bayern,gruene,24059,26055
+215,Fürstenfeldbruck,Bayern,gruene,25364,30537
+216,Ingolstadt,Bayern,gruene,18183,20840
+217,München-Nord,Bayern,gruene,42281,44860
+218,München-Ost,Bayern,gruene,42363,47635
+219,München-Süd,Bayern,gruene,47253,45559
+220,München-West/Mitte,Bayern,gruene,53156,54293
+221,München-Land,Bayern,gruene,40468,36807
+222,Rosenheim,Bayern,gruene,26181,25960
+223,Bad Tölz-Wolfratshausen – Miesbach,Bayern,gruene,20829,18057
+224,Starnberg – Landsberg am Lech,Bayern,gruene,35851,32676
+225,Traunstein,Bayern,gruene,17216,19980
+226,Weilheim,Bayern,gruene,16300,18397
+227,Deggendorf,Bayern,gruene,6890,8516
+228,Landshut,Bayern,gruene,21812,20085
+229,Passau,Bayern,gruene,12097,12644
+230,Rottal-Inn,Bayern,gruene,10188,9495
+231,Straubing,Bayern,gruene,8614,8964
+232,Amberg,Bayern,gruene,13906,16188
+233,Regensburg,Bayern,gruene,30332,32093
+234,Schwandorf,Bayern,gruene,7933,11179
+235,Weiden,Bayern,gruene,6634,9171
+236,Bamberg,Bayern,gruene,22728,21898
+237,Bayreuth,Bayern,gruene,14062,15646
+238,Coburg,Bayern,gruene,10580,11458
+239,Hof,Bayern,gruene,7943,9630
+240,Kulmbach,Bayern,gruene,10165,11966
+241,Ansbach,Bayern,gruene,21343,22327
+242,Erlangen,Bayern,gruene,29885,31184
+243,Fürth,Bayern,gruene,27108,29775
+244,Nürnberg-Nord,Bayern,gruene,32540,34047
+245,Nürnberg-Süd,Bayern,gruene,15557,17674
+246,Roth,Bayern,gruene,25140,26196
+247,Aschaffenburg,Bayern,gruene,19585,20639
+248,Bad Kissingen,Bayern,gruene,16467,15873
+249,Main-Spessart,Bayern,gruene,15813,17806
+250,Schweinfurt,Bayern,gruene,14747,17083
+251,Würzburg,Bayern,gruene,36295,35624
+252,Augsburg-Stadt,Bayern,gruene,31347,28971
+253,Augsburg-Land,Bayern,gruene,24805,26207
+254,Donau-Ries,Bayern,gruene,11076,14912
+255,Neu-Ulm,Bayern,gruene,20632,20770
+256,Oberallgäu,Bayern,gruene,27818,27389
+257,Ostallgäu,Bayern,gruene,24124,23709
+258,Stuttgart I,Baden-Württemberg,gruene,62594,44556
+259,Stuttgart II,Baden-Württemberg,gruene,31444,28218
+260,Böblingen,Baden-Württemberg,gruene,30210,32594
+261,Esslingen,Baden-Württemberg,gruene,24058,23902
+262,Nürtingen,Baden-Württemberg,gruene,29609,27688
+263,Göppingen,Baden-Württemberg,gruene,15932,16915
+264,Waiblingen,Baden-Württemberg,gruene,26224,27098
+265,Ludwigsburg,Baden-Württemberg,gruene,34660,31432
+266,Neckar-Zaber,Baden-Württemberg,gruene,29014,29048
+267,Heilbronn,Baden-Württemberg,gruene,23018,23476
+268,Schwäbisch Hall – Hohenlohe,Baden-Württemberg,gruene,25825,22734
+269,Backnang – Schwäbisch Gmünd,Baden-Württemberg,gruene,15529,18490
+270,Aalen – Heidenheim,Baden-Württemberg,gruene,20338,21204
+271,Karlsruhe-Stadt,Baden-Württemberg,gruene,47472,44011
+272,Karlsruhe-Land,Baden-Württemberg,gruene,27755,26969
+273,Rastatt,Baden-Württemberg,gruene,19962,21926
+274,Heidelberg,Baden-Württemberg,gruene,53288,45314
+275,Mannheim,Baden-Württemberg,gruene,31721,29809
+276,Odenwald – Tauber,Baden-Württemberg,gruene,17695,17747
+277,Rhein-Neckar,Baden-Württemberg,gruene,22607,23973
+278,Bruchsal – Schwetzingen,Baden-Württemberg,gruene,22154,20858
+279,Pforzheim,Baden-Württemberg,gruene,20679,21213
+280,Calw,Baden-Württemberg,gruene,17713,17302
+281,Freiburg,Baden-Württemberg,gruene,51777,56861
+282,Lörrach – Müllheim,Baden-Württemberg,gruene,35557,32818
+283,Emmendingen – Lahr,Baden-Württemberg,gruene,23345,28723
+284,Offenburg,Baden-Württemberg,gruene,21719,23082
+285,Rottweil – Tuttlingen,Baden-Württemberg,gruene,18182,16036
+286,Schwarzwald-Baar,Baden-Württemberg,gruene,14692,16181
+287,Konstanz,Baden-Württemberg,gruene,28142,32913
+288,Waldshut,Baden-Württemberg,gruene,20590,23206
+289,Reutlingen,Baden-Württemberg,gruene,25399,24197
+290,Tübingen,Baden-Württemberg,gruene,40979,37424
+291,Ulm,Baden-Württemberg,gruene,33010,31237
+292,Biberach,Baden-Württemberg,gruene,17854,18006
+293,Bodensee,Baden-Württemberg,gruene,23384,23635
+294,Ravensburg,Baden-Württemberg,gruene,30745,25538
+295,Zollernalb – Sigmaringen,Baden-Württemberg,gruene,23118,15503
+296,Saarbrücken,Saarland,gruene,11141,
+297,Saarlouis,Saarland,gruene,7381,
+298,St. Wendel,Saarland,gruene,5734,
+299,Homburg,Saarland,gruene,6824,
+1,Flensburg – Schleswig,Schleswig-Holstein,linke,6539,7473
+2,Nordfriesland – Dithmarschen Nord,Schleswig-Holstein,linke,4059,4439
+3,Steinburg – Dithmarschen Süd,Schleswig-Holstein,linke,4339,4524
+4,Rendsburg-Eckernförde,Schleswig-Holstein,linke,4415,5163
+5,Kiel,Schleswig-Holstein,linke,7316,9448
+6,Plön – Neumünster,Schleswig-Holstein,linke,3718,4233
+7,Pinneberg,Schleswig-Holstein,linke,5602,6292
+8,Segeberg – Stormarn-Mitte,Schleswig-Holstein,linke,6205,6468
+9,Ostholstein – Stormarn-Nord,Schleswig-Holstein,linke,4122,4031
+10,Herzogtum Lauenburg – Stormarn-Süd,Schleswig-Holstein,linke,5167,6328
+11,Lübeck,Schleswig-Holstein,linke,3709,5360
+12,Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I,Mecklenburg-Vorpommern,linke,17877,16552
+13,Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I,Mecklenburg-Vorpommern,linke,14949,14973
+14,Rostock – Landkreis Rostock II,Mecklenburg-Vorpommern,linke,29714,21490
+15,Vorpommern-Rügen – Vorpommern-Greifswald I,Mecklenburg-Vorpommern,linke,22767,18856
+16,Mecklenburgische Seenplatte I – Vorpommern-Greifswald II,Mecklenburg-Vorpommern,linke,16200,15367
+17,Mecklenburgische Seenplatte II – Landkreis Rostock III,Mecklenburg-Vorpommern,linke,14498,14437
+18,Hamburg-Mitte,Hamburg,linke,16168,15586
+19,Hamburg-Altona,Hamburg,linke,14656,13617
+20,Hamburg-Eimsbüttel,Hamburg,linke,11360,10862
+21,Hamburg-Nord,Hamburg,linke,9073,8734
+22,Hamburg-Wandsbek,Hamburg,linke,10669,8847
+23,Hamburg-Bergedorf – Harburg,Hamburg,linke,10501,9874
+24,Aurich – Emden,Niedersachsen,linke,4849,4654
+25,Unterems,Niedersachsen,linke,4358,4650
+26,Friesland – Wilhelmshaven – Wittmund,Niedersachsen,linke,3460,4122
+27,Oldenburg – Ammerland,Niedersachsen,linke,10180,8343
+28,Delmenhorst – Wesermarsch – Oldenburg-Land,Niedersachsen,linke,4931,5046
+29,Cuxhaven – Stade II,Niedersachsen,linke,2694,3672
+30,Stade I – Rotenburg II,Niedersachsen,linke,4339,4301
+31,Mittelems,Niedersachsen,linke,3996,3969
+32,Cloppenburg – Vechta,Niedersachsen,linke,3542,3549
+33,Diepholz – Nienburg I,Niedersachsen,linke,4029,3920
+34,Osterholz – Verden,Niedersachsen,linke,6372,5252
+35,Rotenburg I – Heidekreis,Niedersachsen,linke,3010,3536
+36,Harburg,Niedersachsen,linke,4230,4684
+37,Lüchow-Dannenberg – Lüneburg,Niedersachsen,linke,5379,6329
+38,Osnabrück-Land,Niedersachsen,linke,3596,3870
+39,Stadt Osnabrück,Niedersachsen,linke,6977,6224
+40,Nienburg II – Schaumburg,Niedersachsen,linke,3070,3841
+41,Stadt Hannover I,Niedersachsen,linke,4660,5768
+42,Stadt Hannover II,Niedersachsen,linke,7390,8831
+43,Hannover-Land I,Niedersachsen,linke,3981,4504
+44,Celle – Uelzen,Niedersachsen,linke,4358,4679
+45,Gifhorn – Peine,Niedersachsen,linke,3619,4146
+46,Hameln-Pyrmont – Holzminden,Niedersachsen,linke,3676,3734
+47,Hannover-Land II,Niedersachsen,linke,4095,4994
+48,Hildesheim,Niedersachsen,linke,5481,5308
+49,Salzgitter – Wolfenbüttel,Niedersachsen,linke,5676,4446
+50,Braunschweig,Niedersachsen,linke,5352,6354
+51,Helmstedt – Wolfsburg,Niedersachsen,linke,3575,3496
+52,Goslar – Northeim – Osterode,Niedersachsen,linke,3833,4249
+53,Göttingen,Niedersachsen,linke,8057,8131
+54,Bremen I,Bremen,linke,15321,15765
+55,Bremen II – Bremerhaven,Bremen,linke,10523,9524
+56,Prignitz – Ostprignitz-Ruppin – Havelland I,Brandenburg,linke,10846,9754
+57,Uckermark – Barnim I,Brandenburg,linke,12314,11616
+58,Oberhavel – Havelland II,Brandenburg,linke,15501,12665
+59,Märkisch-Oderland – Barnim II,Brandenburg,linke,21698,18004
+60,Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I,Brandenburg,linke,12672,12015
+61,Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II,Brandenburg,linke,14702,19100
+62,Dahme-Spreewald – Teltow-Fläming III – Oberspreewald-Lausitz I,Brandenburg,linke,17421,14961
+63,Frankfurt (Oder) – Oder-Spree,Brandenburg,linke,15682,13431
+64,Cottbus – Spree-Neiße,Brandenburg,linke,11156,9671
+65,Elbe-Elster – Oberspreewald-Lausitz II,Brandenburg,linke,10631,8532
+66,Altmark,Sachsen-Anhalt,linke,11218,10380
+67,Börde – Jerichower Land,Sachsen-Anhalt,linke,12795,12426
+68,Harz,Sachsen-Anhalt,linke,14410,12697
+69,Magdeburg,Sachsen-Anhalt,linke,15136,16447
+70,Dessau – Wittenberg,Sachsen-Anhalt,linke,9003,9635
+71,Anhalt,Sachsen-Anhalt,linke,20246,14249
+72,Halle,Sachsen-Anhalt,linke,19247,17180
+73,Burgenland – Saalekreis,Sachsen-Anhalt,linke,12418,10630
+74,Mansfeld,Sachsen-Anhalt,linke,13108,11680
+75,Berlin-Mitte,Berlin,linke,21291,20820
+76,Berlin-Pankow,Berlin,linke,29506,25158
+77,Berlin-Reinickendorf,Berlin,linke,6099,5834
+78,Berlin-Spandau – Charlottenburg Nord,Berlin,linke,6823,6325
+79,Berlin-Steglitz-Zehlendorf,Berlin,linke,7461,8296
+80,Berlin-Charlottenburg-Wilmersdorf,Berlin,linke,8816,9944
+81,Berlin-Tempelhof-Schöneberg,Berlin,linke,10685,13172
+82,Berlin-Neukölln,Berlin,linke,17898,16335
+83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,Berlin,linke,30128,30843
+84,Berlin-Treptow-Köpenick,Berlin,linke,55372,24883
+85,Berlin-Marzahn-Hellersdorf,Berlin,linke,29259,21213
+86,Berlin-Lichtenberg,Berlin,linke,36790,26063
+87,Aachen I,Nordrhein-Westfalen,linke,6161,7453
+88,Aachen II,Nordrhein-Westfalen,linke,4495,5260
+89,Heinsberg,Nordrhein-Westfalen,linke,3608,4529
+90,Düren,Nordrhein-Westfalen,linke,3457,4570
+91,Rhein-Erft-Kreis I,Nordrhein-Westfalen,linke,5889,5682
+92,Euskirchen – Rhein-Erft-Kreis II,Nordrhein-Westfalen,linke,4992,5734
+93,Köln I,Nordrhein-Westfalen,linke,7213,8267
+94,Köln II,Nordrhein-Westfalen,linke,8771,10399
+95,Köln III,Nordrhein-Westfalen,linke,8435,9903
+96,Bonn,Nordrhein-Westfalen,linke,6675,10027
+97,Rhein-Sieg-Kreis I,Nordrhein-Westfalen,linke,6242,6353
+98,Rhein-Sieg-Kreis II,Nordrhein-Westfalen,linke,4607,5687
+99,Oberbergischer Kreis,Nordrhein-Westfalen,linke,4587,5153
+100,Rheinisch-Bergischer Kreis,Nordrhein-Westfalen,linke,4848,5211
+101,Leverkusen – Köln IV,Nordrhein-Westfalen,linke,5657,7318
+102,Wuppertal I,Nordrhein-Westfalen,linke,6742,8055
+103,Solingen – Remscheid – Wuppertal II,Nordrhein-Westfalen,linke,5099,6086
+104,Mettmann I,Nordrhein-Westfalen,linke,4252,4956
+105,Mettmann II,Nordrhein-Westfalen,linke,3394,3888
+106,Düsseldorf I,Nordrhein-Westfalen,linke,5094,6744
+107,Düsseldorf II,Nordrhein-Westfalen,linke,5418,6931
+108,Neuss I,Nordrhein-Westfalen,linke,4152,4770
+109,Mönchengladbach,Nordrhein-Westfalen,linke,,4927
+110,Krefeld I – Neuss II,Nordrhein-Westfalen,linke,4319,4680
+111,Viersen,Nordrhein-Westfalen,linke,5558,5203
+112,Kleve,Nordrhein-Westfalen,linke,4235,4728
+113,Wesel I,Nordrhein-Westfalen,linke,4598,5103
+114,Krefeld II – Wesel II,Nordrhein-Westfalen,linke,4100,4703
+115,Duisburg I,Nordrhein-Westfalen,linke,5499,5580
+116,Duisburg II,Nordrhein-Westfalen,linke,4889,4508
+117,Oberhausen – Wesel III,Nordrhein-Westfalen,linke,4904,5613
+118,Mülheim – Essen I,Nordrhein-Westfalen,linke,3663,4494
+119,Essen II,Nordrhein-Westfalen,linke,4325,4525
+120,Essen III,Nordrhein-Westfalen,linke,5030,6097
+121,Recklinghausen I,Nordrhein-Westfalen,linke,3606,4238
+122,Recklinghausen II,Nordrhein-Westfalen,linke,3881,4084
+123,Gelsenkirchen,Nordrhein-Westfalen,linke,3559,3853
+124,Steinfurt I – Borken I,Nordrhein-Westfalen,linke,3699,4469
+125,Bottrop – Recklinghausen III,Nordrhein-Westfalen,linke,3889,4482
+126,Borken II,Nordrhein-Westfalen,linke,3927,3914
+127,Coesfeld – Steinfurt II,Nordrhein-Westfalen,linke,4242,4093
+128,Steinfurt III,Nordrhein-Westfalen,linke,4611,4723
+129,Münster,Nordrhein-Westfalen,linke,7078,9746
+130,Warendorf,Nordrhein-Westfalen,linke,4075,4525
+131,Gütersloh I,Nordrhein-Westfalen,linke,4286,5172
+132,Bielefeld – Gütersloh II,Nordrhein-Westfalen,linke,9892,11448
+133,Herford – Minden-Lübbecke II,Nordrhein-Westfalen,linke,5333,6038
+134,Minden-Lübbecke I,Nordrhein-Westfalen,linke,3933,4858
+135,Lippe I,Nordrhein-Westfalen,linke,5276,6408
+136,Höxter – Lippe II,Nordrhein-Westfalen,linke,3345,3762
+137,Paderborn – Gütersloh III,Nordrhein-Westfalen,linke,5532,5858
+138,Hagen – Ennepe-Ruhr-Kreis I,Nordrhein-Westfalen,linke,4551,4853
+139,Ennepe-Ruhr-Kreis II,Nordrhein-Westfalen,linke,3715,5029
+140,Bochum I,Nordrhein-Westfalen,linke,9361,8221
+141,Herne – Bochum II,Nordrhein-Westfalen,linke,4662,5035
+142,Dortmund I,Nordrhein-Westfalen,linke,5908,7566
+143,Dortmund II,Nordrhein-Westfalen,linke,5823,6361
+144,Unna I,Nordrhein-Westfalen,linke,4731,5154
+145,Hamm – Unna II,Nordrhein-Westfalen,linke,6284,5694
+146,Soest,Nordrhein-Westfalen,linke,5549,5521
+147,Hochsauerlandkreis,Nordrhein-Westfalen,linke,2685,3990
+148,Siegen-Wittgenstein,Nordrhein-Westfalen,linke,4902,5732
+149,Olpe – Märkischer Kreis I,Nordrhein-Westfalen,linke,3935,4150
+150,Märkischer Kreis II,Nordrhein-Westfalen,linke,4667,4804
+151,Nordsachsen,Sachsen,linke,9448,8868
+152,Leipzig I,Sachsen,linke,25436,20882
+153,Leipzig II,Sachsen,linke,40927,26460
+154,Leipzig-Land,Sachsen,linke,12670,12357
+155,Meißen,Sachsen,linke,10344,10725
+156,Bautzen I,Sachsen,linke,14144,12282
+157,Görlitz,Sachsen,linke,11837,11327
+158,Sächsische Schweiz-Osterzgebirge,Sachsen,linke,15216,11652
+159,Dresden I,Sachsen,linke,33871,18909
+160,Dresden II – Bautzen II,Sachsen,linke,22156,20910
+161,Mittelsachsen,Sachsen,linke,12162,11687
+162,Chemnitz,Sachsen,linke,15229,15008
+163,Chemnitzer Umland – Erzgebirgskreis II,Sachsen,linke,11330,11166
+164,Erzgebirgskreis I,Sachsen,linke,12787,12078
+165,Zwickau,Sachsen,linke,22585,13625
+166,Vogtlandkreis,Sachsen,linke,12655,12057
+167,Waldeck,Hessen,linke,4208,4441
+168,Kassel,Hessen,linke,9360,10512
+169,Werra-Meißner – Hersfeld-Rotenburg,Hessen,linke,3890,4527
+170,Schwalm-Eder,Hessen,linke,3759,4411
+171,Marburg,Hessen,linke,6587,8089
+172,Lahn-Dill,Hessen,linke,4756,5101
+173,Gießen,Hessen,linke,6322,8007
+174,Fulda,Hessen,linke,4649,4447
+175,Main-Kinzig – Wetterau II – Schotten,Hessen,linke,4082,4313
+176,Hochtaunus,Hessen,linke,3759,4441
+177,Wetterau I,Hessen,linke,3904,4905
+178,Rheingau-Taunus – Limburg,Hessen,linke,4563,5394
+179,Wiesbaden,Hessen,linke,6653,7130
+180,Hanau,Hessen,linke,4463,4932
+181,Main-Taunus,Hessen,linke,4267,4702
+182,Frankfurt am Main I,Hessen,linke,12562,10384
+183,Frankfurt am Main II,Hessen,linke,10629,11902
+184,Groß-Gerau,Hessen,linke,5047,5394
+185,Offenbach,Hessen,linke,7497,7818
+186,Darmstadt,Hessen,linke,9332,764
+187,Odenwald,Hessen,linke,5991,6329
+188,Bergstraße,Hessen,linke,4150,4630
+189,Eichsfeld – Nordhausen – Kyffhäuserkreis,Thüringen,linke,16584,15165
+190,Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis,Thüringen,linke,17214,15867
+191,Jena – Sömmerda – Weimarer Land I,Thüringen,linke,25741,19504
+192,Gotha – Ilm-Kreis,Thüringen,linke,15576,15452
+193,Erfurt – Weimar – Weimarer Land II,Thüringen,linke,26985,23054
+194,Gera – Greiz – Altenburger Land,Thüringen,linke,19414,18666
+195,Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis,Thüringen,linke,19966,18493
+196,Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg,Thüringen,linke,14137,18475
+197,Neuwied,Rheinland-Pfalz,linke,5007,5416
+198,Ahrweiler,Rheinland-Pfalz,linke,3537,3851
+199,Koblenz,Rheinland-Pfalz,linke,4054,4799
+200,Mosel/Rhein-Hunsrück,Rheinland-Pfalz,linke,,3738
+201,Kreuznach,Rheinland-Pfalz,linke,4294,4454
+202,Bitburg,Rheinland-Pfalz,linke,2854,3268
+203,Trier,Rheinland-Pfalz,linke,5129,5708
+204,Montabaur,Rheinland-Pfalz,linke,4418,4642
+205,Mainz,Rheinland-Pfalz,linke,24887,9419
+206,Worms,Rheinland-Pfalz,linke,5070,5068
+207,Ludwigshafen/Frankenthal,Rheinland-Pfalz,linke,4648,4651
+208,Neustadt – Speyer,Rheinland-Pfalz,linke,4535,4880
+209,Kaiserslautern,Rheinland-Pfalz,linke,6763,6383
+210,Pirmasens,Rheinland-Pfalz,linke,3670,4199
+211,Südpfalz,Rheinland-Pfalz,linke,5224,5598
+212,Altötting,Bayern,linke,3155,2768
+213,Erding – Ebersberg,Bayern,linke,3355,3648
+214,Freising,Bayern,linke,3898,4456
+215,Fürstenfeldbruck,Bayern,linke,3216,4192
+216,Ingolstadt,Bayern,linke,4648,4450
+217,München-Nord,Bayern,linke,6207,7035
+218,München-Ost,Bayern,linke,4906,7080
+219,München-Süd,Bayern,linke,6236,7670
+220,München-West/Mitte,Bayern,linke,6976,8219
+221,München-Land,Bayern,linke,3684,4449
+222,Rosenheim,Bayern,linke,4092,4609
+223,Bad Tölz-Wolfratshausen – Miesbach,Bayern,linke,2643,3051
+224,Starnberg – Landsberg am Lech,Bayern,linke,3694,4441
+225,Traunstein,Bayern,linke,3537,3943
+226,Weilheim,Bayern,linke,2718,3124
+227,Deggendorf,Bayern,linke,1894,2303
+228,Landshut,Bayern,linke,3955,4186
+229,Passau,Bayern,linke,2682,3093
+230,Rottal-Inn,Bayern,linke,1913,2489
+231,Straubing,Bayern,linke,1935,2467
+232,Amberg,Bayern,linke,4158,4095
+233,Regensburg,Bayern,linke,6021,6798
+234,Schwandorf,Bayern,linke,3043,3391
+235,Weiden,Bayern,linke,2325,2828
+236,Bamberg,Bayern,linke,3625,4677
+237,Bayreuth,Bayern,linke,2579,3306
+238,Coburg,Bayern,linke,2337,3119
+239,Hof,Bayern,linke,2651,3004
+240,Kulmbach,Bayern,linke,2448,2982
+241,Ansbach,Bayern,linke,3794,4900
+242,Erlangen,Bayern,linke,,5787
+243,Fürth,Bayern,linke,6223,6946
+244,Nürnberg-Nord,Bayern,linke,7726,8627
+245,Nürnberg-Süd,Bayern,linke,5178,4890
+246,Roth,Bayern,linke,5077,4952
+247,Aschaffenburg,Bayern,linke,3536,4068
+248,Bad Kissingen,Bayern,linke,4476,4820
+249,Main-Spessart,Bayern,linke,4069,3684
+250,Schweinfurt,Bayern,linke,6552,4928
+251,Würzburg,Bayern,linke,7522,7029
+252,Augsburg-Stadt,Bayern,linke,7167,6952
+253,Augsburg-Land,Bayern,linke,3573,4176
+254,Donau-Ries,Bayern,linke,3049,2868
+255,Neu-Ulm,Bayern,linke,3467,4410
+256,Oberallgäu,Bayern,linke,4911,5046
+257,Ostallgäu,Bayern,linke,6667,5007
+258,Stuttgart I,Baden-Württemberg,linke,6447,8127
+259,Stuttgart II,Baden-Württemberg,linke,6294,6737
+260,Böblingen,Baden-Württemberg,linke,4548,5141
+261,Esslingen,Baden-Württemberg,linke,3477,4063
+262,Nürtingen,Baden-Württemberg,linke,3967,4353
+263,Göppingen,Baden-Württemberg,linke,2958,3338
+264,Waiblingen,Baden-Württemberg,linke,4464,5001
+265,Ludwigsburg,Baden-Württemberg,linke,4882,5276
+266,Neckar-Zaber,Baden-Württemberg,linke,4342,4850
+267,Heilbronn,Baden-Württemberg,linke,4237,5137
+268,Schwäbisch Hall – Hohenlohe,Baden-Württemberg,linke,4090,4980
+269,Backnang – Schwäbisch Gmünd,Baden-Württemberg,linke,3982,3980
+270,Aalen – Heidenheim,Baden-Württemberg,linke,3898,4530
+271,Karlsruhe-Stadt,Baden-Württemberg,linke,7957,8910
+272,Karlsruhe-Land,Baden-Württemberg,linke,4040,4483
+273,Rastatt,Baden-Württemberg,linke,4212,4280
+274,Heidelberg,Baden-Württemberg,linke,6987,8624
+275,Mannheim,Baden-Württemberg,linke,6825,7066
+276,Odenwald – Tauber,Baden-Württemberg,linke,3722,4084
+277,Rhein-Neckar,Baden-Württemberg,linke,3989,4298
+278,Bruchsal – Schwetzingen,Baden-Württemberg,linke,3854,4125
+279,Pforzheim,Baden-Württemberg,linke,3772,4342
+280,Calw,Baden-Württemberg,linke,2998,3656
+281,Freiburg,Baden-Württemberg,linke,9604,12429
+282,Lörrach – Müllheim,Baden-Württemberg,linke,4580,5532
+283,Emmendingen – Lahr,Baden-Württemberg,linke,4917,5205
+284,Offenburg,Baden-Württemberg,linke,4253,4423
+285,Rottweil – Tuttlingen,Baden-Württemberg,linke,3176,3319
+286,Schwarzwald-Baar,Baden-Württemberg,linke,2757,3062
+287,Konstanz,Baden-Württemberg,linke,5591,5804
+288,Waldshut,Baden-Württemberg,linke,3593,3384
+289,Reutlingen,Baden-Württemberg,linke,6169,5081
+290,Tübingen,Baden-Württemberg,linke,7525,8231
+291,Ulm,Baden-Württemberg,linke,4602,5376
+292,Biberach,Baden-Württemberg,linke,2060,2962
+293,Bodensee,Baden-Württemberg,linke,3705,3905
+294,Ravensburg,Baden-Württemberg,linke,4364,4735
+295,Zollernalb – Sigmaringen,Baden-Württemberg,linke,2848,3540
+296,Saarbrücken,Saarland,linke,8708,13481
+297,Saarlouis,Saarland,linke,8405,10512
+298,St. Wendel,Saarland,linke,5782,7883
+299,Homburg,Saarland,linke,7313,9247
+1,Flensburg – Schleswig,Schleswig-Holstein,other,19084,26375
+2,Nordfriesland – Dithmarschen Nord,Schleswig-Holstein,other,13379,16539
+3,Steinburg – Dithmarschen Süd,Schleswig-Holstein,other,5397,11242
+4,Rendsburg-Eckernförde,Schleswig-Holstein,other,12141,15419
+5,Kiel,Schleswig-Holstein,other,11368,13619
+6,Plön – Neumünster,Schleswig-Holstein,other,7313,10639
+7,Pinneberg,Schleswig-Holstein,other,10221,12933
+8,Segeberg – Stormarn-Mitte,Schleswig-Holstein,other,11351,15290
+9,Ostholstein – Stormarn-Nord,Schleswig-Holstein,other,5003,9471
+10,Herzogtum Lauenburg – Stormarn-Süd,Schleswig-Holstein,other,9142,12589
+11,Lübeck,Schleswig-Holstein,other,6537,8536
+12,Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I,Mecklenburg-Vorpommern,other,9513,12009
+13,Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I,Mecklenburg-Vorpommern,other,8909,11198
+14,Rostock – Landkreis Rostock II,Mecklenburg-Vorpommern,other,13021,14647
+15,Vorpommern-Rügen – Vorpommern-Greifswald I,Mecklenburg-Vorpommern,other,12824,14696
+16,Mecklenburgische Seenplatte I – Vorpommern-Greifswald II,Mecklenburg-Vorpommern,other,12018,13486
+17,Mecklenburgische Seenplatte II – Landkreis Rostock III,Mecklenburg-Vorpommern,other,4709,10698
+18,Hamburg-Mitte,Hamburg,other,10120,14150
+19,Hamburg-Altona,Hamburg,other,5680,9335
+20,Hamburg-Eimsbüttel,Hamburg,other,7703,8923
+21,Hamburg-Nord,Hamburg,other,5234,10400
+22,Hamburg-Wandsbek,Hamburg,other,8157,12912
+23,Hamburg-Bergedorf – Harburg,Hamburg,other,7736,12921
+24,Aurich – Emden,Niedersachsen,other,10623,7453
+25,Unterems,Niedersachsen,other,2024,7831
+26,Friesland – Wilhelmshaven – Wittmund,Niedersachsen,other,6605,7980
+27,Oldenburg – Ammerland,Niedersachsen,other,5541,9378
+28,Delmenhorst – Wesermarsch – Oldenburg-Land,Niedersachsen,other,6773,9306
+29,Cuxhaven – Stade II,Niedersachsen,other,8238,7995
+30,Stade I – Rotenburg II,Niedersachsen,other,3783,8499
+31,Mittelems,Niedersachsen,other,1363,6423
+32,Cloppenburg – Vechta,Niedersachsen,other,1248,6140
+33,Diepholz – Nienburg I,Niedersachsen,other,2836,7801
+34,Osterholz – Verden,Niedersachsen,other,8459,8173
+35,Rotenburg I – Heidekreis,Niedersachsen,other,2734,7023
+36,Harburg,Niedersachsen,other,10276,10571
+37,Lüchow-Dannenberg – Lüneburg,Niedersachsen,other,6476,8519
+38,Osnabrück-Land,Niedersachsen,other,3311,6491
+39,Stadt Osnabrück,Niedersachsen,other,2105,6824
+40,Nienburg II – Schaumburg,Niedersachsen,other,6143,7808
+41,Stadt Hannover I,Niedersachsen,other,6223,7582
+42,Stadt Hannover II,Niedersachsen,other,8204,8941
+43,Hannover-Land I,Niedersachsen,other,7664,9145
+44,Celle – Uelzen,Niedersachsen,other,3453,8527
+45,Gifhorn – Peine,Niedersachsen,other,7167,9752
+46,Hameln-Pyrmont – Holzminden,Niedersachsen,other,3835,7140
+47,Hannover-Land II,Niedersachsen,other,9100,10091
+48,Hildesheim,Niedersachsen,other,5574,8403
+49,Salzgitter – Wolfenbüttel,Niedersachsen,other,4820,8390
+50,Braunschweig,Niedersachsen,other,5629,8947
+51,Helmstedt – Wolfsburg,Niedersachsen,other,3347,7672
+52,Goslar – Northeim – Osterode,Niedersachsen,other,3887,7404
+53,Göttingen,Niedersachsen,other,4746,8534
+54,Bremen I,Bremen,other,11478,11021
+55,Bremen II – Bremerhaven,Bremen,other,8612,10374
+56,Prignitz – Ostprignitz-Ruppin – Havelland I,Brandenburg,other,9930,10709
+57,Uckermark – Barnim I,Brandenburg,other,10939,11997
+58,Oberhavel – Havelland II,Brandenburg,other,19333,20590
+59,Märkisch-Oderland – Barnim II,Brandenburg,other,12642,20809
+60,Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I,Brandenburg,other,14161,14889
+61,Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II,Brandenburg,other,14196,17789
+62,Dahme-Spreewald – Teltow-Fläming III – Oberspreewald-Lausitz I,Brandenburg,other,23004,21377
+63,Frankfurt (Oder) – Oder-Spree,Brandenburg,other,13498,15074
+64,Cottbus – Spree-Neiße,Brandenburg,other,10661,12013
+65,Elbe-Elster – Oberspreewald-Lausitz II,Brandenburg,other,14255,12861
+66,Altmark,Sachsen-Anhalt,other,8665,9399
+67,Börde – Jerichower Land,Sachsen-Anhalt,other,10944,12312
+68,Harz,Sachsen-Anhalt,other,8402,11694
+69,Magdeburg,Sachsen-Anhalt,other,16826,14742
+70,Dessau – Wittenberg,Sachsen-Anhalt,other,6371,9189
+71,Anhalt,Sachsen-Anhalt,other,7821,11141
+72,Halle,Sachsen-Anhalt,other,8085,12097
+73,Burgenland – Saalekreis,Sachsen-Anhalt,other,3761,10167
+74,Mansfeld,Sachsen-Anhalt,other,6689,10307
+75,Berlin-Mitte,Berlin,other,11337,13560
+76,Berlin-Pankow,Berlin,other,15191,16945
+77,Berlin-Reinickendorf,Berlin,other,12013,12965
+78,Berlin-Spandau – Charlottenburg Nord,Berlin,other,9347,13350
+79,Berlin-Steglitz-Zehlendorf,Berlin,other,10864,12040
+80,Berlin-Charlottenburg-Wilmersdorf,Berlin,other,8701,9612
+81,Berlin-Tempelhof-Schöneberg,Berlin,other,11835,14938
+82,Berlin-Neukölln,Berlin,other,11652,13886
+83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,Berlin,other,17225,14582
+84,Berlin-Treptow-Köpenick,Berlin,other,12390,17005
+85,Berlin-Marzahn-Hellersdorf,Berlin,other,10075,15465
+86,Berlin-Lichtenberg,Berlin,other,14726,16747
+87,Aachen I,Nordrhein-Westfalen,other,5941,8595
+88,Aachen II,Nordrhein-Westfalen,other,6630,10361
+89,Heinsberg,Nordrhein-Westfalen,other,8743,9915
+90,Düren,Nordrhein-Westfalen,other,7671,10058
+91,Rhein-Erft-Kreis I,Nordrhein-Westfalen,other,8085,12728
+92,Euskirchen – Rhein-Erft-Kreis II,Nordrhein-Westfalen,other,9106,12126
+93,Köln I,Nordrhein-Westfalen,other,8286,10281
+94,Köln II,Nordrhein-Westfalen,other,10996,11306
+95,Köln III,Nordrhein-Westfalen,other,8554,10985
+96,Bonn,Nordrhein-Westfalen,other,9199,11399
+97,Rhein-Sieg-Kreis I,Nordrhein-Westfalen,other,10316,13434
+98,Rhein-Sieg-Kreis II,Nordrhein-Westfalen,other,8311,11175
+99,Oberbergischer Kreis,Nordrhein-Westfalen,other,7980,12122
+100,Rheinisch-Bergischer Kreis,Nordrhein-Westfalen,other,7463,11298
+101,Leverkusen – Köln IV,Nordrhein-Westfalen,other,7107,11624
+102,Wuppertal I,Nordrhein-Westfalen,other,7508,10942
+103,Solingen – Remscheid – Wuppertal II,Nordrhein-Westfalen,other,8562,11457
+104,Mettmann I,Nordrhein-Westfalen,other,5321,10433
+105,Mettmann II,Nordrhein-Westfalen,other,5355,7892
+106,Düsseldorf I,Nordrhein-Westfalen,other,7571,9791
+107,Düsseldorf II,Nordrhein-Westfalen,other,7188,9829
+108,Neuss I,Nordrhein-Westfalen,other,5789,10687
+109,Mönchengladbach,Nordrhein-Westfalen,other,6667,8790
+110,Krefeld I – Neuss II,Nordrhein-Westfalen,other,6819,9444
+111,Viersen,Nordrhein-Westfalen,other,8012,10967
+112,Kleve,Nordrhein-Westfalen,other,5301,9644
+113,Wesel I,Nordrhein-Westfalen,other,7409,9647
+114,Krefeld II – Wesel II,Nordrhein-Westfalen,other,5872,8495
+115,Duisburg I,Nordrhein-Westfalen,other,4079,9232
+116,Duisburg II,Nordrhein-Westfalen,other,3574,8609
+117,Oberhausen – Wesel III,Nordrhein-Westfalen,other,9873,9982
+118,Mülheim – Essen I,Nordrhein-Westfalen,other,8097,8758
+119,Essen II,Nordrhein-Westfalen,other,5090,8458
+120,Essen III,Nordrhein-Westfalen,other,6729,9106
+121,Recklinghausen I,Nordrhein-Westfalen,other,4229,7861
+122,Recklinghausen II,Nordrhein-Westfalen,other,3891,8759
+123,Gelsenkirchen,Nordrhein-Westfalen,other,4751,8919
+124,Steinfurt I – Borken I,Nordrhein-Westfalen,other,3910,7343
+125,Bottrop – Recklinghausen III,Nordrhein-Westfalen,other,5493,9707
+126,Borken II,Nordrhein-Westfalen,other,4445,7414
+127,Coesfeld – Steinfurt II,Nordrhein-Westfalen,other,3438,7440
+128,Steinfurt III,Nordrhein-Westfalen,other,5060,7363
+129,Münster,Nordrhein-Westfalen,other,8642,9651
+130,Warendorf,Nordrhein-Westfalen,other,5748,8687
+131,Gütersloh I,Nordrhein-Westfalen,other,7605,10566
+132,Bielefeld – Gütersloh II,Nordrhein-Westfalen,other,7712,12090
+133,Herford – Minden-Lübbecke II,Nordrhein-Westfalen,other,8825,11130
+134,Minden-Lübbecke I,Nordrhein-Westfalen,other,7907,10411
+135,Lippe I,Nordrhein-Westfalen,other,8406,12029
+136,Höxter – Lippe II,Nordrhein-Westfalen,other,5689,8069
+137,Paderborn – Gütersloh III,Nordrhein-Westfalen,other,7201,10400
+138,Hagen – Ennepe-Ruhr-Kreis I,Nordrhein-Westfalen,other,7335,9965
+139,Ennepe-Ruhr-Kreis II,Nordrhein-Westfalen,other,7387,9122
+140,Bochum I,Nordrhein-Westfalen,other,9564,9769
+141,Herne – Bochum II,Nordrhein-Westfalen,other,5422,9182
+142,Dortmund I,Nordrhein-Westfalen,other,20419,12231
+143,Dortmund II,Nordrhein-Westfalen,other,9028,11066
+144,Unna I,Nordrhein-Westfalen,other,4138,9561
+145,Hamm – Unna II,Nordrhein-Westfalen,other,4149,10653
+146,Soest,Nordrhein-Westfalen,other,4523,10250
+147,Hochsauerlandkreis,Nordrhein-Westfalen,other,6514,9131
+148,Siegen-Wittgenstein,Nordrhein-Westfalen,other,8350,11614
+149,Olpe – Märkischer Kreis I,Nordrhein-Westfalen,other,4511,9224
+150,Märkischer Kreis II,Nordrhein-Westfalen,other,7959,10114
+151,Nordsachsen,Sachsen,other,10241,11153
+152,Leipzig I,Sachsen,other,13368,16430
+153,Leipzig II,Sachsen,other,12319,16253
+154,Leipzig-Land,Sachsen,other,13409,15109
+155,Meißen,Sachsen,other,14375,14887
+156,Bautzen I,Sachsen,other,11849,15448
+157,Görlitz,Sachsen,other,9387,15071
+158,Sächsische Schweiz-Osterzgebirge,Sachsen,other,20189,16505
+159,Dresden I,Sachsen,other,12083,17500
+160,Dresden II – Bautzen II,Sachsen,other,20666,20279
+161,Mittelsachsen,Sachsen,other,4655,14156
+162,Chemnitz,Sachsen,other,8972,12696
+163,Chemnitzer Umland – Erzgebirgskreis II,Sachsen,other,12382,14199
+164,Erzgebirgskreis I,Sachsen,other,16022,17172
+165,Zwickau,Sachsen,other,10700,15000
+166,Vogtlandkreis,Sachsen,other,4767,12783
+167,Waldeck,Hessen,other,6248,9180
+168,Kassel,Hessen,other,8490,11377
+169,Werra-Meißner – Hersfeld-Rotenburg,Hessen,other,4861,8749
+170,Schwalm-Eder,Hessen,other,8284,10186
+171,Marburg,Hessen,other,4697,9344
+172,Lahn-Dill,Hessen,other,9287,12237
+173,Gießen,Hessen,other,9748,13304
+174,Fulda,Hessen,other,8037,12306
+175,Main-Kinzig – Wetterau II – Schotten,Hessen,other,7154,11966
+176,Hochtaunus,Hessen,other,7113,10101
+177,Wetterau I,Hessen,other,8285,11384
+178,Rheingau-Taunus – Limburg,Hessen,other,9564,13370
+179,Wiesbaden,Hessen,other,8832,10313
+180,Hanau,Hessen,other,6133,11067
+181,Main-Taunus,Hessen,other,6922,11292
+182,Frankfurt am Main I,Hessen,other,6974,11935
+183,Frankfurt am Main II,Hessen,other,5211,13223
+184,Groß-Gerau,Hessen,other,7861,11743
+185,Offenbach,Hessen,other,10933,13699
+186,Darmstadt,Hessen,other,10959,16121
+187,Odenwald,Hessen,other,10554,15308
+188,Bergstraße,Hessen,other,8369,12361
+189,Eichsfeld – Nordhausen – Kyffhäuserkreis,Thüringen,other,10401,11399
+190,Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis,Thüringen,other,12163,13292
+191,Jena – Sömmerda – Weimarer Land I,Thüringen,other,12748,13963
+192,Gotha – Ilm-Kreis,Thüringen,other,12762,13184
+193,Erfurt – Weimar – Weimarer Land II,Thüringen,other,9839,14848
+194,Gera – Greiz – Altenburger Land,Thüringen,other,7786,13546
+195,Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis,Thüringen,other,12436,14913
+196,Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg,Thüringen,other,10120,14485
+197,Neuwied,Rheinland-Pfalz,other,13726,15334
+198,Ahrweiler,Rheinland-Pfalz,other,9962,12494
+199,Koblenz,Rheinland-Pfalz,other,12855,12517
+200,Mosel/Rhein-Hunsrück,Rheinland-Pfalz,other,12294,12890
+201,Kreuznach,Rheinland-Pfalz,other,14558,12395
+202,Bitburg,Rheinland-Pfalz,other,14308,14173
+203,Trier,Rheinland-Pfalz,other,14764,13306
+204,Montabaur,Rheinland-Pfalz,other,14595,15160
+205,Mainz,Rheinland-Pfalz,other,16030,15120
+206,Worms,Rheinland-Pfalz,other,11543,14623
+207,Ludwigshafen/Frankenthal,Rheinland-Pfalz,other,11351,14362
+208,Neustadt – Speyer,Rheinland-Pfalz,other,14490,15727
+209,Kaiserslautern,Rheinland-Pfalz,other,21245,17831
+210,Pirmasens,Rheinland-Pfalz,other,13522,13298
+211,Südpfalz,Rheinland-Pfalz,other,15916,15925
+212,Altötting,Bayern,other,20477,24134
+213,Erding – Ebersberg,Bayern,other,19473,25192
+214,Freising,Bayern,other,36439,31341
+215,Fürstenfeldbruck,Bayern,other,24073,25777
+216,Ingolstadt,Bayern,other,25097,26596
+217,München-Nord,Bayern,other,16024,15560
+218,München-Ost,Bayern,other,20199,17101
+219,München-Süd,Bayern,other,14553,16033
+220,München-West/Mitte,Bayern,other,17935,17256
+221,München-Land,Bayern,other,18387,19310
+222,Rosenheim,Bayern,other,34855,33874
+223,Bad Tölz-Wolfratshausen – Miesbach,Bayern,other,28303,21686
+224,Starnberg – Landsberg am Lech,Bayern,other,20346,21653
+225,Traunstein,Bayern,other,29682,32719
+226,Weilheim,Bayern,other,22479,22348
+227,Deggendorf,Bayern,other,27163,25108
+228,Landshut,Bayern,other,33074,34996
+229,Passau,Bayern,other,24100,23404
+230,Rottal-Inn,Bayern,other,31042,27176
+231,Straubing,Bayern,other,23040,25118
+232,Amberg,Bayern,other,29130,27056
+233,Regensburg,Bayern,other,28355,27413
+234,Schwandorf,Bayern,other,31756,32771
+235,Weiden,Bayern,other,22492,18948
+236,Bamberg,Bayern,other,15494,17711
+237,Bayreuth,Bayern,other,12421,15570
+238,Coburg,Bayern,other,14833,14634
+239,Hof,Bayern,other,11590,15081
+240,Kulmbach,Bayern,other,15619,17985
+241,Ansbach,Bayern,other,27288,27955
+242,Erlangen,Bayern,other,17169,15920
+243,Fürth,Bayern,other,20412,22454
+244,Nürnberg-Nord,Bayern,other,11929,13630
+245,Nürnberg-Süd,Bayern,other,10468,13863
+246,Roth,Bayern,other,27242,24798
+247,Aschaffenburg,Bayern,other,12614,15115
+248,Bad Kissingen,Bayern,other,21956,23161
+249,Main-Spessart,Bayern,other,20624,20638
+250,Schweinfurt,Bayern,other,13893,18689
+251,Würzburg,Bayern,other,19494,17557
+252,Augsburg-Stadt,Bayern,other,17255,17828
+253,Augsburg-Land,Bayern,other,27157,30211
+254,Donau-Ries,Bayern,other,22245,24989
+255,Neu-Ulm,Bayern,other,26568,27293
+256,Oberallgäu,Bayern,other,27364,28073
+257,Ostallgäu,Bayern,other,31364,34034
+258,Stuttgart I,Baden-Württemberg,other,8225,8987
+259,Stuttgart II,Baden-Württemberg,other,8908,9320
+260,Böblingen,Baden-Württemberg,other,12325,13858
+261,Esslingen,Baden-Württemberg,other,7874,9495
+262,Nürtingen,Baden-Württemberg,other,10398,12550
+263,Göppingen,Baden-Württemberg,other,9436,10531
+264,Waiblingen,Baden-Württemberg,other,11197,13437
+265,Ludwigsburg,Baden-Württemberg,other,11011,12631
+266,Neckar-Zaber,Baden-Württemberg,other,12467,14367
+267,Heilbronn,Baden-Württemberg,other,11654,14937
+268,Schwäbisch Hall – Hohenlohe,Baden-Württemberg,other,12229,14658
+269,Backnang – Schwäbisch Gmünd,Baden-Württemberg,other,9352,11166
+270,Aalen – Heidenheim,Baden-Württemberg,other,11616,13641
+271,Karlsruhe-Stadt,Baden-Württemberg,other,11653,12331
+272,Karlsruhe-Land,Baden-Württemberg,other,11907,13347
+273,Rastatt,Baden-Württemberg,other,9365,12072
+274,Heidelberg,Baden-Württemberg,other,11449,11747
+275,Mannheim,Baden-Württemberg,other,8496,11388
+276,Odenwald – Tauber,Baden-Württemberg,other,13438,14068
+277,Rhein-Neckar,Baden-Württemberg,other,8016,11886
+278,Bruchsal – Schwetzingen,Baden-Württemberg,other,11904,13054
+279,Pforzheim,Baden-Württemberg,other,14269,14947
+280,Calw,Baden-Württemberg,other,12131,12976
+281,Freiburg,Baden-Württemberg,other,12135,13103
+282,Lörrach – Müllheim,Baden-Württemberg,other,12789,15019
+283,Emmendingen – Lahr,Baden-Württemberg,other,14649,14483
+284,Offenburg,Baden-Württemberg,other,15461,16317
+285,Rottweil – Tuttlingen,Baden-Württemberg,other,10876,13595
+286,Schwarzwald-Baar,Baden-Württemberg,other,8317,11363
+287,Konstanz,Baden-Württemberg,other,7170,11964
+288,Waldshut,Baden-Württemberg,other,9145,11735
+289,Reutlingen,Baden-Württemberg,other,8276,11318
+290,Tübingen,Baden-Württemberg,other,11576,11547
+291,Ulm,Baden-Württemberg,other,12920,14890
+292,Biberach,Baden-Württemberg,other,14564,14020
+293,Bodensee,Baden-Württemberg,other,10204,12219
+294,Ravensburg,Baden-Württemberg,other,13443,14639
+295,Zollernalb – Sigmaringen,Baden-Württemberg,other,10120,11772
+296,Saarbrücken,Saarland,other,9327,15211
+297,Saarlouis,Saarland,other,11421,16235
+298,St. Wendel,Saarland,other,9689,13843
+299,Homburg,Saarland,other,10687,14758
+1,Flensburg – Schleswig,Schleswig-Holstein,spd,38932,45508
+2,Nordfriesland – Dithmarschen Nord,Schleswig-Holstein,spd,40034,37939
+3,Steinburg – Dithmarschen Süd,Schleswig-Holstein,spd,39364,37466
+4,Rendsburg-Eckernförde,Schleswig-Holstein,spd,49477,43149
+5,Kiel,Schleswig-Holstein,spd,45767,40354
+6,Plön – Neumünster,Schleswig-Holstein,spd,41498,38672
+7,Pinneberg,Schleswig-Holstein,spd,58644,55057
+8,Segeberg – Stormarn-Mitte,Schleswig-Holstein,spd,63369,56659
+9,Ostholstein – Stormarn-Nord,Schleswig-Holstein,spd,47718,42522
+10,Herzogtum Lauenburg – Stormarn-Süd,Schleswig-Holstein,spd,60592,56417
+11,Lübeck,Schleswig-Holstein,spd,40376,36136
+12,Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I,Mecklenburg-Vorpommern,spd,45107,49269
+13,Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I,Mecklenburg-Vorpommern,spd,50705,46844
+14,Rostock – Landkreis Rostock II,Mecklenburg-Vorpommern,spd,43935,47281
+15,Vorpommern-Rügen – Vorpommern-Greifswald I,Mecklenburg-Vorpommern,spd,40426,41582
+16,Mecklenburgische Seenplatte I – Vorpommern-Greifswald II,Mecklenburg-Vorpommern,spd,37395,40337
+17,Mecklenburgische Seenplatte II – Landkreis Rostock III,Mecklenburg-Vorpommern,spd,43740,42068
+18,Hamburg-Mitte,Hamburg,spd,59162,51073
+19,Hamburg-Altona,Hamburg,spd,43458,38911
+20,Hamburg-Eimsbüttel,Hamburg,spd,47366,44920
+21,Hamburg-Nord,Hamburg,spd,56540,51491
+22,Hamburg-Wandsbek,Hamburg,spd,66594,59288
+23,Hamburg-Bergedorf – Harburg,Hamburg,spd,61666,52658
+24,Aurich – Emden,Niedersachsen,spd,71495,58964
+25,Unterems,Niedersachsen,spd,49440,59230
+26,Friesland – Wilhelmshaven – Wittmund,Niedersachsen,spd,60392,50448
+27,Oldenburg – Ammerland,Niedersachsen,spd,65757,55227
+28,Delmenhorst – Wesermarsch – Oldenburg-Land,Niedersachsen,spd,59361,55599
+29,Cuxhaven – Stade II,Niedersachsen,spd,51417,48858
+30,Stade I – Rotenburg II,Niedersachsen,spd,47757,48300
+31,Mittelems,Niedersachsen,spd,52310,55482
+32,Cloppenburg – Vechta,Niedersachsen,spd,34126,40513
+33,Diepholz – Nienburg I,Niedersachsen,spd,46453,48193
+34,Osterholz – Verden,Niedersachsen,spd,48548,49408
+35,Rotenburg I – Heidekreis,Niedersachsen,spd,59127,43196
+36,Harburg,Niedersachsen,spd,49771,46764
+37,Lüchow-Dannenberg – Lüneburg,Niedersachsen,spd,38780,41254
+38,Osnabrück-Land,Niedersachsen,spd,44707,48352
+39,Stadt Osnabrück,Niedersachsen,spd,44875,44924
+40,Nienburg II – Schaumburg,Niedersachsen,spd,50014,49543
+41,Stadt Hannover I,Niedersachsen,spd,44570,39511
+42,Stadt Hannover II,Niedersachsen,spd,46930,40116
+43,Hannover-Land I,Niedersachsen,spd,58295,55462
+44,Celle – Uelzen,Niedersachsen,spd,50631,48329
+45,Gifhorn – Peine,Niedersachsen,spd,72114,58846
+46,Hameln-Pyrmont – Holzminden,Niedersachsen,spd,56893,48438
+47,Hannover-Land II,Niedersachsen,spd,73087,62023
+48,Hildesheim,Niedersachsen,spd,61804,55433
+49,Salzgitter – Wolfenbüttel,Niedersachsen,spd,56137,53385
+50,Braunschweig,Niedersachsen,spd,51223,42376
+51,Helmstedt – Wolfsburg,Niedersachsen,spd,54349,45414
+52,Goslar – Northeim – Osterode,Niedersachsen,spd,52141,53883
+53,Göttingen,Niedersachsen,spd,51386,51181
+54,Bremen I,Bremen,spd,55946,53524
+55,Bremen II – Bremerhaven,Bremen,spd,52274,49464
+56,Prignitz – Ostprignitz-Ruppin – Havelland I,Brandenburg,spd,39853,41162
+57,Uckermark – Barnim I,Brandenburg,spd,38241,40532
+58,Oberhavel – Havelland II,Brandenburg,spd,50687,55184
+59,Märkisch-Oderland – Barnim II,Brandenburg,spd,43111,48705
+60,Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I,Brandenburg,spd,46642,48426
+61,Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II,Brandenburg,spd,64270,50964
+62,Dahme-Spreewald – Teltow-Fläming III – Oberspreewald-Lausitz I,Brandenburg,spd,50673,54623
+63,Frankfurt (Oder) – Oder-Spree,Brandenburg,spd,39349,41434
+64,Cottbus – Spree-Neiße,Brandenburg,spd,34883,36093
+65,Elbe-Elster – Oberspreewald-Lausitz II,Brandenburg,spd,29998,33411
+66,Altmark,Sachsen-Anhalt,spd,29594,29540
+67,Börde – Jerichower Land,Sachsen-Anhalt,spd,38520,39042
+68,Harz,Sachsen-Anhalt,spd,34812,37330
+69,Magdeburg,Sachsen-Anhalt,spd,39215,40997
+70,Dessau – Wittenberg,Sachsen-Anhalt,spd,22178,29843
+71,Anhalt,Sachsen-Anhalt,spd,28384,33053
+72,Halle,Sachsen-Anhalt,spd,42334,34686
+73,Burgenland – Saalekreis,Sachsen-Anhalt,spd,27165,28460
+74,Mansfeld,Sachsen-Anhalt,spd,30972,32097
+75,Berlin-Mitte,Berlin,spd,34072,32133
+76,Berlin-Pankow,Berlin,spd,39093,40139
+77,Berlin-Reinickendorf,Berlin,spd,32375,31403
+78,Berlin-Spandau – Charlottenburg Nord,Berlin,spd,40344,34215
+79,Berlin-Steglitz-Zehlendorf,Berlin,spd,43472,42913
+80,Berlin-Charlottenburg-Wilmersdorf,Berlin,spd,42869,36986
+81,Berlin-Tempelhof-Schöneberg,Berlin,spd,47450,43366
+82,Berlin-Neukölln,Berlin,spd,35517,33074
+83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,Berlin,spd,29646,32774
+84,Berlin-Treptow-Köpenick,Berlin,spd,24132,36555
+85,Berlin-Marzahn-Hellersdorf,Berlin,spd,19802,31313
+86,Berlin-Lichtenberg,Berlin,spd,28031,33174
+87,Aachen I,Nordrhein-Westfalen,spd,33087,30588
+88,Aachen II,Nordrhein-Westfalen,spd,58186,53405
+89,Heinsberg,Nordrhein-Westfalen,spd,37249,38822
+90,Düren,Nordrhein-Westfalen,spd,46733,44058
+91,Rhein-Erft-Kreis I,Nordrhein-Westfalen,spd,58848,54702
+92,Euskirchen – Rhein-Erft-Kreis II,Nordrhein-Westfalen,spd,50790,50951
+93,Köln I,Nordrhein-Westfalen,spd,38985,36933
+94,Köln II,Nordrhein-Westfalen,spd,40103,43193
+95,Köln III,Nordrhein-Westfalen,spd,46149,39901
+96,Bonn,Nordrhein-Westfalen,spd,46251,41641
+97,Rhein-Sieg-Kreis I,Nordrhein-Westfalen,spd,53213,49530
+98,Rhein-Sieg-Kreis II,Nordrhein-Westfalen,spd,41004,41752
+99,Oberbergischer Kreis,Nordrhein-Westfalen,spd,42461,42413
+100,Rheinisch-Bergischer Kreis,Nordrhein-Westfalen,spd,39869,44354
+101,Leverkusen – Köln IV,Nordrhein-Westfalen,spd,69662,44586
+102,Wuppertal I,Nordrhein-Westfalen,spd,54065,42420
+103,Solingen – Remscheid – Wuppertal II,Nordrhein-Westfalen,spd,52864,48207
+104,Mettmann I,Nordrhein-Westfalen,spd,39326,42385
+105,Mettmann II,Nordrhein-Westfalen,spd,37643,34411
+106,Düsseldorf I,Nordrhein-Westfalen,spd,38964,38204
+107,Düsseldorf II,Nordrhein-Westfalen,spd,41169,35671
+108,Neuss I,Nordrhein-Westfalen,spd,51392,43759
+109,Mönchengladbach,Nordrhein-Westfalen,spd,37544,34869
+110,Krefeld I – Neuss II,Nordrhein-Westfalen,spd,39253,39405
+111,Viersen,Nordrhein-Westfalen,spd,47805,46375
+112,Kleve,Nordrhein-Westfalen,spd,48142,47837
+113,Wesel I,Nordrhein-Westfalen,spd,54488,53277
+114,Krefeld II – Wesel II,Nordrhein-Westfalen,spd,45867,41484
+115,Duisburg I,Nordrhein-Westfalen,spd,47314,41308
+116,Duisburg II,Nordrhein-Westfalen,spd,38162,35840
+117,Oberhausen – Wesel III,Nordrhein-Westfalen,spd,55800,53034
+118,Mülheim – Essen I,Nordrhein-Westfalen,spd,50173,46086
+119,Essen II,Nordrhein-Westfalen,spd,39410,35363
+120,Essen III,Nordrhein-Westfalen,spd,45609,42628
+121,Recklinghausen I,Nordrhein-Westfalen,spd,49436,42553
+122,Recklinghausen II,Nordrhein-Westfalen,spd,51050,48561
+123,Gelsenkirchen,Nordrhein-Westfalen,spd,44965,41326
+124,Steinfurt I – Borken I,Nordrhein-Westfalen,spd,44046,44787
+125,Bottrop – Recklinghausen III,Nordrhein-Westfalen,spd,57427,51515
+126,Borken II,Nordrhein-Westfalen,spd,40851,42301
+127,Coesfeld – Steinfurt II,Nordrhein-Westfalen,spd,40145,42647
+128,Steinfurt III,Nordrhein-Westfalen,spd,48068,50554
+129,Münster,Nordrhein-Westfalen,spd,47047,45844
+130,Warendorf,Nordrhein-Westfalen,spd,50697,47661
+131,Gütersloh I,Nordrhein-Westfalen,spd,45876,47371
+132,Bielefeld – Gütersloh II,Nordrhein-Westfalen,spd,55230,50000
+133,Herford – Minden-Lübbecke II,Nordrhein-Westfalen,spd,61551,53357
+134,Minden-Lübbecke I,Nordrhein-Westfalen,spd,58167,49347
+135,Lippe I,Nordrhein-Westfalen,spd,52337,53106
+136,Höxter – Lippe II,Nordrhein-Westfalen,spd,37210,36254
+137,Paderborn – Gütersloh III,Nordrhein-Westfalen,spd,33513,39089
+138,Hagen – Ennepe-Ruhr-Kreis I,Nordrhein-Westfalen,spd,47573,47388
+139,Ennepe-Ruhr-Kreis II,Nordrhein-Westfalen,spd,47993,45664
+140,Bochum I,Nordrhein-Westfalen,spd,58258,50184
+141,Herne – Bochum II,Nordrhein-Westfalen,spd,52832,46573
+142,Dortmund I,Nordrhein-Westfalen,spd,51037,50117
+143,Dortmund II,Nordrhein-Westfalen,spd,55695,51080
+144,Unna I,Nordrhein-Westfalen,spd,59869,53490
+145,Hamm – Unna II,Nordrhein-Westfalen,spd,67774,59227
+146,Soest,Nordrhein-Westfalen,spd,54612,51061
+147,Hochsauerlandkreis,Nordrhein-Westfalen,spd,50057,44641
+148,Siegen-Wittgenstein,Nordrhein-Westfalen,spd,48897,50328
+149,Olpe – Märkischer Kreis I,Nordrhein-Westfalen,spd,45368,42362
+150,Märkischer Kreis II,Nordrhein-Westfalen,spd,43349,42232
+151,Nordsachsen,Sachsen,spd,22257,24732
+152,Leipzig I,Sachsen,spd,33583,34739
+153,Leipzig II,Sachsen,spd,29730,37628
+154,Leipzig-Land,Sachsen,spd,31985,34099
+155,Meißen,Sachsen,spd,22770,26047
+156,Bautzen I,Sachsen,spd,21006,26674
+157,Görlitz,Sachsen,spd,18927,25440
+158,Sächsische Schweiz-Osterzgebirge,Sachsen,spd,17505,23544
+159,Dresden I,Sachsen,spd,26272,34125
+160,Dresden II – Bautzen II,Sachsen,spd,28689,30621
+161,Mittelsachsen,Sachsen,spd,25727,26998
+162,Chemnitz,Sachsen,spd,34959,32617
+163,Chemnitzer Umland – Erzgebirgskreis II,Sachsen,spd,23181,27517
+164,Erzgebirgskreis I,Sachsen,spd,23650,28847
+165,Zwickau,Sachsen,spd,24091,30721
+166,Vogtlandkreis,Sachsen,spd,26410,30432
+167,Waldeck,Hessen,spd,51603,49070
+168,Kassel,Hessen,spd,57922,51826
+169,Werra-Meißner – Hersfeld-Rotenburg,Hessen,spd,56385,48578
+170,Schwalm-Eder,Hessen,spd,54790,50100
+171,Marburg,Hessen,spd,51628,42097
+172,Lahn-Dill,Hessen,spd,49919,44546
+173,Gießen,Hessen,spd,48363,43899
+174,Fulda,Hessen,spd,35163,36341
+175,Main-Kinzig – Wetterau II – Schotten,Hessen,spd,41156,36942
+176,Hochtaunus,Hessen,spd,38424,35171
+177,Wetterau I,Hessen,spd,40605,35909
+178,Rheingau-Taunus – Limburg,Hessen,spd,48441,43707
+179,Wiesbaden,Hessen,spd,34747,33546
+180,Hanau,Hessen,spd,40290,35739
+181,Main-Taunus,Hessen,spd,35463,34446
+182,Frankfurt am Main I,Hessen,spd,41604,32498
+183,Frankfurt am Main II,Hessen,spd,40430,38777
+184,Groß-Gerau,Hessen,spd,42598,37972
+185,Offenbach,Hessen,spd,41030,38797
+186,Darmstadt,Hessen,spd,51046,49273
+187,Odenwald,Hessen,spd,57173,49518
+188,Bergstraße,Hessen,spd,41122,41122
+189,Eichsfeld – Nordhausen – Kyffhäuserkreis,Thüringen,spd,34010,37281
+190,Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis,Thüringen,spd,36728,38353
+191,Jena – Sömmerda – Weimarer Land I,Thüringen,spd,30673,34195
+192,Gotha – Ilm-Kreis,Thüringen,spd,33086,33433
+193,Erfurt – Weimar – Weimarer Land II,Thüringen,spd,40183,39374
+194,Gera – Greiz – Altenburger Land,Thüringen,spd,36757,36327
+195,Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis,Thüringen,spd,30782,35020
+196,Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg,Thüringen,spd,56786,42446
+197,Neuwied,Rheinland-Pfalz,spd,54320,54018
+198,Ahrweiler,Rheinland-Pfalz,spd,44321,42302
+199,Koblenz,Rheinland-Pfalz,spd,43417,42816
+200,Mosel/Rhein-Hunsrück,Rheinland-Pfalz,spd,35569,38015
+201,Kreuznach,Rheinland-Pfalz,spd,44976,44258
+202,Bitburg,Rheinland-Pfalz,spd,33631,34310
+203,Trier,Rheinland-Pfalz,spd,47925,44101
+204,Montabaur,Rheinland-Pfalz,spd,50977,49344
+205,Mainz,Rheinland-Pfalz,spd,49847,53866
+206, ,Rheinland-Pfalz,spd,49748,49656
+207,Ludwigshafen/Frankenthal,Rheinland-Pfalz,spd,50108,45896
+208,Neustadt – Speyer,Rheinland-Pfalz,spd,48158,47121
+209,Kaiserslautern,Rheinland-Pfalz,spd,56523,54460
+210,Pirmasens,Rheinland-Pfalz,spd,39622,38171
+211,Südpfalz,Rheinland-Pfalz,spd,47900,47027
+212,Altötting,Bayern,spd,14622,18310
+213,Erding – Ebersberg,Bayern,spd,24204,25690
+214,Freising,Bayern,spd,25950,29084
+215,Fürstenfeldbruck,Bayern,spd,36828,31144
+216,Ingolstadt,Bayern,spd,25954,31597
+217,München-Nord,Bayern,spd,38172,33241
+218,München-Ost,Bayern,spd,38225,36108
+219,München-Süd,Bayern,spd,33902,33118
+220,München-West/Mitte,Bayern,spd,39165,37512
+221,München-Land,Bayern,spd,30237,34189
+222,Rosenheim,Bayern,spd,22869,27388
+223,Bad Tölz-Wolfratshausen – Miesbach,Bayern,spd,15418,18265
+224,Starnberg – Landsberg am Lech,Bayern,spd,23998,28592
+225,Traunstein,Bayern,spd,27637,25183
+226,Weilheim,Bayern,spd,19681,19924
+227,Deggendorf,Bayern,spd,19525,19873
+228,Landshut,Bayern,spd,22466,30928
+229,Passau,Bayern,spd,28340,23890
+230,Rottal-Inn,Bayern,spd,15794,19107
+231,Straubing,Bayern,spd,16311,19938
+232,Amberg,Bayern,spd,27475,31542
+233,Regensburg,Bayern,spd,32846,34563
+234,Schwandorf,Bayern,spd,39619,31209
+235,Weiden,Bayern,spd,29573,29464
+236,Bamberg,Bayern,spd,28122,25695
+237,Bayreuth,Bayern,spd,24842,26586
+238,Coburg,Bayern,spd,32056,31082
+239,Hof,Bayern,spd,29763,30426
+240,Kulmbach,Bayern,spd,22102,27009
+241,Ansbach,Bayern,spd,33818,37642
+242,Erlangen,Bayern,spd,32009,30128
+243,Fürth,Bayern,spd,47154,42328
+244,Nürnberg-Nord,Bayern,spd,31615,30232
+245,Nürnberg-Süd,Bayern,spd,31081,29181
+246,Roth,Bayern,spd,31804,38783
+247,Aschaffenburg,Bayern,spd,24893,30229
+248,Bad Kissingen,Bayern,spd,32844,30540
+249,Main-Spessart,Bayern,spd,33700,32770
+250,Schweinfurt,Bayern,spd,29038,30483
+251,Würzburg,Bayern,spd,33121,37078
+252,Augsburg-Stadt,Bayern,spd,27452,29199
+253,Augsburg-Land,Bayern,spd,29438,33408
+254,Donau-Ries,Bayern,spd,29871,25786
+255,Neu-Ulm,Bayern,spd,29946,31870
+256,Oberallgäu,Bayern,spd,28399,29905
+257,Ostallgäu,Bayern,spd,24286,30907
+258,Stuttgart I,Baden-Württemberg,spd,20012,31002
+259,Stuttgart II,Baden-Württemberg,spd,27220,30194
+260,Böblingen,Baden-Württemberg,spd,40844,39955
+261,Esslingen,Baden-Württemberg,spd,28501,29852
+262,Nürtingen,Baden-Württemberg,spd,34602,33983
+263,Göppingen,Baden-Württemberg,spd,31823,31421
+264,Waiblingen,Baden-Württemberg,spd,39642,37753
+265,Ludwigsburg,Baden-Württemberg,spd,31392,37274
+266,Neckar-Zaber,Baden-Württemberg,spd,41707,41373
+267,Heilbronn,Baden-Württemberg,spd,43886,40959
+268,Schwäbisch Hall – Hohenlohe,Baden-Württemberg,spd,33568,37272
+269,Backnang – Schwäbisch Gmünd,Baden-Württemberg,spd,32890,29326
+270,Aalen – Heidenheim,Baden-Württemberg,spd,36465,39425
+271,Karlsruhe-Stadt,Baden-Württemberg,spd,33629,33827
+272,Karlsruhe-Land,Baden-Württemberg,spd,37948,38474
+273,Rastatt,Baden-Württemberg,spd,34847,36443
+274,Heidelberg,Baden-Württemberg,spd,35603,40276
+275,Mannheim,Baden-Württemberg,spd,37099,35657
+276,Odenwald – Tauber,Baden-Württemberg,spd,33083,35578
+277,Rhein-Neckar,Baden-Württemberg,spd,41055,35711
+278,Bruchsal – Schwetzingen,Baden-Württemberg,spd,32834,34433
+279,Pforzheim,Baden-Württemberg,spd,33956,34261
+280,Calw,Baden-Württemberg,spd,26113,28572
+281,Freiburg,Baden-Württemberg,spd,47197,38183
+282,Lörrach – Müllheim,Baden-Württemberg,spd,37494,41834
+283,Emmendingen – Lahr,Baden-Württemberg,spd,46318,39728
+284,Offenburg,Baden-Württemberg,spd,29002,33042
+285,Rottweil – Tuttlingen,Baden-Württemberg,spd,23988,27523
+286,Schwarzwald-Baar,Baden-Württemberg,spd,21995,25805
+287,Konstanz,Baden-Württemberg,spd,31486,32655
+288,Waldshut,Baden-Württemberg,spd,34359,30700
+289,Reutlingen,Baden-Württemberg,spd,27236,31535
+290,Tübingen,Baden-Württemberg,spd,28981,32577
+291,Ulm,Baden-Württemberg,spd,32177,36415
+292,Biberach,Baden-Württemberg,spd,24467,23064
+293,Bodensee,Baden-Württemberg,spd,28500,26988
+294,Ravensburg,Baden-Württemberg,spd,20128,27752
+295,Zollernalb – Sigmaringen,Baden-Württemberg,spd,24968,267176
+296,Saarbrücken,Saarland,spd,51749,53532
+297,Saarlouis,Saarland,spd,57353,56920
+298,St. Wendel,Saarland,spd,48132,51223
+299,Homburg,Saarland,spd,51089,52092
